@@ -5,7 +5,7 @@ import Button from "../components/Button.js";
 
 class SectionScreen extends React.Component {
   static navigationOptions = {
-    header: null,
+    headerShown: false,
   };
 
   componentDidMount() {

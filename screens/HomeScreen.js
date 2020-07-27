@@ -11,7 +11,7 @@ import Button from "../components/Button.js";
 
 class HomeScreen extends React.Component {
   static navigationOptions = {
-    header: null,
+    headerShown: false,
   };
 
   render() {
@@ -206,43 +206,6 @@ const events = [
     attendees: "126",
   },
 ];
-
-const ideas = [
-  {
-    key: "1",
-    coverimage: require("../assets/logo.png"),
-    title: "Flash Day para sobreviver COVID",
-    location: "Tatuapé, São Paulo",
-    subtitle: "a partir de",
-    price: "R$150",
-    attendees: "126",
-  },
-  {
-    coverimage: require("../assets/logo.png"),
-    title: "Flash Day para sobreviver COVID",
-    location: "Tatuapé, São Paulo",
-    subtitle: "a partir de",
-    price: "R$150",
-    attendees: "126",
-  },
-  {
-    coverimage: require("../assets/logo.png"),
-    title: "Flash Day para sobreviver COVID",
-    location: "Tatuapé, São Paulo",
-    subtitle: "a partir de",
-    price: "R$150",
-    attendees: "126",
-  },
-];
-/*
-const avatars = [
-  {
-    key: "1",
-    image: require("../assets/logo.png"),
-    name: "Olá Cliente",
-  },
-];
- */
 
 const buttons = [
   {
