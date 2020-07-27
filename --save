@@ -1,0 +1,8 @@
++ styled-components@5.1.1
+updated 1 package and audited 1023 packages in 5.263s
+
+41 packages are looking for funding
+  run `npm fund` for details
+
+found 2 low severity vulnerabilities
+  run `npm audit fix` to fix them, or `npm audit` for details
