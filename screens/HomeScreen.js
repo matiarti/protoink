@@ -8,7 +8,6 @@ import Studio from "../components/StudioSmallCard";
 import AvatarAPI from "../components/AvatarAPI";
 import Explore from "../components/forms/Explore";
 import Button from "../components/Button.js";
-import StudioFavourite from "../components/StudioFavouriteCard";
 
 class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -56,12 +55,20 @@ class HomeScreen extends React.Component {
                 showsHorizontalScrollIndicator={false}
               >
                 {studios.map((studio, index) => (
-                  <Studio
+                  <TouchableOpacity
                     key={index}
-                    image={studio.image}
-                    text={studio.text}
-                    subtitle={studio.subtitle}
-                  />
+                    onPress={() => {
+                      this.props.navigation.push("Section", {
+                        section: studio,
+                      });
+                    }}
+                  >
+                    <Studio
+                      image={studio.image}
+                      text={studio.text}
+                      subtitle={studio.subtitle}
+                    />
+                  </TouchableOpacity>
                 ))}
               </ScrollView>
 
@@ -77,7 +84,9 @@ class HomeScreen extends React.Component {
                   <TouchableOpacity
                     key={index}
                     onPress={() => {
-                      this.props.navigation.push("Section");
+                      this.props.navigation.push("Section", {
+                        section: event,
+                      });
                     }}
                   >
                     <EventCard
