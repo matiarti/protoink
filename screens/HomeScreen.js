@@ -81,14 +81,7 @@ class HomeScreen extends React.Component {
                 showsHorizontalScrollIndicator={false}
               >
                 {events.map((event, index) => (
-                  <TouchableOpacity
-                    key={index}
-                    onPress={() => {
-                      this.props.navigation.push("Section", {
-                        section: event,
-                      });
-                    }}
-                  >
+                  <TouchableOpacity key={index}>
                     <EventCard
                       title={event.title}
                       coverimage={event.coverimage}
@@ -117,6 +110,8 @@ class HomeScreen extends React.Component {
 }
 
 export default HomeScreen;
+
+const Message = styled.Text``;
 
 const RootView = styled.View`
   background: #fff;

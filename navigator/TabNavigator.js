@@ -8,6 +8,7 @@ import React from "react";
 import styled from "styled-components/native";
 import FavouriteScreen from "../screens/FavouriteScreen";
 import BookingScreen from "../screens/BookingScreen";
+import ProfileScreen from "../screens/ProfileScreen";
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
@@ -81,7 +82,7 @@ MessagesStack.navigationOptions = {
 };
 
 const ProfileStack = createStackNavigator({
-  Profile: SectionScreen,
+  Profile: ProfileScreen,
 });
 
 ProfileStack.navigationOptions = {

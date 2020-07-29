@@ -5,6 +5,7 @@ import SectionScreen from "../screens/SectionScreen";
 import TabNavigator from "./TabNavigator";
 import FavouriteScreen from "../screens/FavouriteScreen";
 import BookingScreen from "../screens/BookingScreen";
+import ProfileScreen from "../screens/ProfileScreen";
 
 const AppNavigator = createStackNavigator(
   {
@@ -12,6 +13,7 @@ const AppNavigator = createStackNavigator(
     Section: SectionScreen,
     Favourite: FavouriteScreen,
     Booking: BookingScreen,
+    Profile: ProfileScreen,
   },
   {
     mode: "modal",

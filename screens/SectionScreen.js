@@ -24,7 +24,7 @@ class SectionScreen extends React.Component {
       <Container>
         <StatusBar hidden />
         <Cover>
-          <Image source={section.coverimage} />
+          <Image source={section.image} />
         </Cover>
         <Text>{section.title}</Text>
         <Text>{section.text}</Text>
