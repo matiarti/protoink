@@ -1,112 +1,121 @@
 import React from "react";
 import { ScrollView, SafeAreaView, TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
-import EventCard from "../components/EventCard";
+import EventCard from "../components/cards/EventCard";
 import { Ionicons } from "@expo/vector-icons";
 import LogoSvg from "../components/Icons";
-import Studio from "../components/StudioSmallCard";
+import Style from "../components/cards/StyleCard";
 import AvatarAPI from "../components/AvatarAPI";
 import Explore from "../components/forms/Explore";
 import Button from "../components/Button.js";
+import { useQuery, gql } from "@apollo/client";
 
-class HomeScreen extends React.Component {
-  static navigationOptions = {
-    headerShown: false,
-  };
+const StylesQuery = gql`
+  {
+    styleCollection {
+      items {
+        image {
+          title
+          description
+          contentType
+          fileName
+          size
+          url
+          width
+          height
+        }
+        name
+      }
+    }
+  }
+`;
 
-  render() {
-    return (
-      <RootView>
-        <Container>
-          <SafeAreaView>
-            <ScrollView>
-              <TopBar>
-                <LogoSvg style={{ width: 40 }} />
-                <TouchableOpacity>
-                  <Ionicons
-                    name="ios-notifications-outline"
-                    size={40}
-                    color="#2457db"
+function HomeScreen() {
+  const { loading, error, data } = useQuery(StylesQuery);
+
+  if (loading) return <Heading3>Loading...</Heading3>;
+  if (error) return <Heading3>Error :(</Heading3>;
+
+  return (
+    <RootView>
+      <Container>
+        <SafeAreaView>
+          <ScrollView>
+            <TopBar>
+              <LogoSvg style={{ width: 40 }} />
+              <TouchableOpacity>
+                <Ionicons
+                  name="ios-notifications-outline"
+                  size={40}
+                  color="#2457db"
+                />
+              </TouchableOpacity>
+            </TopBar>
+
+            <Row>
+              <AvatarAPI />
+            </Row>
+
+            <Row>
+              <Explore />
+            </Row>
+
+            <Row>
+              <Heading1>
+                Encontre o lugar perfeito para fazer aquela tattoo.
+              </Heading1>
+            </Row>
+
+            <Row>
+              <Heading3>Estúdios na região</Heading3>
+            </Row>
+
+            <ScrollView
+              style={{ paddingBottom: 24, paddingLeft: 24 }}
+              horizontal={true}
+              showsHorizontalScrollIndicator={false}
+            >
+              {data.styleCollection.items.map((style, index) => (
+                <TouchableOpacity key={index}>
+                  <Style image={{ uri: style.image.url }} name={style.name} />
+                </TouchableOpacity>
+              ))}
+            </ScrollView>
+
+            <Row>
+              <Heading3>Eventos recentes</Heading3>
+            </Row>
+            <ScrollView
+              horizontal={true}
+              style={{ paddingBottom: 24, paddingLeft: 24 }}
+              showsHorizontalScrollIndicator={false}
+            >
+              {events.map((event, index) => (
+                <TouchableOpacity key={index}>
+                  <EventCard
+                    title={event.title}
+                    coverimage={event.coverimage}
+                    location={event.location}
+                    subtitle={event.subtitle}
+                    price={event.price}
+                    attendees={event.attendees}
                   />
                 </TouchableOpacity>
-              </TopBar>
-
-              <Row>
-                <AvatarAPI />
-              </Row>
-
-              <Row>
-                <Explore />
-              </Row>
-
-              <Row>
-                <Heading1>
-                  Encontre o lugar perfeito para fazer aquela tattoo.
-                </Heading1>
-              </Row>
-
-              <Row>
-                <Heading3>Estúdios na região</Heading3>
-              </Row>
-
-              <ScrollView
-                style={{ paddingBottom: 24, paddingLeft: 24 }}
-                horizontal={true}
-                showsHorizontalScrollIndicator={false}
-              >
-                {studios.map((studio, index) => (
-                  <TouchableOpacity
-                    key={index}
-                    onPress={() => {
-                      this.props.navigation.push("Section", {
-                        section: studio,
-                      });
-                    }}
-                  >
-                    <Studio
-                      image={studio.image}
-                      text={studio.text}
-                      subtitle={studio.subtitle}
-                    />
-                  </TouchableOpacity>
-                ))}
-              </ScrollView>
-
-              <Row>
-                <Heading3>Eventos recentes</Heading3>
-              </Row>
-              <ScrollView
-                horizontal={true}
-                style={{ paddingBottom: 24, paddingLeft: 24 }}
-                showsHorizontalScrollIndicator={false}
-              >
-                {events.map((event, index) => (
-                  <TouchableOpacity key={index}>
-                    <EventCard
-                      title={event.title}
-                      coverimage={event.coverimage}
-                      location={event.location}
-                      subtitle={event.subtitle}
-                      price={event.price}
-                      attendees={event.attendees}
-                    />
-                  </TouchableOpacity>
-                ))}
-              </ScrollView>
-
-              <TouchableOpacity>
-                <Row>
-                  {buttons.map((button, index) => (
-                    <Button key={index} text={button.text} />
-                  ))}
-                </Row>
-              </TouchableOpacity>
+              ))}
             </ScrollView>
-          </SafeAreaView>
-        </Container>
-      </RootView>
-    );
-  }
+
+            <TouchableOpacity>
+              <Row>
+                {buttons.map((button, index) => (
+                  <Button key={index} text={button.text} />
+                ))}
+              </Row>
+            </TouchableOpacity>
+          </ScrollView>
+        </SafeAreaView>
+      </Container>
+    </RootView>
+  );
 }
 
 export default HomeScreen;

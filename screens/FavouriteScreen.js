@@ -1,11 +1,10 @@
 import React from "react";
 import { ScrollView, SafeAreaView, TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
-import EventCard from "../components/EventCard";
 import { Ionicons } from "@expo/vector-icons";
 import Button from "../components/Button.js";
-import StudioFavourite from "../components/StudioFavouriteCard";
-import ArtistFavourite from "../components/ArtistFavouriteCard";
+import StudioFavourite from "../components/cards/StudioFavouriteCard";
+import ArtistFavourite from "../components/cards/ArtistFavouriteCard";
 import { createMaterialTopTabNavigator } from "react-navigation-tabs";
 
 class FavouriteScreen extends React.Component {
