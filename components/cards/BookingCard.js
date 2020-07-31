@@ -1,64 +1,85 @@
 import React from "react";
 import styled from "styled-components/native";
 
-const IdeaCard = (props) => (
+const BookingCard = (props) => (
   <Container>
     <Row>
       <Col>
-        <CoverImage source={props.coverimage} />
+        <CoverImage source={props.image} />
       </Col>
-      <Col>
+      <Col
+        style={{
+          marginLeft: -80,
+        }}
+      >
         <Title>{props.title}</Title>
-        <Location>{props.location}</Location>
+        <Subtitle>
+          {props.style}, {props.bodypart}
+        </Subtitle>
       </Col>
-      <Col>
-        <Subtitle>{props.subtitle}</Subtitle>
-        <Price>{props.price}</Price>
-        <Attendees>{props.attendees}</Attendees>
+      <Col
+        style={{
+          marginLeft: -60,
+          width: 80,
+        }}
+      >
+        <Date>{props.date}</Date>
+        <Size>{props.size}</Size>
+        <Location>{props.location}</Location>
       </Col>
     </Row>
   </Container>
 );
 
-export default IdeaCard;
-
-const Attendees = styled.Text`
-  color: #939cb2;
-  font-weight: 700;
-  font-size: 8px;
-  padding-top: 8px;
-  text-align: right;
-  padding-right: 24px;
-`;
-
-const Price = styled.Text`
-  color: #e46399;
-  font-weight: 700;
-  font-size: 14px;
-  padding-top: 8px;
-  text-align: right;
-  padding-right: 24px;
-`;
+export default BookingCard;
 
 const Subtitle = styled.Text`
   color: #939cb2;
   font-weight: 700;
   font-size: 8px;
+  padding-top: 8px;
+  text-align: left;
+`;
+
+const Size = styled.Text`
+  color: #e46399;
+  font-weight: 700;
+  font-size: 14px;
+  padding-top: 8px;
+  text-align: right;
+`;
+
+const Date = styled.Text`
+  color: #939cb2;
+  font-weight: 700;
+  font-size: 8px;
   line-height: 16px;
   text-align: right;
-  padding-right: 24px;
+`;
+
+const Style = styled.Text`
+  color: #939cb2;
+  font-weight: 700;
+  font-size: 8px;
+  line-height: 16px;
+  text-align: left;
 `;
 
 const Col = styled.View``;
+
+const Col2 = styled.View`
+  flex-direction: row;
+  justify-content: flex-end;
+  padding-bottom: 4px;
+  width: 80px;
+`;
 
 const Location = styled.Text`
   color: #939cb2;
   font-weight: 500;
   font-size: 10px;
   line-height: 18px;
-  padding-left: 16px;
-  padding-top: 4px;
-  width: 170px;
+  text-align: right;
 `;
 
 const Title = styled.Text`
@@ -66,8 +87,7 @@ const Title = styled.Text`
   font-weight: 700;
   font-size: 13px;
   line-height: 18px;
-  padding-left: 16px;
-  width: 160px;
+  width: 120px;
 `;
 
 const CoverImage = styled.Image`

@@ -34,8 +34,8 @@ const Container = styled.View`
   height: 120px;
   border-radius: 14px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
-  margin-left: 20px;
-  margin-top: 20px;
+  margin-top: 16px;
+  margin-right: 16px;
 `;
 const Image = styled.Image`
   position: absolute;
@@ -50,7 +50,6 @@ const Name = styled.Text`
   font-weight: bold;
   width: 170px;
   margin-top: 72px;
-  margin-left: 20px;
+  margin-left: 16px;
   z-index: 2;
-  vertical-align: bottom;
 `;

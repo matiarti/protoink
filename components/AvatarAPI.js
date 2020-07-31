@@ -7,6 +7,10 @@ class Avatar extends React.Component {
       "https://media-exp1.licdn.com/dms/image/C4D03AQGRfWHWcMc-cg/profile-displayphoto-shrink_400_400/0?e=1600905600&v=beta&t=lbc8KhXh93VutNH88Y5Tdom6ATCDzTspmwbYyjvZr3c",
   };
 
+  state = {
+    name: [],
+  };
+
   componentDidMount() {
     fetch("https://uifaces.co/api", {
       headers: new Headers({
@@ -19,6 +23,7 @@ class Avatar extends React.Component {
 
         this.setState({
           photo: response[0].photo,
+          name: response[0].name,
         });
       });
   }
@@ -30,7 +35,7 @@ class Avatar extends React.Component {
           <Image source={{ uri: this.state.photo }} />
         </Col>
         <Col>
-          <Name>Olá Matheus</Name>
+          <Name>Olá {this.state.name}</Name>
         </Col>
       </Row>
     );

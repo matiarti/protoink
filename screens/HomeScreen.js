@@ -30,7 +30,7 @@ const StylesQuery = gql`
   }
 `;
 
-function HomeScreen() {
+function HomeScreen({ navigation }) {
   const { loading, error, data } = useQuery(StylesQuery);
 
   if (loading) return <Heading3>Loading...</Heading3>;
@@ -67,7 +67,7 @@ function HomeScreen() {
             </Row>
 
             <Row>
-              <Heading3>Estúdios na região</Heading3>
+              <Heading3>Escolha seu estilo</Heading3>
             </Row>
 
             <ScrollView
@@ -76,7 +76,14 @@ function HomeScreen() {
               showsHorizontalScrollIndicator={false}
             >
               {data.styleCollection.items.map((style, index) => (
-                <TouchableOpacity key={index}>
+                <TouchableOpacity
+                  key={index}
+                  onPress={() => {
+                    navigation.navigate("Event", {
+                      section: style,
+                    });
+                  }}
+                >
                   <Style image={{ uri: style.image.url }} name={style.name} />
                 </TouchableOpacity>
               ))}
@@ -91,7 +98,14 @@ function HomeScreen() {
               showsHorizontalScrollIndicator={false}
             >
               {events.map((event, index) => (
-                <TouchableOpacity key={index}>
+                <TouchableOpacity
+                  key={index}
+                  onPress={() => {
+                    navigation.navigate("Event", {
+                      event: event,
+                    });
+                  }}
+                >
                   <EventCard
                     title={event.title}
                     coverimage={event.coverimage}
@@ -117,6 +131,10 @@ function HomeScreen() {
     </RootView>
   );
 }
+
+HomeScreen["navigationOptions"] = (screenProps) => ({
+  headerShown: false,
+});
 
 export default HomeScreen;
 

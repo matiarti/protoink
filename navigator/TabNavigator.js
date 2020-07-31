@@ -1,25 +1,23 @@
 import { createStackNavigator } from "react-navigation-stack";
-import { createAppContainer } from "react-navigation";
 import HomeScreen from "../screens/HomeScreen";
-import SectionScreen from "../screens/SectionScreen";
+import EventScreen from "../screens/EventScreen";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 import { Ionicons } from "@expo/vector-icons";
 import React from "react";
-import styled from "styled-components/native";
 import FavouriteScreen from "../screens/FavouriteScreen";
 import BookingScreen from "../screens/BookingScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
-  Section: SectionScreen,
+  Event: EventScreen,
 });
 
 HomeStack.navigationOptions = ({ navigation }) => {
   var tabBarVisible = true;
   const routeName = navigation.state.routes[navigation.state.index].routeName;
 
-  if (routeName == "Section") {
+  if (routeName == "Event") {
     tabBarVisible = false;
   }
 
@@ -56,7 +54,7 @@ const BookingsStack = createStackNavigator({
 });
 
 BookingsStack.navigationOptions = {
-  tabBarLabel: "Agendamento",
+  tabBarLabel: "Agendamentos",
   tabBarIcon: ({ focused }) => (
     <Ionicons
       name="ios-calendar"
@@ -67,7 +65,7 @@ BookingsStack.navigationOptions = {
 };
 
 const MessagesStack = createStackNavigator({
-  Messages: SectionScreen,
+  Messages: EventScreen,
 });
 
 MessagesStack.navigationOptions = {

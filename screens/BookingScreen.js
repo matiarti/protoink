@@ -2,23 +2,75 @@ import React from "react";
 import { ScrollView, SafeAreaView, TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
 import { Ionicons } from "@expo/vector-icons";
-import BookingConfirmed from "../screens/booking/BookingConfirmed";
+import BookingCard from "../components/cards/BookingCard";
+import { useQuery, gql } from "@apollo/client";
 
-class BookingScreen extends React.Component {
-  static navigationOptions = {
-    header: null,
-  };
-
-  render() {
-    return (
-      <RootView>
-        <Container>
-          <SafeAreaView></SafeAreaView>
-        </Container>
-      </RootView>
-    );
+const BookingsQuery = gql`
+  {
+    bookingCollection {
+      items {
+        image {
+          title
+          description
+          contentType
+          fileName
+          size
+          url
+          width
+          height
+        }
+        title
+        bodypart
+        style
+        date
+        size
+        location
+      }
+    }
   }
+`;
+
+function BookingScreen({ navigation }) {
+  const { loading, error, data } = useQuery(BookingsQuery);
+
+  if (loading) return <Heading3>Loading...</Heading3>;
+  if (error) return <Heading3>Error :(</Heading3>;
+
+  return (
+    <RootView>
+      <Container>
+        <SafeAreaView>
+          <Row>
+            <Heading1>Ideas</Heading1>
+          </Row>
+          <ScrollView
+            horizontal={true}
+            style={{ paddingBottom: 24, paddingLeft: 24 }}
+            showsHorizontalScrollIndicator={false}
+          >
+            {data.bookingCollection.items.map((booking, index) => (
+              <TouchableOpacity key={index}>
+                <BookingCard
+                  title={booking.title}
+                  image={{ uri: booking.image.url }}
+                  bodypart={booking.bodypart}
+                  location={booking.location}
+                  size={booking.size}
+                  style={booking.style}
+                  date={booking.date}
+                />
+              </TouchableOpacity>
+            ))}
+          </ScrollView>
+        </SafeAreaView>
+      </Container>
+    </RootView>
+  );
 }
+
+BookingScreen["navigationOptions"] = (screenProps) => ({
+  headerShown: false,
+});
 
 export default BookingScreen;
 

@@ -5,89 +5,90 @@ import { Ionicons } from "@expo/vector-icons";
 import Button from "../components/Button.js";
 import StudioFavourite from "../components/cards/StudioFavouriteCard";
 import ArtistFavourite from "../components/cards/ArtistFavouriteCard";
-import { createMaterialTopTabNavigator } from "react-navigation-tabs";
 
-class FavouriteScreen extends React.Component {
-  static navigationOptions = {
-    header: null,
-  };
+function FavouriteScreen({ navigation }) {
+  return (
+    <RootView
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
+      <Container>
+        <SafeAreaView>
+          <ScrollView>
+            <Row>
+              <Heading1>Favoritos</Heading1>
+            </Row>
 
-  render() {
-    return (
-      <RootView>
-        <Container>
-          <SafeAreaView>
-            <ScrollView>
-              <Row>
-                <Heading1>Favoritos</Heading1>
-              </Row>
-
-              <Row>
-                <Heading3>Estúdios</Heading3>
-              </Row>
-              <ScrollView
-                horizontal={true}
-                style={{ paddingBottom: 24, paddingLeft: 24, paddingRight: 40 }}
-                showsHorizontalScrollIndicator={false}
-              >
-                {studios.map((studio, index) => (
-                  <TouchableOpacity
-                    key={index}
-                    onPress={() => {
-                      this.props.navigation.push("Section");
-                    }}
-                  >
-                    <StudioFavourite
-                      title={studio.title}
-                      coverimage={studio.coverimage}
-                      location={studio.location}
-                      subtitle={studio.subtitle}
-                      rating={studio.rating}
-                    />
-                  </TouchableOpacity>
-                ))}
-              </ScrollView>
-
-              <Row>
-                <Heading3>Artistas</Heading3>
-              </Row>
-              <ScrollView
-                horizontal={true}
-                style={{ paddingBottom: 24, paddingLeft: 24, paddingRight: 40 }}
-                showsHorizontalScrollIndicator={false}
-              >
-                {artists.map((artist, index) => (
-                  <TouchableOpacity
-                    key={index}
-                    onPress={() => {
-                      this.props.navigation.push("Section");
-                    }}
-                  >
-                    <ArtistFavourite
-                      title={artist.title}
-                      coverimage={artist.coverimage}
-                      location={artist.location}
-                      subtitle={artist.subtitle}
-                      rating={artist.rating}
-                    />
-                  </TouchableOpacity>
-                ))}
-              </ScrollView>
-
-              <TouchableOpacity>
-                <Row>
-                  {buttons.map((button, index) => (
-                    <Button key={index} text={button.text} />
-                  ))}
-                </Row>
-              </TouchableOpacity>
+            <Row>
+              <Heading3>Estúdios</Heading3>
+            </Row>
+            <ScrollView
+              horizontal={true}
+              style={{ paddingBottom: 24, paddingLeft: 24, paddingRight: 40 }}
+              showsHorizontalScrollIndicator={false}
+            >
+              {studios.map((studio, index) => (
+                <TouchableOpacity
+                  key={index}
+                  onPress={() => {
+                    this.props.navigation.push("Section");
+                  }}
+                >
+                  <StudioFavourite
+                    title={studio.title}
+                    coverimage={studio.coverimage}
+                    location={studio.location}
+                    subtitle={studio.subtitle}
+                    rating={studio.rating}
+                  />
+                </TouchableOpacity>
+              ))}
             </ScrollView>
-          </SafeAreaView>
-        </Container>
-      </RootView>
-    );
-  }
+
+            <Row>
+              <Heading3>Artistas</Heading3>
+            </Row>
+            <ScrollView
+              horizontal={true}
+              style={{ paddingBottom: 24, paddingLeft: 24, paddingRight: 40 }}
+              showsHorizontalScrollIndicator={false}
+            >
+              {artists.map((artist, index) => (
+                <TouchableOpacity
+                  key={index}
+                  onPress={() => {
+                    this.props.navigation.push("Section");
+                  }}
+                >
+                  <ArtistFavourite
+                    title={artist.title}
+                    coverimage={artist.coverimage}
+                    location={artist.location}
+                    subtitle={artist.subtitle}
+                    rating={artist.rating}
+                  />
+                </TouchableOpacity>
+              ))}
+            </ScrollView>
+
+            <TouchableOpacity>
+              <Row>
+                {buttons.map((button, index) => (
+                  <Button key={index} text={button.text} />
+                ))}
+              </Row>
+            </TouchableOpacity>
+          </ScrollView>
+        </SafeAreaView>
+      </Container>
+    </RootView>
+  );
 }
+
+FavouriteScreen["navigationOptions"] = (screenProps) => ({
+  headerShown: false,
+});
 
 export default FavouriteScreen;
 
