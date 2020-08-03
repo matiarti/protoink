@@ -10,7 +10,7 @@ export default function Explore() {
   console.log(errors);
 
   return (
-    <Input onSubmit={handleSubmit(onSubmit)}>
+    <Input onSubmit={handleSubmit(onSubmit)} style={{ elevation: 8 }}>
       <Text
         type="text"
         placeholder="Estúdios, artistas ou lugares"

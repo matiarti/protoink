@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components/native";
 
 const EventCard = (props) => (
-  <Container>
+  <Container style={{ elevation: 8 }}>
     <Row>
       <Col>
         <CoverImage source={props.coverimage} />
@@ -89,7 +89,6 @@ const Container = styled.View`
   width: 315px;
   height: 100px;
   border-radius: 8px;
-  margin-right: 16px;
-  margin-top: 16px;
+  margin: 16px 8px 16px 16px;
   box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.06);
 `;

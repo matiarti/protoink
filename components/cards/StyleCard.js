@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components/native";
 
 const Style = (props) => (
-  <Container>
+  <Container style={{ elevation: 8, marginLeft: 16, marginBottom: 16 }}>
     <Cover>
       <Name>{props.name}</Name>
       <Image source={props.image} />
@@ -35,7 +35,6 @@ const Container = styled.View`
   border-radius: 14px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
   margin-top: 16px;
-  margin-right: 16px;
 `;
 const Image = styled.Image`
   position: absolute;

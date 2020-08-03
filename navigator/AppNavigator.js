@@ -6,14 +6,20 @@ import TabNavigator from "./TabNavigator";
 import FavouriteScreen from "../screens/FavouriteScreen";
 import BookingScreen from "../screens/BookingScreen";
 import ProfileScreen from "../screens/ProfileScreen";
+import StudioScreen from "../screens/StudioScreen";
+import LoginScreen from "../screens/LoginScreen";
+import SignUpScreen from "../screens/SignUpScreen";
 
 const AppNavigator = createStackNavigator(
   {
+    Login: LoginScreen,
+    SignUp: SignUpScreen,
     Home: HomeScreen,
     Event: EventScreen,
     Favourite: FavouriteScreen,
     Booking: BookingScreen,
     Profile: ProfileScreen,
+    Studio: StudioScreen,
   },
   {
     mode: "modal",

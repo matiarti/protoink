@@ -7,10 +7,15 @@ import React from "react";
 import FavouriteScreen from "../screens/FavouriteScreen";
 import BookingScreen from "../screens/BookingScreen";
 import ProfileScreen from "../screens/ProfileScreen";
+import StudioScreen from "../screens/StudioScreen";
+import LoginScreen from "../screens/LoginScreen";
 
 const HomeStack = createStackNavigator({
+  Login: LoginScreen,
+  SignUp: SignUpScreen,
   Home: HomeScreen,
   Event: EventScreen,
+  Studio: StudioScreen,
 });
 
 HomeStack.navigationOptions = ({ navigation }) => {
@@ -18,6 +23,12 @@ HomeStack.navigationOptions = ({ navigation }) => {
   const routeName = navigation.state.routes[navigation.state.index].routeName;
 
   if (routeName == "Event") {
+    tabBarVisible = false;
+  }
+  if (routeName == "Studio") {
+    tabBarVisible = false;
+  }
+  if (routeName == "Login") {
     tabBarVisible = false;
   }
 

@@ -1,14 +1,20 @@
 import React from "react";
-import { ScrollView, SafeAreaView, TouchableOpacity } from "react-native";
+import {
+  ScrollView,
+  SafeAreaView,
+  TouchableOpacity,
+  Platform,
+} from "react-native";
 import styled from "styled-components/native";
 import EventCard from "../components/cards/EventCard";
 import { Ionicons } from "@expo/vector-icons";
-import LogoSvg from "../components/Icons";
+import LogoSvg from "../components/LogoSymbol";
 import Style from "../components/cards/StyleCard";
 import AvatarAPI from "../components/AvatarAPI";
 import Explore from "../components/forms/Explore";
 import Button from "../components/Button.js";
 import { useQuery, gql } from "@apollo/client";
+import StudioLargeCard from "../components/cards/StudioLargeCard";
 
 const StylesQuery = gql`
   {
@@ -30,17 +36,56 @@ const StylesQuery = gql`
   }
 `;
 
+const StudiosQuery = gql`
+  {
+    studiosCollection {
+      items {
+        image {
+          title
+          description
+          contentType
+          fileName
+          size
+          url
+          width
+          height
+        }
+        logo {
+          title
+          description
+          contentType
+          fileName
+          size
+          url
+          width
+          height
+        }
+        title
+        subtitle
+        location
+        rating
+        style
+      }
+    }
+  }
+`;
+
 function HomeScreen({ navigation }) {
+  const { data: dataR, error: errorR, loading: loadingR } = useQuery(
+    StudiosQuery
+  );
   const { loading, error, data } = useQuery(StylesQuery);
 
   if (loading) return <Heading3>Loading...</Heading3>;
   if (error) return <Heading3>Error :(</Heading3>;
+  if (loadingR) return <Heading3>Loading...</Heading3>;
+  if (errorR) return <Heading3>Error :(</Heading3>;
 
   return (
     <RootView>
       <Container>
-        <SafeAreaView>
-          <ScrollView>
+        <ScrollView vertical={true} showsHorizontalScrollIndicator={false}>
+          <SafeAreaView>
             <TopBar>
               <LogoSvg style={{ width: 40 }} />
               <TouchableOpacity>
@@ -71,7 +116,7 @@ function HomeScreen({ navigation }) {
             </Row>
 
             <ScrollView
-              style={{ paddingBottom: 24, paddingLeft: 24 }}
+              style={{ paddingBottom: 8, paddingLeft: 8 }}
               horizontal={true}
               showsHorizontalScrollIndicator={false}
             >
@@ -94,7 +139,7 @@ function HomeScreen({ navigation }) {
             </Row>
             <ScrollView
               horizontal={true}
-              style={{ paddingBottom: 24, paddingLeft: 24 }}
+              style={{ paddingBottom: 8, paddingLeft: 8 }}
               showsHorizontalScrollIndicator={false}
             >
               {events.map((event, index) => (
@@ -118,6 +163,28 @@ function HomeScreen({ navigation }) {
               ))}
             </ScrollView>
 
+            <StudiosContainer style={{ paddingBottom: 24, paddingLeft: 16 }}>
+              {dataR.studiosCollection.items.map((studio, index) => (
+                <TouchableOpacity
+                  key={index}
+                  onPress={() => {
+                    navigation.navigate("Studio", {
+                      studio: studio,
+                    });
+                  }}
+                >
+                  <StudioLargeCard
+                    title={studio.title}
+                    image={{ uri: studio.image.url }}
+                    rating={studio.rating}
+                    logo={{ uri: studio.logo.url }}
+                    location={studio.location}
+                    style={studio.style}
+                  />
+                </TouchableOpacity>
+              ))}
+            </StudiosContainer>
+
             <TouchableOpacity>
               <Row>
                 {buttons.map((button, index) => (
@@ -125,8 +192,8 @@ function HomeScreen({ navigation }) {
                 ))}
               </Row>
             </TouchableOpacity>
-          </ScrollView>
-        </SafeAreaView>
+          </SafeAreaView>
+        </ScrollView>
       </Container>
     </RootView>
   );
@@ -138,7 +205,10 @@ HomeScreen["navigationOptions"] = (screenProps) => ({
 
 export default HomeScreen;
 
-const Message = styled.Text``;
+const StudiosContainer = styled.View`
+  flex-direction: row;
+  flex-wrap: wrap;
+`;
 
 const RootView = styled.View`
   background: #fff;
@@ -181,25 +251,6 @@ const Container = styled.View`
   flex: 1;
   border-radius: 10px;
 `;
-
-const studios = [
-  {
-    key: "1",
-    image: require("../assets/logo.png"),
-    text: "Vinicius Martins",
-    subtitle: "Arte fina e minimalista",
-  },
-  {
-    image: require("../assets/logo.png"),
-    text: "Jennifer Oliveira",
-    subtitle: "Arte fina e minimalista",
-  },
-  {
-    image: require("../assets/logo.png"),
-    text: "DaVilla Studio",
-    subtitle: "Arte fina e minimalista",
-  },
-];
 
 const events = [
   {
