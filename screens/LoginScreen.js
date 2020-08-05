@@ -1,16 +1,18 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   ScrollView,
   SafeAreaView,
   TouchableOpacity,
-  Platform,
   Dimensions,
+  Animated,
 } from "react-native";
 import styled from "styled-components/native";
 import { Ionicons } from "@expo/vector-icons";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import Button from "../components/Button.js";
 import LogoType from "../components/LogoType";
+
+import { Alert } from "react-native";
 
 const screenHeight = Dimensions.get("window").height;
 var imgHeight = screenHeight;
@@ -26,11 +28,11 @@ if (screenHeight > 1200) {
 }
 
 function LoginScreen({ navigation, props }) {
-  const login = navigation.getParam("login");
-
-  const { register, handleSubmit, errors } = useForm();
-  const onSubmit = (data) => console.log(data);
-  console.log(errors);
+  const { register, handleSubmit, control } = useForm();
+  const onSubmit = (data) => {
+    console.log(data);
+    navigation.navigate("Home");
+  }; // your form submit function which will invoke after successful validation
 
   return (
     <RootView>
@@ -47,41 +49,59 @@ function LoginScreen({ navigation, props }) {
             </Cover>
             <Col>
               <Heading1>Entre no Protoink</Heading1>
-              <Input onSubmit={handleSubmit(onSubmit)} style={{ elevation: 4 }}>
-                <Text
-                  type="text"
-                  placeholder="Digite seu Email"
-                  name="email"
-                  ref={register({ required: true, maxLength: 120 })}
-                />
+              <Form>
+                <Input style={{ elevation: 4 }}>
+                  <Controller
+                    control={control}
+                    render={({ onChange, onBlur, value }) => (
+                      <Text
+                        placeholder="Digite seu Email"
+                        onBlur={onBlur}
+                        onChangeText={(value) => onChange(value)}
+                        value={value}
+                      />
+                    )}
+                    name="email"
+                    rules={{ required: true }}
+                    defaultValue=""
+                  />
 
-                <Ionicons name="ios-mail" size={20} color="#565656" />
-              </Input>
+                  <Ionicons name="ios-mail" size={20} color="#565656" />
+                </Input>
 
-              <Input onSubmit={handleSubmit(onSubmit)} style={{ elevation: 4 }}>
-                <Text
-                  type="password"
-                  placeholder="Senha"
-                  name="password"
-                  ref={register({ required: true, maxLength: 120 })}
-                />
+                <Input style={{ elevation: 4 }}>
+                  <Controller
+                    control={control}
+                    render={({ onChange, onBlur, value }) => (
+                      <Text
+                        secureTextEntry={true}
+                        placeholder="Senha"
+                        type="password"
+                        onBlur={onBlur}
+                        onChangeText={(value) => onChange(value)}
+                        value={value}
+                      />
+                    )}
+                    name="password"
+                    rules={{ required: true }}
+                    defaultValue=""
+                  />
 
-                <Ionicons name="ios-lock" size={20} color="#565656" />
-              </Input>
-              <Heading5>Os seus dados estão seguros no Protoink.</Heading5>
-              <TouchableOpacity
-                onPress={() => {
-                  navigation.navigate("SignUp", {
-                    signup: signup,
-                  });
-                }}
-              >
-                <Row>
-                  {buttons.map((button, index) => (
-                    <Button key={index} text={button.text} />
-                  ))}
-                </Row>
-              </TouchableOpacity>
+                  <Ionicons name="ios-lock" size={20} color="#565656" />
+                </Input>
+
+                <Heading5>Os seus dados estão seguros no Protoink.</Heading5>
+                <TouchableOpacity
+                  onPress={handleSubmit(onSubmit)}
+                  type="submit"
+                >
+                  <Row>
+                    {buttons.map((button, index) => (
+                      <Button key={index} text={button.text} />
+                    ))}
+                  </Row>
+                </TouchableOpacity>
+              </Form>
             </Col>
           </SafeAreaView>
         </ScrollView>
@@ -100,6 +120,8 @@ const RootView = styled.View`
   background: #fff;
   flex: 1;
 `;
+
+const Form = styled.View``;
 
 const Input = styled.View`
   flex-direction: row;

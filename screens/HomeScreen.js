@@ -88,7 +88,11 @@ function HomeScreen({ navigation }) {
           <SafeAreaView>
             <TopBar>
               <LogoSvg style={{ width: 40 }} />
-              <TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate("Login");
+                }}
+              >
                 <Ionicons
                   name="ios-notifications-outline"
                   size={40}

@@ -9,6 +9,7 @@ import BookingScreen from "../screens/BookingScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import StudioScreen from "../screens/StudioScreen";
 import LoginScreen from "../screens/LoginScreen";
+import SignUpScreen from "../screens/SignUpScreen";
 
 const HomeStack = createStackNavigator({
   Login: LoginScreen,
