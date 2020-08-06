@@ -5,8 +5,8 @@ function LogoType(props) {
   return (
     <Svg
       id="prefix__Layer_1"
-      width={140}
-      height={32}
+      width={100}
+      height={24}
       viewBox="0 0 80 16"
       xmlSpace="preserve"
       {...props}

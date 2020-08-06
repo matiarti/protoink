@@ -11,7 +11,7 @@ import { Ionicons } from "@expo/vector-icons";
 import LogoSvg from "../components/LogoSymbol";
 import Style from "../components/cards/StyleCard";
 import AvatarAPI from "../components/AvatarAPI";
-import Explore from "../components/forms/Explore";
+import Explore from "../components/forms/HomeExplore";
 import Button from "../components/Button.js";
 import { useQuery, gql } from "@apollo/client";
 import StudioLargeCard from "../components/cards/StudioLargeCard";

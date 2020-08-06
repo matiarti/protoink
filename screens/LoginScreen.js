@@ -11,6 +11,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { useForm, Controller } from "react-hook-form";
 import Button from "../components/Button.js";
 import LogoType from "../components/LogoType";
+import firebase from "../src/Firebase";
 
 import { Alert } from "react-native";
 
@@ -18,7 +19,7 @@ const screenHeight = Dimensions.get("window").height;
 var imgHeight = screenHeight;
 
 if (screenHeight > 600) {
-  imgHeight = screenHeight - 450;
+  imgHeight = screenHeight - 550;
 }
 if (screenHeight > 800) {
   imgHeight = screenHeight - 600;
@@ -28,11 +29,10 @@ if (screenHeight > 1200) {
 }
 
 function LoginScreen({ navigation, props }) {
-  const { register, handleSubmit, control } = useForm();
-  const onSubmit = (data) => {
-    console.log(data);
-    navigation.navigate("Home");
-  }; // your form submit function which will invoke after successful validation
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  // your form submit function which will invoke after successful validation
 
   return (
     <RootView>
@@ -40,61 +40,47 @@ function LoginScreen({ navigation, props }) {
         <ScrollView vertical={true} showsHorizontalScrollIndicator={false}>
           <SafeAreaView>
             <Cover>
-              <LogoType style={{ width: 200 }} />
+              <LogoType style={{ width: 160 }} />
               <Image
                 source={require("../assets/loginCover.jpg")}
                 resizeMode="contain"
-                style={{ marginTop: 24 }}
+                style={{ marginTop: 16 }}
               />
             </Cover>
             <Col>
               <Heading1>Entre no Protoink</Heading1>
-              <Form>
+              <Form onSubmit={(e) => e.preventDefault() && false}>
                 <Input style={{ elevation: 4 }}>
-                  <Controller
-                    control={control}
-                    render={({ onChange, onBlur, value }) => (
-                      <Text
-                        placeholder="Digite seu Email"
-                        onBlur={onBlur}
-                        onChangeText={(value) => onChange(value)}
-                        value={value}
-                      />
-                    )}
+                  <Text
+                    placeholder="Digite seu Email"
+                    autoComplete="off"
+                    autoFocus
+                    value={email}
+                    onChangeText={(text) => setEmail(text)}
                     name="email"
-                    rules={{ required: true }}
-                    defaultValue=""
+                    id="email"
                   />
 
                   <Ionicons name="ios-mail" size={20} color="#565656" />
                 </Input>
 
                 <Input style={{ elevation: 4 }}>
-                  <Controller
-                    control={control}
-                    render={({ onChange, onBlur, value }) => (
-                      <Text
-                        secureTextEntry={true}
-                        placeholder="Senha"
-                        type="password"
-                        onBlur={onBlur}
-                        onChangeText={(value) => onChange(value)}
-                        value={value}
-                      />
-                    )}
+                  <Text
+                    secureTextEntry={true}
+                    placeholder="Senha"
+                    type="password"
+                    autoComplete="off"
+                    value={password}
+                    onChangeText={(text) => setPassword(text)}
                     name="password"
-                    rules={{ required: true }}
-                    defaultValue=""
+                    id="password"
                   />
 
                   <Ionicons name="ios-lock" size={20} color="#565656" />
                 </Input>
 
                 <Heading5>Os seus dados estão seguros no Protoink.</Heading5>
-                <TouchableOpacity
-                  onPress={handleSubmit(onSubmit)}
-                  type="submit"
-                >
+                <TouchableOpacity type="submit" onPress={login}>
                   <Row>
                     {buttons.map((button, index) => (
                       <Button key={index} text={button.text} />
@@ -108,9 +94,18 @@ function LoginScreen({ navigation, props }) {
       </Container>
     </RootView>
   );
+
+  async function login() {
+    try {
+      await firebase.login(email, password);
+      navigation.navigate("Home");
+    } catch (error) {
+      alert(error.message);
+    }
+  }
 }
 
-LoginScreen["navigationOptions"] = (screenProps) => ({
+LoginScreen["navigationOptions"] = () => ({
   headerShown: false,
 });
 
@@ -131,7 +126,7 @@ const Input = styled.View`
   padding-right: 16px;
   border-radius: 4px;
   margin-right: 24px;
-  margin-top: 24px;
+  margin-top: 16px;
   background: #fff;
   box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.08);
   height: 40px;
@@ -146,8 +141,8 @@ const Cover = styled.View`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 40px;
-  padding-bottom: 8px;
+  padding-top: 16px;
+  padding-bottom: 16px;
 `;
 
 const Text = styled.TextInput`
@@ -169,7 +164,7 @@ const Heading1 = styled.Text`
   color: #2457db;
   font-weight: 700;
   line-height: 32px;
-  padding: 16px 0px 16px 0px;
+  padding: 8px 0px 8px 0px;
   width: 80%;
 `;
 
