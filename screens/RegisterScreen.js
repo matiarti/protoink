@@ -12,7 +12,7 @@ import { useForm, Controller } from "react-hook-form";
 import Button from "../components/Button.js";
 import LogoType from "../components/LogoType";
 import firebase from "../src/Firebase";
-import AsyncStorage from "@react-native-community/async-storage";
+
 import { Alert } from "react-native";
 
 const screenHeight = Dimensions.get("window").height;
@@ -28,7 +28,8 @@ if (screenHeight > 1200) {
   imgHeight = screenHeight - 800;
 }
 
-function LoginScreen({ navigation, props }) {
+function RegisterScreen({ navigation, props }) {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -48,8 +49,22 @@ function LoginScreen({ navigation, props }) {
               />
             </Cover>
             <Col>
-              <Heading1>Entre no Protoink</Heading1>
+              <Heading1>Bem-vindo ao Protoink</Heading1>
               <Form onSubmit={(e) => e.preventDefault() && false}>
+                <Input style={{ elevation: 4 }}>
+                  <Text
+                    placeholder="Nome Completo"
+                    autoComplete="off"
+                    autoFocus
+                    value={name}
+                    onChangeText={(name) => setName(name)}
+                    name="name"
+                    id="name"
+                  />
+
+                  <Ionicons name="ios-mail" size={20} color="#565656" />
+                </Input>
+
                 <Input style={{ elevation: 4 }}>
                   <Text
                     placeholder="Digite seu Email"
@@ -74,14 +89,14 @@ function LoginScreen({ navigation, props }) {
                     onChangeText={(text) => setPassword(text)}
                     name="password"
                     id="password"
-                    onSubmitEditing={login}
+                    onSubmitEditing={onRegister}
                   />
 
                   <Ionicons name="ios-lock" size={20} color="#565656" />
                 </Input>
 
                 <Heading5>Os seus dados estão seguros no Protoink.</Heading5>
-                <TouchableOpacity type="submit" onPress={login}>
+                <TouchableOpacity type="submit" onClick={onRegister}>
                   <Row>
                     {buttons.map((button, index) => (
                       <Button key={index} text={button.text} />
@@ -91,11 +106,11 @@ function LoginScreen({ navigation, props }) {
               </Form>
               <TouchableOpacity
                 onPress={() => {
-                  navigation.navigate("Register");
+                  navigation.navigate("Login");
                 }}
               >
                 <Heading5>
-                  Novo no Protoink? <Link>Crie uma nova conta</Link>
+                  Já cadastrado? <Link>Acesse sua conta</Link>
                 </Heading5>
               </TouchableOpacity>
             </Col>
@@ -105,9 +120,10 @@ function LoginScreen({ navigation, props }) {
     </RootView>
   );
 
-  async function login() {
+  async function onRegister() {
     try {
-      await firebase.login(email, password);
+      await firebase.register(name, email, password);
+
       navigation.navigate("Home");
     } catch (error) {
       alert(error.message);
@@ -115,19 +131,15 @@ function LoginScreen({ navigation, props }) {
   }
 }
 
-LoginScreen["navigationOptions"] = () => ({
+RegisterScreen["navigationOptions"] = () => ({
   headerShown: false,
 });
 
-export default LoginScreen;
+export default RegisterScreen;
 
 const RootView = styled.View`
   background: #fff;
   flex: 1;
-`;
-
-const Link = styled.Text`
-  color: #e46399;
 `;
 
 const Form = styled.View``;
@@ -165,6 +177,10 @@ const Text = styled.TextInput`
   height: 40px;
 `;
 
+const Link = styled.Text`
+  color: #e46399;
+`;
+
 const Heading5 = styled.Text`
   font-size: 14px;
   color: #939cb2;
@@ -200,6 +216,6 @@ const Container = styled.View`
 const buttons = [
   {
     key: "1",
-    text: "Entrar",
+    text: "Cadastrar",
   },
 ];

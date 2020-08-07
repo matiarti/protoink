@@ -9,11 +9,11 @@ import BookingScreen from "../screens/BookingScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import StudioScreen from "../screens/StudioScreen";
 import LoginScreen from "../screens/LoginScreen";
-import SignUpScreen from "../screens/SignUpScreen";
+import RegisterScreen from "../screens/RegisterScreen";
 
 const HomeStack = createStackNavigator({
   Login: LoginScreen,
-  SignUp: SignUpScreen,
+  Register: RegisterScreen,
   Home: HomeScreen,
   Event: EventScreen,
   Studio: StudioScreen,
@@ -30,6 +30,9 @@ HomeStack.navigationOptions = ({ navigation }) => {
     tabBarVisible = false;
   }
   if (routeName == "Login") {
+    tabBarVisible = false;
+  }
+  if (routeName == "Register") {
     tabBarVisible = false;
   }
 

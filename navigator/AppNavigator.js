@@ -8,12 +8,12 @@ import BookingScreen from "../screens/BookingScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import StudioScreen from "../screens/StudioScreen";
 import LoginScreen from "../screens/LoginScreen";
-import SignUpScreen from "../screens/SignUpScreen";
+import RegisterScreen from "../screens/RegisterScreen";
 
 const AppNavigator = createStackNavigator(
   {
     Login: LoginScreen,
-    SignUp: SignUpScreen,
+    Register: RegisterScreen,
     Home: HomeScreen,
     Event: EventScreen,
     Favourite: FavouriteScreen,

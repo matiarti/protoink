@@ -1,18 +1,49 @@
-import React from "react";
+import React, { Component } from "react";
 import styled from "styled-components/native";
+import firebase from "../src/Firebase";
 
-const Avatar = (props) => (
-  <Container>
-    <Row>
-      <Col>
-        <Image source={props.image} resizeMode="contain" />
-      </Col>
-      <Col>
-        <Name>{props.name}</Name>
-      </Col>
-    </Row>
-  </Container>
-);
+class Avatar extends React.Component {
+  state = {
+    photo:
+      "https://media-exp1.licdn.com/dms/image/C4D03AQGRfWHWcMc-cg/profile-displayphoto-shrink_400_400/0?e=1600905600&v=beta&t=lbc8KhXh93VutNH88Y5Tdom6ATCDzTspmwbYyjvZr3c",
+  };
+
+  componentDidMount() {
+    fetch("https://uifaces.co/api", {
+      headers: new Headers({
+        "X-API-KEY": "4EF4D3FE-B09541AB-B93EA2B3-20B7542F",
+      }),
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        console.log(response);
+
+        this.setState({
+          photo: response[0].photo,
+        });
+      });
+  }
+
+  render() {
+    if (!firebase.getCurrentUsername()) {
+      // not logged in
+      alert("Please login first");
+      navigation.navigate("Login");
+      return null;
+    }
+
+    return (
+      <Row>
+        <Col>
+          <Image source={{ uri: this.state.photo }} />
+        </Col>
+        <Col>
+          <Name>Olá {firebase.getCurrentUsername()}</Name>
+        </Col>
+      </Row>
+    );
+  }
+}
 
 export default Avatar;
 
@@ -22,14 +53,10 @@ const Col = styled.View`
 
 const Row = styled.View`
   flex-direction: row;
-  justify-content: space-between;
+
   align-items: center;
 `;
 
-const Container = styled.View`
-  flex-direction: row;
-  height: 40px;
-`;
 const Image = styled.Image`
   width: 32px;
   height: 32px;

@@ -10,11 +10,12 @@ import EventCard from "../components/cards/EventCard";
 import { Ionicons } from "@expo/vector-icons";
 import LogoSvg from "../components/LogoSymbol";
 import Style from "../components/cards/StyleCard";
-import AvatarAPI from "../components/AvatarAPI";
+import Avatar from "../components/Avatar";
 import Explore from "../components/forms/HomeExplore";
 import Button from "../components/Button.js";
 import { useQuery, gql } from "@apollo/client";
 import StudioLargeCard from "../components/cards/StudioLargeCard";
+import firebase from "../src/Firebase";
 
 const StylesQuery = gql`
   {
@@ -88,11 +89,7 @@ function HomeScreen({ navigation }) {
           <SafeAreaView>
             <TopBar>
               <LogoSvg style={{ width: 40 }} />
-              <TouchableOpacity
-                onPress={() => {
-                  navigation.navigate("Login");
-                }}
-              >
+              <TouchableOpacity onPress={logout}>
                 <Ionicons
                   name="ios-notifications-outline"
                   size={40}
@@ -102,7 +99,7 @@ function HomeScreen({ navigation }) {
             </TopBar>
 
             <Row>
-              <AvatarAPI />
+              <Avatar />
             </Row>
 
             <Row>
@@ -201,6 +198,11 @@ function HomeScreen({ navigation }) {
       </Container>
     </RootView>
   );
+
+  async function logout() {
+    await firebase.logout();
+    navigation.navigate("Login");
+  }
 }
 
 HomeScreen["navigationOptions"] = (screenProps) => ({
