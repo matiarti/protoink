@@ -25,13 +25,6 @@ class Avatar extends React.Component {
   }
 
   render() {
-    if (!firebase.getCurrentUsername()) {
-      // not logged in
-      alert("Please login first");
-      navigation.navigate("Login");
-      return null;
-    }
-
     return (
       <Row>
         <Col>

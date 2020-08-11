@@ -169,9 +169,7 @@ function HomeScreen({ navigation }) {
                 <TouchableOpacity
                   key={index}
                   onPress={() => {
-                    navigation.navigate("Studio", {
-                      studio: studio,
-                    });
+                    navigation.navigate("Studio", { studio: studio });
                   }}
                 >
                   <StudioLargeCard

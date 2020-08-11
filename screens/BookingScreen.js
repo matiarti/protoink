@@ -3,7 +3,6 @@ import {
   ScrollView,
   SafeAreaView,
   TouchableOpacity,
-  PanResponder,
   Animated,
 } from "react-native";
 import styled from "styled-components/native";
@@ -38,27 +37,6 @@ const BookingsQuery = gql`
 `;
 
 function BookingScreen({ navigation }) {
-  const DraggableView = () => {
-    const pan = useRef(new Animated.ValueXY()).current;
-
-    const panResponder = PanResponder.create({
-      onStartShouldSetPanResponder: () => true,
-      onPanResponderMove: Animated.event([
-        null,
-        {
-          dx: pan.x, // x,y are Animated.Value
-          dy: pan.y,
-        },
-      ]),
-      onPanResponderRelease: () => {
-        Animated.spring(
-          pan, // Auto-multiplexed
-          { toValue: { x: 0, y: 0 } } // Back to zero
-        ).start();
-      },
-    });
-  };
-
   const { loading, error, data } = useQuery(BookingsQuery);
 
   if (loading) return <Heading3>Loading...</Heading3>;
@@ -92,22 +70,21 @@ function BookingScreen({ navigation }) {
                 </TouchableOpacity>
               ))}
             </ScrollView>
-            <Animated.View {...panResponder.panHandlers}>
-              <StudiosContainer style={{ paddingBottom: 24, paddingLeft: 16 }}>
-                {studios.map((studio, index) => (
-                  <TouchableOpacity key={index}>
-                    <StudioLargeCard
-                      title={studio.title}
-                      image={studio.image}
-                      subtitle={studio.subtitle}
-                      author={studio.author}
-                      avatar={studio.avatar}
-                      caption={studio.caption}
-                    />
-                  </TouchableOpacity>
-                ))}
-              </StudiosContainer>
-            </Animated.View>
+
+            <StudiosContainer style={{ paddingBottom: 24, paddingLeft: 16 }}>
+              {studios.map((studio, index) => (
+                <TouchableOpacity key={index}>
+                  <StudioLargeCard
+                    title={studio.title}
+                    image={studio.image}
+                    subtitle={studio.subtitle}
+                    author={studio.author}
+                    avatar={studio.avatar}
+                    caption={studio.caption}
+                  />
+                </TouchableOpacity>
+              ))}
+            </StudiosContainer>
           </ScrollView>
         </SafeAreaView>
       </Container>

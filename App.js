@@ -1,7 +1,10 @@
 import React from "react";
-import AppNavigator from "./navigator/AppNavigator";
 import { InMemoryCache, ApolloProvider, HttpLink } from "@apollo/client";
 import ApolloClient from "apollo-boost";
+import Navigator from "./navigator/StackNav";
+import { NavigationContainer } from "@react-navigation/native";
+import AppNavigator from "./navigator/AppNavigator";
+import AppNav from "./navigator/AppNav";
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
@@ -14,7 +17,7 @@ const client = new ApolloClient({
 
 const App = () => (
   <ApolloProvider client={client}>
-    <AppNavigator />
+    <AppNav />
   </ApolloProvider>
 );
 

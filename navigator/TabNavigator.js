@@ -4,17 +4,18 @@ import EventScreen from "../screens/EventScreen";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 import { Ionicons } from "@expo/vector-icons";
 import React from "react";
-import FavouriteScreen from "../screens/FavouriteScreen";
 import BookingScreen from "../screens/BookingScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import StudioScreen from "../screens/StudioScreen";
 import LoginScreen from "../screens/LoginScreen";
 import RegisterScreen from "../screens/RegisterScreen";
+import FavScreen from "../screens/FavScreen";
 
 const HomeStack = createStackNavigator({
+  Home: HomeScreen,
+  Fav: FavScreen,
   Login: LoginScreen,
   Register: RegisterScreen,
-  Home: HomeScreen,
   Event: EventScreen,
   Studio: StudioScreen,
 });
@@ -50,7 +51,8 @@ HomeStack.navigationOptions = ({ navigation }) => {
 };
 
 const FavouritesStack = createStackNavigator({
-  Favourites: FavouriteScreen,
+  Fav: FavScreen,
+  Studio: StudioScreen,
 });
 
 FavouritesStack.navigationOptions = {

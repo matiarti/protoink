@@ -5,72 +5,135 @@ import { Ionicons } from "@expo/vector-icons";
 import Button from "../components/Button.js";
 import StudioFavourite from "../components/cards/StudioFavouriteCard";
 import ArtistFavourite from "../components/cards/ArtistFavouriteCard";
+import { useQuery, gql } from "@apollo/client";
+import StudioLargeCard from "../components/cards/StudioLargeCard";
+import { Tabs, TabList, Tab, TabPanel } from "react-tabs";
+
+const CustomTab = ({ children }) => (
+  <Tab>
+    <Heading3>{children}</Heading3>
+  </Tab>
+);
+
+CustomTab.tabsRole = "Tab"; // Required field to use your custom Tab
+
+const StudiosQuery = gql`
+  {
+    studiosCollection {
+      items {
+        image {
+          title
+          description
+          contentType
+          fileName
+          size
+          url
+          width
+          height
+        }
+        logo {
+          title
+          description
+          contentType
+          fileName
+          size
+          url
+          width
+          height
+        }
+        title
+        subtitle
+        location
+        rating
+        style
+      }
+    }
+  }
+`;
 
 function FavouriteScreen({ navigation }) {
+  const { data: dataR, error: errorR, loading: loadingR } = useQuery(
+    StudiosQuery
+  );
+
+  if (loadingR) return <Heading3>Loading...</Heading3>;
+  if (errorR) return <Heading3>Error :(</Heading3>;
+
   return (
-    <RootView
-      screenOptions={{
-        headerShown: false,
-      }}
-    >
+    <RootView>
       <Container>
         <SafeAreaView>
-          <ScrollView>
+          <ScrollView vertical={true} showsHorizontalScrollIndicator={false}>
             <Row>
               <Heading1>Favoritos</Heading1>
             </Row>
 
-            <Row>
-              <Heading3>Estúdios</Heading3>
-            </Row>
-            <ScrollView
-              horizontal={true}
-              style={{ paddingBottom: 24, paddingLeft: 24, paddingRight: 40 }}
-              showsHorizontalScrollIndicator={false}
-            >
-              {studios.map((studio, index) => (
-                <TouchableOpacity
-                  key={index}
-                  onPress={() => {
-                    this.props.navigation.push("Section");
-                  }}
+            <Tabs>
+              <TabList styled={{ flexDirection: "row", flex: 1 }}>
+                <CustomTab>Estúdios</CustomTab>
+                <CustomTab>Artistas</CustomTab>
+              </TabList>
+              <TabPanel>
+                <Row>
+                  <Heading3>Estúdios</Heading3>
+                </Row>
+                <StudiosContainer
+                  style={{ paddingBottom: 24, paddingLeft: 16 }}
                 >
-                  <StudioFavourite
-                    title={studio.title}
-                    coverimage={studio.coverimage}
-                    location={studio.location}
-                    subtitle={studio.subtitle}
-                    rating={studio.rating}
-                  />
-                </TouchableOpacity>
-              ))}
-            </ScrollView>
+                  {dataR.studiosCollection.items.map((studio, index) => (
+                    <TouchableOpacity
+                      key={index}
+                      onPress={() => {
+                        navigation.navigate("Studio", {
+                          studio: studio,
+                        });
+                      }}
+                    >
+                      <StudioLargeCard
+                        title={studio.title}
+                        image={{ uri: studio.image.url }}
+                        rating={studio.rating}
+                        logo={{ uri: studio.logo.url }}
+                        location={studio.location}
+                        style={studio.style}
+                      />
+                    </TouchableOpacity>
+                  ))}
+                </StudiosContainer>
+              </TabPanel>
 
-            <Row>
-              <Heading3>Artistas</Heading3>
-            </Row>
-            <ScrollView
-              horizontal={true}
-              style={{ paddingBottom: 24, paddingLeft: 24, paddingRight: 40 }}
-              showsHorizontalScrollIndicator={false}
-            >
-              {artists.map((artist, index) => (
-                <TouchableOpacity
-                  key={index}
-                  onPress={() => {
-                    this.props.navigation.push("Section");
+              <TabPanel>
+                <Row>
+                  <Heading3>Artistas</Heading3>
+                </Row>
+                <ScrollView
+                  horizontal={true}
+                  style={{
+                    paddingBottom: 24,
+                    paddingLeft: 24,
+                    paddingRight: 40,
                   }}
+                  showsHorizontalScrollIndicator={false}
                 >
-                  <ArtistFavourite
-                    title={artist.title}
-                    coverimage={artist.coverimage}
-                    location={artist.location}
-                    subtitle={artist.subtitle}
-                    rating={artist.rating}
-                  />
-                </TouchableOpacity>
-              ))}
-            </ScrollView>
+                  {artists.map((artist, index) => (
+                    <TouchableOpacity
+                      key={index}
+                      onPress={() => {
+                        this.props.navigation.push("Section");
+                      }}
+                    >
+                      <ArtistFavourite
+                        title={artist.title}
+                        coverimage={artist.coverimage}
+                        location={artist.location}
+                        subtitle={artist.subtitle}
+                        rating={artist.rating}
+                      />
+                    </TouchableOpacity>
+                  ))}
+                </ScrollView>
+              </TabPanel>
+            </Tabs>
 
             <TouchableOpacity>
               <Row>
@@ -91,6 +154,16 @@ FavouriteScreen["navigationOptions"] = (screenProps) => ({
 });
 
 export default FavouriteScreen;
+
+const TabContainer = styled.View`
+  flex-direction: row;
+  flex-wrap: wrap;
+`;
+
+const StudiosContainer = styled.View`
+  flex-direction: row;
+  flex-wrap: wrap;
+`;
 
 const RootView = styled.View`
   background: #fff;
@@ -116,6 +189,8 @@ const Row = styled.View`
   width: 100%;
   padding-left: 24px;
   padding-top: 8px;
+  flex-direction: row;
+  justify-content: space-between;
 `;
 
 const TopBar = styled.View`
@@ -129,7 +204,7 @@ const TopBar = styled.View`
 `;
 
 const Container = styled.View`
-  background: #f0f3f5;
+  background: #fff;
   flex: 1;
   border-radius: 10px;
 `;

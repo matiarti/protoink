@@ -27,8 +27,8 @@ if (screenWidth > 300) {
   titleWidth = screenWidth - 120;
 }
 
-function StudioScreen({ navigation, props }) {
-  const studio = navigation.getParam("studio");
+function StudioScreen({ route, navigation }) {
+  const { studio } = route.params;
 
   const { loading, error, data } = useQuery(AvailabilityQuery);
 
@@ -162,10 +162,6 @@ function StudioScreen({ navigation, props }) {
     </Container>
   );
 }
-
-StudioScreen["navigationOptions"] = (screenProps) => ({
-  headerShown: false,
-});
 
 export default StudioScreen;
 
