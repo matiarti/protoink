@@ -12,6 +12,8 @@
     "preset": "jest-expo"
   },
   "dependencies": {
+    "@ant-design/icons": "^4.2.2",
+    "@ant-design/icons-react-native": "^2.2.1",
     "@ant-design/react-native": "^4.0.4",
     "@apollo/client": "^3.0.2",
     "@auth0/auth0-react": "^1.0.0",
@@ -52,12 +54,14 @@
     "react-native-screens": "~2.9.0",
     "react-native-svg": "^12.1.0",
     "react-native-tab-view": "^2.15.1",
+    "react-native-vector-icons": "^7.0.0",
     "react-native-web": "~0.11.7",
     "react-navigation": "^4.4.0",
     "react-navigation-stack": "^2.8.2",
     "react-navigation-tabs": "^2.9.0",
     "react-spring": "^8.0.27",
     "react-tabs": "^3.1.1",
+    "rn-css": "^0.6.9",
     "styled-components": "^5.1.1",
     "styled-components-theme": "^1.0.5",
     "subscriptions-transport-ws": "^0.9.17",

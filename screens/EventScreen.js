@@ -1,7 +1,7 @@
 import React from "react";
 import { TouchableOpacity, StatusBar } from "react-native";
 import styled from "styled-components/native";
-import Button from "../components/Button.js";
+import Button from "../components/button/Button.js";
 
 function EventScreen({ navigation }) {
   const event = navigation.getParam("event");

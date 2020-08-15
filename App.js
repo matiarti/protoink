@@ -1,10 +1,16 @@
 import React from "react";
+import { ThemeProvider, createGlobalStyle } from "styled-components";
 import { InMemoryCache, ApolloProvider, HttpLink } from "@apollo/client";
 import ApolloClient from "apollo-boost";
-import Navigator from "./navigator/StackNav";
-import { NavigationContainer } from "@react-navigation/native";
-import AppNavigator from "./navigator/AppNavigator";
 import AppNav from "./navigator/AppNav";
+import DMSans from "./assets/DMSans-Regular.ttf";
+
+const GlobalStyle = createGlobalStyle`
+  @font-face {
+    font-family: DMSans;
+    src: url(${DMSans});
+  }
+`;
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
@@ -16,9 +22,12 @@ const client = new ApolloClient({
 });
 
 const App = () => (
-  <ApolloProvider client={client}>
-    <AppNav />
-  </ApolloProvider>
+  <ThemeProvider theme={{ fontFamily: "DM Sans" }}>
+    <ApolloProvider client={client}>
+      <GlobalStyle />
+      <AppNav />
+    </ApolloProvider>
+  </ThemeProvider>
 );
 
 export default App;

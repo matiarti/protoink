@@ -9,8 +9,8 @@ import {
 import styled from "styled-components/native";
 import { Ionicons } from "@expo/vector-icons";
 import { useForm, Controller } from "react-hook-form";
-import Button from "../components/Button.js";
-import LogoType from "../components/LogoType";
+import Button from "../components/button/Button.js";
+import LogoType from "../components/brand/LogoType";
 import firebase from "../src/Firebase";
 import AsyncStorage from "@react-native-community/async-storage";
 import { Alert } from "react-native";

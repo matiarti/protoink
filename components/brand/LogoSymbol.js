@@ -1,5 +1,5 @@
-import * as React from "../node_modules/react";
-import Svg, { G, Path, Defs, ClipPath } from "../node_modules/react-native-svg";
+import * as React from "react";
+import Svg, { G, Path, Defs, ClipPath } from "react-native-svg";
 
 function LogoSvg() {
   return (

@@ -6,15 +6,15 @@ import {
   Platform,
 } from "react-native";
 import styled from "styled-components/native";
-import EventCard from "../components/cards/EventCard";
+import EventCard from "../components/card/EventCard";
 import { Ionicons } from "@expo/vector-icons";
-import LogoSvg from "../components/LogoSymbol";
-import Style from "../components/cards/StyleCard";
+import LogoSvg from "../components/brand/LogoSymbol";
+import Style from "../components/card/StyleCard";
 import AvatarAPI from "../components/AvatarAPI";
-import Explore from "../components/forms/Explore";
-import Button from "../components/Button.js";
+import Explore from "../components/form/Explore";
+import Button from "../components/button/Button.js";
 import { useQuery, gql } from "@apollo/client";
-import StudioLargeCard from "../components/cards/StudioLargeCard";
+import StudioLargeCard from "../components/card/StudioLargeCard";
 
 function ExploreScreen({ navigation }) {
   return (

@@ -1,5 +1,10 @@
-import * as React from "../node_modules/react";
-import Svg, { G, Path, Defs, ClipPath } from "../node_modules/react-native-svg";
+import * as React from "../../node_modules/react";
+import Svg, {
+  G,
+  Path,
+  Defs,
+  ClipPath,
+} from "../../node_modules/react-native-svg";
 
 function LogoType(props) {
   return (

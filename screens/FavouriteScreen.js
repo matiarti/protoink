@@ -2,11 +2,11 @@ import React from "react";
 import { ScrollView, SafeAreaView, TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
 import { Ionicons } from "@expo/vector-icons";
-import Button from "../components/Button.js";
-import StudioFavourite from "../components/cards/StudioFavouriteCard";
-import ArtistFavourite from "../components/cards/ArtistFavouriteCard";
+import Button from "../components/button/Button.js";
+import StudioFavourite from "../components/card/StudioFavouriteCard";
+import ArtistFavourite from "../components/card/ArtistFavouriteCard";
 import { useQuery, gql } from "@apollo/client";
-import StudioLargeCard from "../components/cards/StudioLargeCard";
+import StudioLargeCard from "../components/card/StudioLargeCard";
 import { Tabs, TabList, Tab, TabPanel } from "react-tabs";
 
 const CustomTab = ({ children }) => (

@@ -6,15 +6,15 @@ import {
   Platform,
 } from "react-native";
 import styled from "styled-components/native";
-import EventCard from "../components/cards/EventCard";
+import EventCard from "../components/card/EventCard";
 import { Ionicons } from "@expo/vector-icons";
-import LogoSvg from "../components/LogoSymbol";
-import Style from "../components/cards/StyleCard";
-import Avatar from "../components/Avatar";
-import Explore from "../components/forms/HomeExplore";
-import Button from "../components/Button.js";
+import LogoSvg from "../components/brand/LogoSymbol";
+import Style from "../components/card/StyleCard";
+import Avatar from "../components/avatar/Avatar";
+import Explore from "../components/form/HomeExplore";
+import Button from "../components/button/Button.js";
 import { useQuery, gql } from "@apollo/client";
-import StudioLargeCard from "../components/cards/StudioLargeCard";
+import StudioLargeCard from "../components/card/StudioLargeCard";
 import firebase from "../src/Firebase";
 
 const StylesQuery = gql`

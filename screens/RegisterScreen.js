@@ -4,16 +4,14 @@ import {
   SafeAreaView,
   TouchableOpacity,
   Dimensions,
-  Animated,
 } from "react-native";
 import styled from "styled-components/native";
 import { Ionicons } from "@expo/vector-icons";
-import { useForm, Controller } from "react-hook-form";
-import Button from "../components/Button.js";
-import LogoType from "../components/LogoType";
+import Button from "../components/button/Button.js";
 import firebase from "../src/Firebase";
-
-import { Alert } from "react-native";
+import Icon from "react-native-vector-icons/AntDesign";
+import TextField from "../components/input/TextField";
+import { Heading1 } from "../components/text/Headings";
 
 const screenHeight = Dimensions.get("window").height;
 var imgHeight = screenHeight;
@@ -28,72 +26,95 @@ if (screenHeight > 1200) {
   imgHeight = screenHeight - 800;
 }
 
-function RegisterScreen({ navigation, props }) {
+function RegisterScreen({ navigation, typeCard }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  // your form submit function which will invoke after successful validation
 
   return (
     <RootView>
       <Container>
         <ScrollView vertical={true} showsHorizontalScrollIndicator={false}>
           <SafeAreaView>
-            <Cover>
-              <LogoType style={{ width: 160 }} />
-              <Image
-                source={require("../assets/loginCover.jpg")}
-                resizeMode="contain"
-                style={{ marginTop: 16 }}
-              />
-            </Cover>
             <Col>
               <Heading1>Bem-vindo ao Protoink</Heading1>
               <Form onSubmit={(e) => e.preventDefault() && false}>
-                <Input style={{ elevation: 4 }}>
-                  <Text
-                    placeholder="Nome Completo"
-                    autoComplete="off"
-                    autoFocus
-                    value={name}
-                    onChangeText={(name) => setName(name)}
-                    name="name"
-                    id="name"
-                  />
+                <Row style={{ flexDirection: "row", marginBottom: 16 }}>
+                  <TouchableOpacity>
+                    <TypeCard>
+                      <Icon name="user" size={24} color="#2457db" />
+                      <Subtitle>Cliente</Subtitle>
+                    </TypeCard>
+                  </TouchableOpacity>
+                  <TouchableOpacity>
+                    <TypeCard
+                      style={{
+                        boxShadow: "none",
+                        borderStyle: "solid",
+                        borderColor: "#E5EFF3",
+                        borderWidth: 1,
+                      }}
+                    >
+                      <Icon name="smileo" size={24} color="#939CB2" />
+                      <Subtitle>Artista</Subtitle>
+                    </TypeCard>
+                  </TouchableOpacity>
+                  <TouchableOpacity>
+                    <TypeCard
+                      style={{
+                        boxShadow: "none",
+                        borderStyle: "solid",
+                        borderColor: "#E5EFF3",
+                        borderWidth: 1,
+                      }}
+                    >
+                      <Icon name="isv" size={24} color="#939CB2" />
+                      <Subtitle>Estúdio</Subtitle>
+                    </TypeCard>
+                  </TouchableOpacity>
+                </Row>
+                <TouchableOpacity>
+                  <Row style={{ flexDirection: "row" }}>
+                    <Photo>
+                      <Icon name="camerao" size={24} color="#2457db" />
+                    </Photo>
+                    <Subtitle style={{ marginTop: 16, marginLeft: 16 }}>
+                      Escolha uma foto de perfil
+                    </Subtitle>
+                  </Row>
+                </TouchableOpacity>
 
-                  <Ionicons name="ios-mail" size={20} color="#565656" />
-                </Input>
+                <TextField
+                  placeholder="Digite seu nome"
+                  icon="user"
+                  autocomplete="off"
+                  value={name}
+                  changetext={(text) => setName(text)}
+                  name="name"
+                  id="name"
+                />
 
-                <Input style={{ elevation: 4 }}>
-                  <Text
-                    placeholder="Digite seu Email"
-                    autoComplete="off"
-                    autoFocus
-                    value={email}
-                    onChangeText={(text) => setEmail(text)}
-                    name="email"
-                    id="email"
-                  />
+                <TextField
+                  placeholder="Digite seu email"
+                  icon="mail"
+                  autocomplete="off"
+                  value={email}
+                  changetext={(email) => setEmail(email)}
+                  name="email"
+                  id="email"
+                />
 
-                  <Ionicons name="ios-mail" size={20} color="#565656" />
-                </Input>
-
-                <Input style={{ elevation: 4 }}>
-                  <Text
-                    secureTextEntry={true}
-                    placeholder="Senha"
-                    type="password"
-                    autoComplete="off"
-                    value={password}
-                    onChangeText={(text) => setPassword(text)}
-                    name="password"
-                    id="password"
-                    onSubmitEditing={onRegister}
-                  />
-
-                  <Ionicons name="ios-lock" size={20} color="#565656" />
-                </Input>
+                <TextField
+                  placeholder="Senha"
+                  icon="key"
+                  autocomplete="off"
+                  value={password}
+                  changetext={(text) => setPassword(text)}
+                  name="password"
+                  id="password"
+                  security="true"
+                  onSubmitEditing={onRegister}
+                />
 
                 <Heading5>Os seus dados estão seguros no Protoink.</Heading5>
                 <TouchableOpacity type="submit" onClick={onRegister}>
@@ -137,45 +158,44 @@ RegisterScreen["navigationOptions"] = () => ({
 
 export default RegisterScreen;
 
+const Photo = styled.View`
+  border-radius: 50px;
+  background: #f7f7fb;
+  width: 50px;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
+`;
+
+const Subtitle = styled.Text`
+  font-size: 14px;
+  color: #565656;
+  margin-top: 8px;
+  font-weight: 600;
+`;
+
+const TypeCard = styled.View`
+  width: 100px;
+  margin-right: 16px;
+  padding: 24px 0px 24px 0px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.06);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #e46399;
+  ${Subtitle}:hover & {
+    fill: rebeccapurple;
+  }
+`;
+
 const RootView = styled.View`
   background: #fff;
   flex: 1;
 `;
 
 const Form = styled.View``;
-
-const Input = styled.View`
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding-left: 16px;
-  padding-right: 16px;
-  border-radius: 4px;
-  margin-right: 24px;
-  margin-top: 16px;
-  background: #fff;
-  box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.08);
-  height: 40px;
-`;
-
-const Image = styled.Image`
-  width: 100%;
-  height: ${imgHeight};
-`;
-
-const Cover = styled.View`
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding-top: 16px;
-  padding-bottom: 16px;
-`;
-
-const Text = styled.TextInput`
-  text-align: left;
-  width: 95%;
-  height: 40px;
-`;
 
 const Link = styled.Text`
   color: #e46399;
@@ -187,15 +207,6 @@ const Heading5 = styled.Text`
   font-weight: 400;
   padding-top: 24px;
   padding-bottom: 8px;
-`;
-
-const Heading1 = styled.Text`
-  font-size: 24px;
-  color: #2457db;
-  font-weight: 700;
-  line-height: 32px;
-  padding: 8px 0px 8px 0px;
-  width: 80%;
 `;
 
 const Row = styled.View`

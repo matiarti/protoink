@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components/native";
-import firebase from "../src/Firebase";
+import firebase from "../../src/Firebase";
 
 class Avatar extends React.Component {
   state = {

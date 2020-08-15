@@ -7,9 +7,9 @@ import {
 } from "react-native";
 import styled from "styled-components/native";
 import { Ionicons } from "@expo/vector-icons";
-import BookingCard from "../components/cards/BookingCard";
+import BookingCard from "../components/card/BookingCard";
 import { useQuery, gql } from "@apollo/client";
-import StudioLargeCard from "../components/cards/StudioLargeCard";
+import StudioLargeCard from "../components/card/StudioLargeCard";
 
 const BookingsQuery = gql`
   {

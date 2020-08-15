@@ -6,7 +6,7 @@ function Loading() {
   return (
     <Container>
       <LottieView
-        source={require("../assets/loading.json")}
+        source={require("../../assets/loading.json")}
         autoPlay={true}
         loop={true}
         ref={animation}

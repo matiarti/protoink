@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components/native";
-import Button from "./ButtonCta.js";
+import Button from "../button/ButtonCta.js";
 import { Ionicons } from "@expo/vector-icons";
 import { TouchableOpacity, Dimensions } from "react-native";
 

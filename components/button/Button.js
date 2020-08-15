@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components/native";
+import Body from "../text/Headings";
 
 const Button = (props) => (
   <Container>
@@ -27,6 +28,7 @@ const Buttons = styled.View`
 `;
 
 const Text = styled.Text`
+  font-family: DMSans;
   font-size: 16px;
   color: #ffffff;
   font-weight: 700;

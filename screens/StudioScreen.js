@@ -1,12 +1,12 @@
 import React from "react";
 import { TouchableOpacity, StatusBar, Dimensions } from "react-native";
 import styled from "styled-components/native";
-import Button from "../components/Button.js";
+import Button from "../components/button/Button.js";
 import { Ionicons } from "@expo/vector-icons";
-import AvailabilitySmallCard from "../components/cards/AvailabilitySmallCard";
+import AvailabilitySmallCard from "../components/card/AvailabilitySmallCard";
 import { useQuery, gql } from "@apollo/client";
 import { ScrollView } from "react-native-gesture-handler";
-import StudioBottomNav from "../components/cta/StudioBottomNav.js";
+import StudioBottomNav from "../components/bottomBar/StudioBottomNav.js";
 
 const AvailabilityQuery = gql`
   {

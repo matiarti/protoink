@@ -1,9 +1,9 @@
 import React from "react";
 import { TouchableOpacity, StatusBar, ScrollView } from "react-native";
 import styled from "styled-components/native";
-import Button from "../components/Button.js";
+import Button from "../components/button/Button.js";
 import { useQuery, gql } from "@apollo/client";
-import EventCard from "../components/cards/EventCard";
+import EventCard from "../components/card/EventCard";
 
 const EventsQuery = gql`
   {

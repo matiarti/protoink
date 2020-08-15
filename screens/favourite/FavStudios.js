@@ -2,7 +2,7 @@ import React from "react";
 import { ScrollView, SafeAreaView, TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
 import { useQuery, gql } from "@apollo/client";
-import StudioLargeCard from "../../components/cards/StudioLargeCard";
+import StudioLargeCard from "../../components/card/StudioLargeCard";
 import { useNavigation } from "@react-navigation/native";
 
 const StudiosQuery = gql`
