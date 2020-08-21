@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components/native";
 import Button from "../button/ButtonCta.js";
-import { Ionicons } from "@expo/vector-icons";
 import { TouchableOpacity, Dimensions } from "react-native";
+import { Heading4, Heading5, colors } from "../../theme.js";
+import Icon from "react-native-vector-icons/AntDesign";
 
 const screenWidth = Dimensions.get("window").width;
 var barWidth = screenWidth;
@@ -14,18 +15,20 @@ function StudioBottomNav({ navigation, props }) {
   return (
     <Container style={{ elevation: 16 }}>
       <Row>
-        <Text>Veja disponibilidade</Text>
+        <Heading5 style={{ paddingLeft: 24 }}>Veja disponibilidade</Heading5>
         <Row>
-          <Ionicons
-            name="ios-star"
+          <Icon
+            name="star"
             size={16}
-            color="#2457DB"
-            style={{ paddingRight: 4 }}
+            color={colors.primary}
+            style={{ paddingRight: 2 }}
           />
 
-          <Rating>4.8</Rating>
+          <Heading5 style={{ color: colors.primary }}>4.8</Heading5>
 
-          <RatingAmount>(220)</RatingAmount>
+          <Heading5 style={{ color: colors.neutral3, paddingLeft: 4 }}>
+            (220)
+          </Heading5>
         </Row>
 
         {buttons.map((button, index) => (
@@ -37,26 +40,6 @@ function StudioBottomNav({ navigation, props }) {
 }
 
 export default StudioBottomNav;
-
-const Rating = styled.Text`
-  font-size: 14px;
-  font-weight: 600;
-  color: #2457db;
-`;
-
-const RatingAmount = styled.Text`
-  font-size: 14px;
-  font-weight: 400;
-  color: #939cb2;
-  padding-left: 4px;
-`;
-
-const Text = styled.Text`
-  font-size: 15px;
-  color: #565656;
-  margin-left: 24px;
-  font-weight: 600;
-`;
 
 const Row = styled.View`
   padding-top: 16px;
@@ -71,7 +54,7 @@ const Container = styled.View`
   background: white;
   width: ${barWidth};
   box-shadow: 0px -5px 16px rgba(0, 0, 0, 0.08);
-  background: #f7f7fb;
+  background: {colors.white};
 `;
 
 const buttons = [

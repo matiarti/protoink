@@ -7,6 +7,9 @@ import AvailabilitySmallCard from "../components/card/AvailabilitySmallCard";
 import { useQuery, gql } from "@apollo/client";
 import { ScrollView } from "react-native-gesture-handler";
 import StudioBottomNav from "../components/bottomBar/StudioBottomNav.js";
+import Icon from "react-native-vector-icons/AntDesign";
+import { Heading1, Heading3, Heading4, Heading5 } from "../theme";
+import colors from "../theme/colors";
 
 const AvailabilityQuery = gql`
   {
@@ -46,10 +49,10 @@ function StudioScreen({ route, navigation }) {
             }}
           >
             <Col>
-              <Ionicons
-                name="ios-arrow-back"
+              <Icon
+                name="arrowleft"
                 size={32}
-                color="#fff"
+                color={colors.white}
                 style={{
                   position: "absolute",
                   top: 32,
@@ -59,30 +62,30 @@ function StudioScreen({ route, navigation }) {
             </Col>
           </TouchableOpacity>
           <Col>
-            <Ionicons
-              name="ios-chatbubbles"
-              size={32}
-              color="#fff"
+            <Icon
+              name="heart"
+              size={24}
+              color={colors.white}
               style={{
                 position: "absolute",
                 top: 32,
-                right: 140,
+                right: 108,
               }}
             />
-            <Ionicons
-              name="ios-heart"
-              size={32}
-              color="#fff"
+            <Icon
+              name="message1"
+              size={24}
+              color={colors.white}
               style={{
                 position: "absolute",
                 top: 32,
-                right: 80,
+                right: 64,
               }}
             />
-            <Ionicons
-              name="ios-share"
-              size={32}
-              color="#fff"
+            <Icon
+              name="sharealt"
+              size={24}
+              color={colors.white}
               style={{
                 position: "absolute",
                 top: 32,
@@ -98,8 +101,23 @@ function StudioScreen({ route, navigation }) {
           <Row style={{ paddingLeft: 24, paddingBottom: 64 }}>
             <Logo source={{ uri: studio.logo.url }} />
             <Col style={{ flexDirection: "column" }}>
-              <Title>{studio.title}</Title>
-              <Style>{studio.style}</Style>
+              <Heading1
+                style={{
+                  color: colors.white,
+                  width: titleWidth,
+                  paddingLeft: 24,
+                }}
+              >
+                {studio.title}
+              </Heading1>
+              <Heading3
+                style={{
+                  color: colors.white,
+                  paddingLeft: 24,
+                }}
+              >
+                {studio.style}
+              </Heading3>
             </Col>
           </Row>
         </Cover>
@@ -115,26 +133,35 @@ function StudioScreen({ route, navigation }) {
           <Row style={{ justifyContent: "space-between", paddingBottom: 24 }}>
             <Col>
               <Row>
-                <Ionicons name="ios-pin" size={32} color="#939CB2" />
-                <Location>{studio.location}</Location>
+                <Icon name="enviromento" size={24} color={colors.neutral3} />
+                <Heading4 style={{ color: colors.neutral3, paddingLeft: 4 }}>
+                  {studio.location}
+                </Heading4>
               </Row>
             </Col>
             <Col style={{ paddingRight: 24 }}>
               <Row>
-                <Ionicons
-                  name="ios-star"
-                  size={24}
-                  color="#2457DB"
+                <Icon
+                  name="star"
+                  size={16}
+                  color={colors.primary}
                   style={{ paddingRight: 8 }}
                 />
-                <Rating>{studio.rating}</Rating>
-                <RatingAmount>(220)</RatingAmount>
+                <Heading4 style={{ color: colors.primary }}>
+                  {studio.rating}
+                </Heading4>
+                <Heading4 style={{ color: colors.neutral3, paddingLeft: 4 }}>
+                  (220)
+                </Heading4>
               </Row>
             </Col>
           </Row>
+          <Heading5 style={{ color: colors.neutral3, paddingBottom: 16 }}>
+            Horários disponíveis
+          </Heading5>
           <ScrollView
             horizontal={true}
-            style={{ paddingBottom: 8, paddingLeft: 8 }}
+            style={{ paddingBottom: 8 }}
             showsHorizontalScrollIndicator={false}
           >
             <Row>

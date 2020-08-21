@@ -1,51 +1,36 @@
 import React from "react";
 import styled from "styled-components/native";
+import { Heading1, Heading3, Heading6 } from "../../theme";
+import colors from "../../theme/colors";
 
 const AvailabitilySmallCard = (props) => (
   <Container>
     <Col>
-      <Day>{props.day}</Day>
-      <Month>{props.month}</Month>
+      <Heading1 style={{ textAlign: "center", color: colors.secondary }}>
+        {props.day}
+      </Heading1>
+      <Heading3 style={{ fontWeight: 400, color: colors.neutral3 }}>
+        {props.month}
+      </Heading3>
       <Separator />
-      <WeekDay>{props.weekDay}</WeekDay>
-      <Time>{props.time}</Time>
+      <Heading6 style={{ textAlign: "center", color: colors.neutral3 }}>
+        {props.weekDay}
+      </Heading6>
+      <Heading6 style={{ textAlign: "center", color: colors.neutral3 }}>
+        {props.time}
+      </Heading6>
     </Col>
   </Container>
 );
 
 export default AvailabitilySmallCard;
 
-const Day = styled.Text`
-  font-size: 28px;
-  color: #565656;
-`;
-
-const Month = styled.Text`
-  font-size: 20px;
-  color: #939cb2;
-  padding-bottom: 4px;
-`;
-
 const Separator = styled.View`
-  border: 1px solid #e5eff3;
+  border: 1px solid ${colors.neutral2};
   margin-top: 8px;
   margin-bottom: 8px;
   width: 48px;
   height: 2px;
-`;
-
-const WeekDay = styled.Text`
-  font-size: 10px;
-  font-weight: 700;
-  color: #939cb2;
-  padding-bottom: 4px;
-  padding-top: 4px;
-`;
-
-const Time = styled.Text`
-  font-size: 10px;
-  font-weight: 700;
-  color: #939cb2;
 `;
 
 const Col = styled.View`
@@ -54,14 +39,14 @@ const Col = styled.View`
   padding-bottom: 24px;
   align-items: center;
   justify-content: center;
-  height: 164px;
+  height: 140px;
 `;
 
 const Container = styled.View`
   background: white;
-  width: 100px;
+  width: 90px;
   border-radius: 8px;
   margin-right: 16px;
   margin-bottom: 16px;
-  background: #f7f7fb;
+  background: ${colors.neutral1};
 `;

@@ -1,20 +1,44 @@
 import React from "react";
 import styled from "styled-components/native";
+import { Heading4, Heading5, Heading6 } from "../../theme";
+import colors from "../../theme/colors";
+import Icon from "react-native-vector-icons/AntDesign";
 
 const EventCard = (props) => (
-  <Container style={{ elevation: 8 }}>
+  <Container style={{ elevation: 8, marginRight: 16 }}>
     <Row>
       <Col>
         <CoverImage source={props.coverimage} />
       </Col>
-      <Col>
-        <Title>{props.title}</Title>
-        <Location>{props.location}</Location>
+      <Col style={{ paddingLeft: 16 }}>
+        <Heading5
+          style={{
+            color: colors.primary,
+            width: 160,
+            fontWeight: "bold",
+          }}
+        >
+          {props.title}
+        </Heading5>
+        <Heading6>{props.location}</Heading6>
       </Col>
       <Col>
-        <Subtitle>{props.subtitle}</Subtitle>
-        <Price>{props.price}</Price>
-        <Attendees>{props.attendees}</Attendees>
+        <Heading6 style={{ paddingRight: 24 }}>{props.subtitle}</Heading6>
+        <Heading4
+          style={{
+            color: colors.accent,
+            width: 160,
+            fontWeight: "bold",
+
+            paddingRight: 24,
+          }}
+        >
+          {props.price}
+        </Heading4>
+        <Row2 style={{ paddingTop: 4 }}>
+          <Icon name="user" size={16} color={colors.primary} />
+          <Heading6 style={{ paddingRight: 24 }}>{props.attendees}</Heading6>
+        </Row2>
       </Col>
     </Row>
   </Container>
@@ -22,53 +46,7 @@ const EventCard = (props) => (
 
 export default EventCard;
 
-const Attendees = styled.Text`
-  color: #939cb2;
-  font-weight: 700;
-  font-size: 8px;
-  padding-top: 8px;
-  text-align: right;
-  padding-right: 24px;
-`;
-
-const Price = styled.Text`
-  color: #e46399;
-  font-weight: 700;
-  font-size: 14px;
-  padding-top: 8px;
-  text-align: right;
-  padding-right: 24px;
-`;
-
-const Subtitle = styled.Text`
-  color: #939cb2;
-  font-weight: 700;
-  font-size: 8px;
-  line-height: 16px;
-  text-align: right;
-  padding-right: 24px;
-`;
-
 const Col = styled.View``;
-
-const Location = styled.Text`
-  color: #939cb2;
-  font-weight: 500;
-  font-size: 10px;
-  line-height: 18px;
-  padding-left: 16px;
-  padding-top: 2px;
-  width: 170px;
-`;
-
-const Title = styled.Text`
-  color: #2457db;
-  font-weight: 700;
-  font-size: 13px;
-  line-height: 18px;
-  padding-left: 16px;
-  width: 160px;
-`;
 
 const CoverImage = styled.Image`
   width: 64px;
@@ -84,11 +62,15 @@ const Row = styled.View`
   justify-content: space-between;
 `;
 
+const Row2 = styled.View`
+  flex-direction: row;
+`;
+
 const Container = styled.View`
-  background: white;
+  background: ${colors.white};
   width: 315px;
   height: 100px;
   border-radius: 8px;
-  margin: 16px 8px 16px 16px;
+  margin: 16px 0px 16px 0px;
   box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.06);
 `;

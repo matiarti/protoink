@@ -1,16 +1,19 @@
 import React from "react";
-import { ThemeProvider, createGlobalStyle } from "styled-components";
-import { InMemoryCache, ApolloProvider, HttpLink } from "@apollo/client";
+import { InMemoryCache, ApolloProvider } from "@apollo/client";
 import ApolloClient from "apollo-boost";
-import AppNav from "./navigator/AppNav";
-import DMSans from "./assets/DMSans-Regular.ttf";
-
-const GlobalStyle = createGlobalStyle`
-  @font-face {
-    font-family: DMSans;
-    src: url(${DMSans});
-  }
-`;
+import SignOutStack from "./navigator/SignOutStack";
+import SignInStack from "./navigator/SignInStack";
+import AuthNavigator from "./navigator/AuthNavigator";
+import { AppLoading } from "expo";
+import {
+  useFonts,
+  DMSans_400Regular,
+  DMSans_400Regular_Italic,
+  DMSans_500Medium,
+  DMSans_500Medium_Italic,
+  DMSans_700Bold,
+  DMSans_700Bold_Italic,
+} from "@expo-google-fonts/dm-sans";
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
@@ -21,13 +24,23 @@ const client = new ApolloClient({
   },
 });
 
-const App = () => (
-  <ThemeProvider theme={{ fontFamily: "DM Sans" }}>
-    <ApolloProvider client={client}>
-      <GlobalStyle />
-      <AppNav />
-    </ApolloProvider>
-  </ThemeProvider>
-);
+export default function App() {
+  let [fontsLoaded] = useFonts({
+    DMSans_400Regular,
+    DMSans_400Regular_Italic,
+    DMSans_500Medium,
+    DMSans_500Medium_Italic,
+    DMSans_700Bold,
+    DMSans_700Bold_Italic,
+  });
 
-export default App;
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  } else {
+    return (
+      <ApolloProvider client={client}>
+        <AuthNavigator />
+      </ApolloProvider>
+    );
+  }
+}

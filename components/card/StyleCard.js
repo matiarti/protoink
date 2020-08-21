@@ -1,10 +1,21 @@
 import React from "react";
 import styled from "styled-components/native";
+import { Heading2 } from "../../theme";
+import colors from "../../theme/colors";
 
 const Style = (props) => (
-  <Container style={{ elevation: 8, marginLeft: 16, marginBottom: 16 }}>
+  <Container style={{ elevation: 8, marginBottom: 16, marginRight: 16 }}>
     <Cover>
-      <Name>{props.name}</Name>
+      <Heading2
+        style={{
+          color: colors.white,
+          marginTop: 72,
+          marginLeft: 16,
+          zIndex: 2,
+        }}
+      >
+        {props.name}
+      </Heading2>
       <Image source={props.image} />
     </Cover>
   </Container>

@@ -3,204 +3,71 @@ import {
   ScrollView,
   SafeAreaView,
   TouchableOpacity,
-  Platform,
+  Dimensions,
 } from "react-native";
 import styled from "styled-components/native";
-import EventCard from "../components/card/EventCard";
-import { Ionicons } from "@expo/vector-icons";
-import LogoSvg from "../components/brand/LogoSymbol";
-import Style from "../components/card/StyleCard";
 import Avatar from "../components/avatar/Avatar";
-import Explore from "../components/form/HomeExplore";
+import TextField from "../components/input/TextField";
 import Button from "../components/button/Button.js";
-import { useQuery, gql } from "@apollo/client";
-import StudioLargeCard from "../components/card/StudioLargeCard";
-import firebase from "../src/Firebase";
+import { Heading1, Heading4, colors } from "../theme";
+import StyleRow from "../features/StyleRow";
+import TopBar from "../components/topBar/TopBar";
+import EventRow from "../features/EventRow";
+import StudioList from "../features/StudioList";
 
-const StylesQuery = gql`
-  {
-    styleCollection {
-      items {
-        image {
-          title
-          description
-          contentType
-          fileName
-          size
-          url
-          width
-          height
-        }
-        name
-      }
-    }
-  }
-`;
+const screenWidth = Dimensions.get("window").width;
+var titleWidth = screenWidth - 40;
 
-const StudiosQuery = gql`
-  {
-    studiosCollection {
-      items {
-        image {
-          title
-          description
-          contentType
-          fileName
-          size
-          url
-          width
-          height
-        }
-        logo {
-          title
-          description
-          contentType
-          fileName
-          size
-          url
-          width
-          height
-        }
-        title
-        subtitle
-        location
-        rating
-        style
-      }
-    }
-  }
-`;
+if (screenWidth > 800) {
+  titleWidth = screenWidth - 320;
+}
 
-function HomeScreen({ navigation }) {
-  const { data: dataR, error: errorR, loading: loadingR } = useQuery(
-    StudiosQuery
-  );
-  const { loading, error, data } = useQuery(StylesQuery);
-
-  if (loading) return <Heading3>Loading...</Heading3>;
-  if (error) return <Heading3>Error :(</Heading3>;
-  if (loadingR) return <Heading3>Loading...</Heading3>;
-  if (errorR) return <Heading3>Error :(</Heading3>;
-
+function HomeScreen() {
   return (
     <RootView>
       <Container>
         <ScrollView vertical={true} showsHorizontalScrollIndicator={false}>
           <SafeAreaView>
-            <TopBar>
-              <LogoSvg style={{ width: 40 }} />
-              <TouchableOpacity onPress={logout}>
-                <Ionicons
-                  name="ios-notifications-outline"
-                  size={40}
-                  color="#2457db"
-                />
-              </TouchableOpacity>
-            </TopBar>
+            <TopBar />
 
-            <Row>
-              <Avatar />
-            </Row>
+            <Avatar />
 
-            <Row>
-              <Explore />
-            </Row>
+            <TextField
+              placeholder="Estado, Cidade ou Região"
+              icon="search1"
+              autocomplete="off"
+            />
 
-            <Row>
-              <Heading1>
-                Encontre o lugar perfeito para fazer aquela tattoo.
-              </Heading1>
-            </Row>
-
-            <Row>
-              <Heading3>Escolha seu estilo</Heading3>
-            </Row>
-
-            <ScrollView
-              style={{ paddingBottom: 8, paddingLeft: 8 }}
-              horizontal={true}
-              showsHorizontalScrollIndicator={false}
+            <Heading1
+              style={{ width: titleWidth, paddingTop: 24, paddingBottom: 24 }}
             >
-              {data.styleCollection.items.map((style, index) => (
-                <TouchableOpacity
-                  key={index}
-                  onPress={() => {
-                    navigation.navigate("Event", {
-                      section: style,
-                    });
-                  }}
-                >
-                  <Style image={{ uri: style.image.url }} name={style.name} />
-                </TouchableOpacity>
-              ))}
-            </ScrollView>
+              Encontre o lugar perfeito para fazer aquela tattoo.
+            </Heading1>
 
-            <Row>
-              <Heading3>Eventos recentes</Heading3>
-            </Row>
-            <ScrollView
-              horizontal={true}
-              style={{ paddingBottom: 8, paddingLeft: 8 }}
-              showsHorizontalScrollIndicator={false}
-            >
-              {events.map((event, index) => (
-                <TouchableOpacity
-                  key={index}
-                  onPress={() => {
-                    navigation.navigate("Event", {
-                      event: event,
-                    });
-                  }}
-                >
-                  <EventCard
-                    title={event.title}
-                    coverimage={event.coverimage}
-                    location={event.location}
-                    subtitle={event.subtitle}
-                    price={event.price}
-                    attendees={event.attendees}
-                  />
-                </TouchableOpacity>
-              ))}
-            </ScrollView>
+            <Heading4 style={{ color: colors.neutral3 }}>
+              Qual estilo da vez?
+            </Heading4>
 
-            <StudiosContainer style={{ paddingBottom: 24, paddingLeft: 16 }}>
-              {dataR.studiosCollection.items.map((studio, index) => (
-                <TouchableOpacity
-                  key={index}
-                  onPress={() => {
-                    navigation.navigate("Studio", { studio: studio });
-                  }}
-                >
-                  <StudioLargeCard
-                    title={studio.title}
-                    image={{ uri: studio.image.url }}
-                    rating={studio.rating}
-                    logo={{ uri: studio.logo.url }}
-                    location={studio.location}
-                    style={studio.style}
-                  />
-                </TouchableOpacity>
-              ))}
-            </StudiosContainer>
+            <StyleRow />
+
+            <Heading4 style={{ color: colors.neutral3 }}>
+              Eventos recentes
+            </Heading4>
+
+            <EventRow />
+
+            <StudioList />
 
             <TouchableOpacity>
-              <Row>
-                {buttons.map((button, index) => (
-                  <Button key={index} text={button.text} />
-                ))}
-              </Row>
+              {buttons.map((button, index) => (
+                <Button key={index} text={button.text} />
+              ))}
             </TouchableOpacity>
           </SafeAreaView>
         </ScrollView>
       </Container>
     </RootView>
   );
-
-  async function logout() {
-    await firebase.logout();
-    navigation.navigate("Login");
-  }
 }
 
 HomeScreen["navigationOptions"] = (screenProps) => ({
@@ -209,29 +76,9 @@ HomeScreen["navigationOptions"] = (screenProps) => ({
 
 export default HomeScreen;
 
-const StudiosContainer = styled.View`
-  flex-direction: row;
-  flex-wrap: wrap;
-`;
-
 const RootView = styled.View`
   background: #fff;
   flex: 1;
-`;
-
-const Heading3 = styled.Text`
-  font-size: 16px;
-  color: #565656;
-  font-weight: 600;
-`;
-
-const Heading1 = styled.Text`
-  font-size: 24px;
-  color: #2457db;
-  font-weight: 700;
-  line-height: 32px;
-  padding: 16px 0px 16px 0px;
-  width: 80%;
 `;
 
 const Row = styled.View`
@@ -240,49 +87,14 @@ const Row = styled.View`
   padding-top: 8px;
 `;
 
-const TopBar = styled.View`
-  padding-top: 8px;
-  padding-left: 24px;
-  padding-right: 24px;
-  margin-bottom: 16px;
-  flex-direction: row;
-  justify-content: space-between;
-  height: 64px;
-`;
-
 const Container = styled.View`
-  background: #f0f3f5;
+  background: ${colors.neutral1};
   flex: 1;
   border-radius: 10px;
+  width: 100%;
+  padding-left: 24px;
+  padding-top: 8px;
 `;
-
-const events = [
-  {
-    key: "1",
-    coverimage: require("../assets/logo.png"),
-    title: "Flash Day para vender a COVID19 forever",
-    location: "Tatuapé, São Paulo",
-    subtitle: "a partir de",
-    price: "R$150",
-    attendees: "126",
-  },
-  {
-    coverimage: require("../assets/logo.png"),
-    title: "Flash Day para sobreviver COVID",
-    location: "Tatuapé, São Paulo",
-    subtitle: "a partir de",
-    price: "R$150",
-    attendees: "126",
-  },
-  {
-    coverimage: require("../assets/logo.png"),
-    title: "Flash Day para sobreviver COVID",
-    location: "Tatuapé, São Paulo",
-    subtitle: "a partir de",
-    price: "R$150",
-    attendees: "126",
-  },
-];
 
 const buttons = [
   {

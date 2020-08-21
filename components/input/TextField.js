@@ -13,6 +13,7 @@ const TextField = (props) => (
       name={props.name}
       id={props.id}
       onChangeText={props.changetext}
+      onSubmitEditing={props.onsubmit}
     />
 
     <Icon name={props.icon} size={20} color="#565656" />
@@ -39,9 +40,9 @@ const Text = styled.TextInput`
   text-align: left;
   width: 95%;
   height: 40px;
-  font-family: DMSans;
+  font-family: "DMSans_400Regular";
   font-size: 14px;
-  line-height: 28px;
+  line-height: 20px;
 `;
 
 {

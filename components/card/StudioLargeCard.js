@@ -1,13 +1,15 @@
 import React from "react";
 import styled from "styled-components/native";
 import { Dimensions } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import { Heading2, Heading4, Heading5, Heading6 } from "../../theme";
+import colors from "../../theme/colors";
+import Icon from "react-native-vector-icons/AntDesign";
 
 const screenWidth = Dimensions.get("window").width;
 var cardWidth = screenWidth - 52;
 
 if (screenWidth > 300) {
-  cardWidth = screenWidth - 52;
+  cardWidth = screenWidth - 48;
 }
 if (screenWidth > 500) {
   cardWidth = (screenWidth - 72) / 2;
@@ -18,31 +20,44 @@ if (screenWidth > 1200) {
 
 var titleWidth = cardWidth - 160;
 if (screenWidth > 300) {
-  titleWidth = cardWidth - 80;
+  titleWidth = cardWidth - 92;
 }
 
 const StudioLargeCard = (props) => (
-  <Container style={{ elevation: 8 }}>
+  <Container style={{ elevation: 8, marginRight: 16 }}>
     <Col>
       <Image source={props.image} />
       <Row>
-        <Title>{props.title}</Title>
+        <Heading2
+          style={{
+            color: colors.white,
+            paddingLeft: 24,
+            paddingBottom: 24,
+
+            width: titleWidth,
+          }}
+        >
+          {props.title}
+        </Heading2>
         <Row2>
-          <Ionicons
-            name="ios-star"
+          <Icon
+            name="star"
             size={16}
-            color="#fff"
-            style={{ paddingRight: 4 }}
+            color={colors.white}
+            style={{ paddingRight: 4, marginTop: 4 }}
           />
-          <Rating>{props.rating}</Rating>
+
+          <Heading4 style={{ marginBottom: 24, color: colors.white }}>
+            {props.rating}
+          </Heading4>
         </Row2>
       </Row>
     </Col>
 
     <Content>
       <Logo source={props.logo} />
-      <Caption>{props.location}</Caption>
-      <Style>{props.style}</Style>
+      <Heading4>{props.location}</Heading4>
+      <Heading5 style={{ color: colors.neutral3 }}>{props.style}</Heading5>
     </Content>
   </Container>
 );
@@ -58,6 +73,7 @@ const Row = styled.View`
 const Row2 = styled.View`
   flex-direction: row;
   justify-content: flex-end;
+  margin-left: 24px;
 `;
 
 const Container = styled.View`
@@ -66,7 +82,7 @@ const Container = styled.View`
   border-radius: 14px;
   background: #fff;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
-  margin: 20px 10px;
+  margin: 20px 0px;
 `;
 
 const Col = styled.View`
@@ -86,30 +102,6 @@ const Image = styled.Image`
   opacity: 0.6;
 `;
 
-const Title = styled.Text`
-  font-size: 20px;
-  color: #fff;
-  font-weight: 700;
-  margin-top: 4px;
-  margin-left: 24px;
-  padding-right: 24px;
-  margin-bottom: 24px;
-  width: ${titleWidth};
-  z-index: 2;
-  text-align: left;
-`;
-
-const Rating = styled.Text`
-  font-size: 15px;
-  color: #fff;
-  font-weight: 500;
-  z-index: 3;
-  text-align: right;
-  padding-right: 8px;
-  margin-right: -16px;
-  margin-bottom: 16px;
-`;
-
 const Content = styled.View`
   padding-left: 64px;
   justify-content: center;
@@ -123,18 +115,4 @@ const Logo = styled.Image`
   top: 24px;
   left: 20px;
   border-radius: 16px;
-`;
-
-const Caption = styled.Text`
-  font-size: 14px;
-  color: #3c4560;
-  font-weight: 500;
-  max-width: 260px;
-`;
-
-const Style = styled.Text`
-  font-size: 12px;
-  color: #939cb2;
-  font-weight: 500;
-  margin-top: 4px;
 `;

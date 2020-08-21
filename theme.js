@@ -1,104 +1,77 @@
-const heading = {
-  color: "text",
-  fontFamily: "heading",
-  lineHeight: "heading",
-  fontWeight: "heading",
+import React from "react";
+import styled from "styled-components/native";
+
+export const colors = {
+  primary: "#2457DB",
+  secondary: "#565656",
+  accent: "#E46399",
+  success: "#40B439",
+  danger: "#E14D45",
+  warning: "#EF9327",
+  white: "#FFFFFF",
+  neutral3: "#939CB2",
+  neutral2: "#E5EFF3",
+  neutral1: "#F7F7FB",
+  bg: "#FFFFFF",
 };
 
-export const base = {
-  breakpoints: ["40em", "56em", "64em"],
-  space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
-  fonts: {
-    body:
-      'system-ui, -apple-system, BlinkMacSystemFont, "DM Sans", Roboto, "Helvetica Neue", sans-serif',
-    heading: "inherit",
-    monospace: "Menlo, monospace",
-  },
-  fontSizes: [12, 14, 16, 20, 24, 32, 48, 64, 96],
-  fontWeights: {
-    body: 400,
-    heading: 700,
-    bold: 700,
-  },
-  lineHeights: {
-    body: 1.5,
-    heading: 1.125,
-  },
-  colors: {
-    text: "#000",
-    background: "#fff",
-    primary: "#2457DB",
-    secondary: "#565656",
-    accent: "#E46399",
-    muted: "#939CB2",
-  },
-  styles: {
-    root: {
-      fontFamily: "body",
-      lineHeight: "body",
-      fontWeight: "body",
-    },
-    h1: {
-      ...heading,
-      fontSize: 5,
-    },
-    h2: {
-      ...heading,
-      fontSize: 4,
-    },
-    h3: {
-      ...heading,
-      fontSize: 3,
-    },
-    h4: {
-      ...heading,
-      fontSize: 2,
-    },
-    h5: {
-      ...heading,
-      fontSize: 1,
-    },
-    h6: {
-      ...heading,
-      fontSize: 0,
-    },
-    p: {
-      color: "text",
-      fontFamily: "body",
-      fontWeight: "body",
-      lineHeight: "body",
-    },
-    a: {
-      color: "accent",
-    },
-    pre: {
-      fontFamily: "monospace",
-      overflowX: "auto",
-      code: {
-        color: "inherit",
-      },
-    },
-    code: {
-      fontFamily: "monospace",
-      fontSize: "inherit",
-    },
-    table: {
-      width: "100%",
-      borderCollapse: "separate",
-      borderSpacing: 0,
-    },
-    th: {
-      textAlign: "left",
-      borderBottomStyle: "solid",
-    },
-    td: {
-      textAlign: "left",
-      borderBottomStyle: "solid",
-    },
-    img: {
-      maxWidth: "100%",
-    },
-  },
-};
+export const Heading1 = styled.Text`
+  font-family: "DMSans_700Bold";
+  font-size: 24px;
+  line-height: 32px;
+  color: ${colors.primary};
+  font-weight: 900;
+  width: 100%;
+`;
 
-export default base;
+export const Heading2 = styled.Text`
+  font-family: "DMSans_700Bold";
+  font-size: 20px;
+  line-height: 28px;
+  color: ${colors.secondary};
+  font-weight: 900;
+`;
+
+export const Heading3 = styled.Text`
+  font-family: "DMSans_400Regular";
+  font-size: 18px;
+  line-height: 28px;
+  color: ${colors.secondary};
+  font-weight: 400;
+`;
+
+export const Heading4 = styled.Text`
+  font-family: "DMSans_700Bold";
+  font-size: 14px;
+  line-height: 22px;
+  color: ${colors.secondary};
+  font-weight: 400;
+`;
+
+export const Heading5 = styled.Text`
+  font-family: "DMSans_400Regular";
+  font-size: 12px;
+  line-height: 18px;
+  color: ${colors.secondary};
+  font-weight: 400;
+`;
+
+export const Heading6 = styled.Text`
+  font-family: "DMSans_400Regular";
+  font-size: 10px;
+  line-height: 16px;
+  color: ${colors.neutral3};
+  font-weight: 400;
+`;
+
+export const Body = styled.Text`
+  font-family: "DMSans_400Regular";
+  font-size: 16px;
+  line-height: 26px;
+  color: ${colors.secondary};
+  font-weight: 400;
+`;
+
+export const Link = styled.Text`
+  color: ${colors.accent};
+`;

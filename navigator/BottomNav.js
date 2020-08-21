@@ -1,14 +1,11 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Ionicons } from "@expo/vector-icons";
 import HomeScreen from "../screens/HomeScreen";
 import BookingScreen from "../screens/BookingScreen";
 import MessageScreen from "../screens/MessageScreen";
 import ProfileScreen from "../screens/ProfileScreen";
-import StudioScreen from "../screens/StudioScreen";
-import LoginScreen from "../screens/LoginScreen";
-import RegisterScreen from "../screens/RegisterScreen";
 import FavScreen from "../screens/FavScreen";
+import Icon from "react-native-vector-icons/AntDesign";
 
 const Tab = createBottomTabNavigator();
 
@@ -21,10 +18,11 @@ const StackNav = () => {
         options={{
           title: "Home",
           tabBarLabel: "Home",
+
           tabBarIcon: ({ focused }) => (
-            <Ionicons
-              name="ios-home"
-              size={24}
+            <Icon
+              name="home"
+              size={16}
               color={focused ? activeColor : inactiveColor}
             />
           ),
@@ -37,9 +35,9 @@ const StackNav = () => {
           title: "Favoritos",
           tabBarLabel: "Favoritos",
           tabBarIcon: ({ focused }) => (
-            <Ionicons
-              name="ios-heart"
-              size={24}
+            <Icon
+              name="hearto"
+              size={16}
               color={focused ? activeColor : inactiveColor}
             />
           ),
@@ -52,9 +50,9 @@ const StackNav = () => {
           title: "Agendamentos",
           tabBarLabel: "Agendamentos",
           tabBarIcon: ({ focused }) => (
-            <Ionicons
-              name="ios-calendar"
-              size={24}
+            <Icon
+              name="calendar"
+              size={16}
               color={focused ? activeColor : inactiveColor}
             />
           ),
@@ -67,9 +65,9 @@ const StackNav = () => {
           title: "Mensagens",
           tabBarLabel: "Mensagens",
           tabBarIcon: ({ focused }) => (
-            <Ionicons
-              name="ios-chatbubbles"
-              size={24}
+            <Icon
+              name="message1"
+              size={16}
               color={focused ? activeColor : inactiveColor}
             />
           ),
@@ -82,9 +80,9 @@ const StackNav = () => {
           title: "Perfil",
           tabBarLabel: "Perfil",
           tabBarIcon: ({ focused }) => (
-            <Ionicons
-              name="ios-person"
-              size={24}
+            <Icon
+              name="user"
+              size={16}
               color={focused ? activeColor : inactiveColor}
             />
           ),
