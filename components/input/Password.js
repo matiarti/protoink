@@ -2,31 +2,25 @@ import React from "react";
 import styled from "styled-components/native";
 import Icon from "react-native-vector-icons/AntDesign";
 
-const TextField = (props) => (
-  <Container>
-    <Input style={{ elevation: 4 }}>
-      <Text
-        placeholder={props.placeholder}
-        autoComplete="off"
-        secureTextEntry={props.security}
-        autoComplete={props.autocomplete}
-        value={props.value}
-        name={props.name}
-        id={props.id}
-        onChangeText={props.changetext}
-        onSubmitEditing={props.onsubmit}
-      />
+const Password = (props) => (
+  <Input style={{ elevation: 4 }}>
+    <Text
+      placeholder={props.placeholder}
+      autoComplete="off"
+      secureTextEntry={true}
+      autoComplete={props.autocomplete}
+      value={props.value}
+      name={props.name}
+      id={props.id}
+      onChangeText={props.changetext}
+      onSubmitEditing={props.onsubmit}
+    />
 
-      <Icon name={props.icon} size={20} color="#565656" />
-    </Input>
-  </Container>
+    <Icon name={props.icon} size={20} color="#565656" />
+  </Input>
 );
 
-export default TextField;
-
-const Container = styled.View`
-  padding-left: 24px;
-`;
+export default Password;
 
 const Input = styled.View`
   flex-direction: row;

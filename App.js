@@ -3,7 +3,6 @@ import { InMemoryCache, ApolloProvider } from "@apollo/client";
 import ApolloClient from "apollo-boost";
 import SignOutStack from "./navigator/SignOutStack";
 import SignInStack from "./navigator/SignInStack";
-import AuthNavigator from "./navigator/AuthNavigator";
 import { AppLoading } from "expo";
 import {
   useFonts,
@@ -39,7 +38,7 @@ export default function App() {
   } else {
     return (
       <ApolloProvider client={client}>
-        <AuthNavigator />
+        <SignOutStack />
       </ApolloProvider>
     );
   }

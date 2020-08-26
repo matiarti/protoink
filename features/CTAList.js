@@ -5,10 +5,11 @@ import { useQuery, gql } from "@apollo/client";
 import StudioLargeCard from "../components/card/StudioLargeCard";
 import { Heading3 } from "../theme";
 import { useNavigation } from "@react-navigation/native";
+import CallToActionCard from "../components/card/CallToActionCard";
 
-const StudiosQuery = gql`
+const CTAsQuery = gql`
   {
-    studiosCollection {
+    callToActionCollection {
       items {
         image {
           title
@@ -20,50 +21,37 @@ const StudiosQuery = gql`
           width
           height
         }
-        logo {
-          title
-          description
-          contentType
-          fileName
-          size
-          url
-          width
-          height
-        }
+
         title
-        subtitle
+        description
         location
-        rating
-        style
       }
     }
   }
 `;
 
-function StudioList() {
+function CTAList() {
   const navigation = useNavigation();
 
-  const { data, error, loading } = useQuery(StudiosQuery);
+  const { data, error, loading } = useQuery(CTAsQuery);
 
   if (loading) return <Heading3>Loading...</Heading3>;
   if (error) return <Heading3>Error :(</Heading3>;
 
   return (
-    <StudiosContainer style={{ paddingBottom: 24 }}>
-      {data.studiosCollection.items.map((studio, index) => (
+    <StudiosContainer style={{ paddingBottom: 24, paddingLeft: 24 }}>
+      {data.callToActionCollection.items.map((cta, index) => (
         <TouchableOpacity
           key={index}
           onPress={() => {
-            navigation.navigate("Studio", { studio: studio });
+            navigation.navigate("CTA", { cta: cta });
           }}
         >
-          <StudioLargeCard
-            title={studio.title}
-            image={{ uri: studio.image.url }}
-            rating={studio.rating}
-            logo={{ uri: studio.logo.url }}
-            location={studio.location}
-            style={studio.style}
+          <CallToActionCard
+            title={cta.title}
+            image={{ uri: cta.image.url }}
+            location={cta.location}
+            description={cta.description}
           />
         </TouchableOpacity>
       ))}
@@ -71,7 +59,7 @@ function StudioList() {
   );
 }
 
-export default StudioList;
+export default CTAList;
 
 const StudiosContainer = styled.View`
   flex-direction: row;

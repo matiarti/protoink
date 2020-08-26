@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   ScrollView,
   SafeAreaView,
@@ -6,23 +6,14 @@ import {
   Platform,
 } from "react-native";
 import styled from "styled-components/native";
-import { useNavigation } from "@react-navigation/native";
-import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { Heading1, Heading4, Link, colors } from "../../theme";
 import TopBarBack from "../../components/topBar/TopBarBack";
-import ExploreStudios from "./ExploreStudios";
+import Button from "../../components/button/Button";
+import { useNavigation } from "@react-navigation/native";
+import StyleList from "../../features/StyleList";
 
-function StudioTab() {
-  return <ExploreStudios />;
-}
-
-function ArtistTab() {
-  return <ExploreStudios />;
-}
-
-const Tab = createMaterialTopTabNavigator();
-
-export default function ExploreScreen() {
+export default function Explore() {
+  const navigation = useNavigation();
   return (
     <Container>
       <ScrollView vertical={true} showsHorizontalScrollIndicator={false}>
@@ -31,12 +22,12 @@ export default function ExploreScreen() {
           <Heading1
             style={{ paddingLeft: 24, paddingTop: 48, paddingBottom: 24 }}
           >
-            Explorar
+            Escolha estilos
           </Heading1>
-          <Tab.Navigator mode="modal">
-            <Tab.Screen name="Estúdios" component={StudioTab} />
-            <Tab.Screen name="Artistas" component={ArtistTab} />
-          </Tab.Navigator>
+          <StyleList />
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <Button text="Continuar" />
+          </TouchableOpacity>
         </SafeAreaView>
       </ScrollView>
     </Container>

@@ -17,6 +17,7 @@ const Container = styled.View`
   margin-right: 24px;
   padding-top: 8px;
   padding-bottom: 8px;
+  padding-left: 24px;
 `;
 
 const Buttons = styled.View`

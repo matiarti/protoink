@@ -10,10 +10,7 @@ import Button from "../../components/button/Button";
 import firebase from "../../src/Firebase";
 import TextField from "../../components/input/TextField";
 import { Heading1, Heading4, Heading5, Link, colors } from "../../theme";
-import {
-  UserTypeCardActive,
-  UserTypeCardNormal,
-} from "../../components/card/userTypeCard.js";
+import { UserTypeCard } from "../../components/card/userTypeCard.js";
 import { UploadPhoto } from "../../components/upload/UploadPhoto.js";
 
 const screenHeight = Dimensions.get("window").height;
@@ -39,17 +36,26 @@ function RegisterScreen({ navigation }) {
       <ScrollView vertical={true} showsHorizontalScrollIndicator={false}>
         <SafeAreaView>
           <Col>
-            <Heading1 style={{ paddingTop: 24, paddingBottom: 24 }}>
+            <Heading1
+              style={{ paddingTop: 24, paddingBottom: 24, paddingLeft: 24 }}
+            >
               Bem-vindo ao Protoink
             </Heading1>
             <Form onSubmit={(e) => e.preventDefault() && false}>
-              <Row style={{ flexDirection: "row", marginBottom: 16 }}>
-                <UserTypeCardActive icon="user" title="Cliente" />
-                <UserTypeCardNormal icon="smileo" title="Artista" />
-                <UserTypeCardNormal icon="isv" title="Estúdio" />
+              <Row
+                style={{
+                  flexDirection: "row",
+                  marginBottom: 16,
+                  paddingLeft: 24,
+                }}
+              >
+                <UserTypeCard icon="user" title="Cliente" />
+                <UserTypeCard icon="smileo" title="Artista" value="activated" />
+                <UserTypeCard icon="isv" title="Estúdio" />
               </Row>
-              <UploadPhoto />
-
+              <Row style={{ paddingLeft: 24 }}>
+                <UploadPhoto />
+              </Row>
               <TextField
                 placeholder="Digite seu nome"
                 icon="user"
@@ -78,11 +84,17 @@ function RegisterScreen({ navigation }) {
                 changetext={(password) => setPassword(password)}
                 name="password"
                 id="password"
-                security="true"
+                security={true}
                 onSubmitEditing={onRegister}
               />
 
-              <Heading5 style={{ paddingTop: 16, color: colors.neutral3 }}>
+              <Heading5
+                style={{
+                  paddingLeft: 24,
+                  paddingTop: 16,
+                  color: colors.neutral3,
+                }}
+              >
                 Os seus dados estão seguros no Protoink.
               </Heading5>
               <TouchableOpacity type="submit" onPress={onRegister}>
@@ -96,7 +108,7 @@ function RegisterScreen({ navigation }) {
                 navigation.navigate("Login");
               }}
             >
-              <Heading4 style={{ paddingTop: 16 }}>
+              <Heading4 style={{ paddingLeft: 24, paddingTop: 16 }}>
                 Já cadastrado? <Link>Acesse sua conta</Link>
               </Heading4>
             </TouchableOpacity>
@@ -123,11 +135,6 @@ RegisterScreen["navigationOptions"] = () => ({
 
 export default RegisterScreen;
 
-const RootView = styled.View`
-  background: #fff;
-  flex: 1;
-`;
-
 const Form = styled.View``;
 
 const Row = styled.View`
@@ -135,9 +142,7 @@ const Row = styled.View`
   padding-top: 8px;
 `;
 
-const Col = styled.View`
-  margin-left: 24px;
-`;
+const Col = styled.View``;
 
 const Container = styled.View`
   background: #fff;

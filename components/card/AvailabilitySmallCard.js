@@ -9,9 +9,7 @@ const AvailabitilySmallCard = (props) => (
       <Heading1 style={{ textAlign: "center", color: colors.secondary }}>
         {props.day}
       </Heading1>
-      <Heading3 style={{ fontWeight: 400, color: colors.neutral3 }}>
-        {props.month}
-      </Heading3>
+      <Heading3 style={{ color: colors.neutral3 }}>{props.month}</Heading3>
       <Separator />
       <Heading6 style={{ textAlign: "center", color: colors.neutral3 }}>
         {props.weekDay}

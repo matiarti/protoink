@@ -9,11 +9,10 @@ import styled from "styled-components/native";
 import Avatar from "../components/avatar/Avatar";
 import TextField from "../components/input/TextField";
 import Button from "../components/button/Button.js";
-import { Heading1, Heading4, colors } from "../theme";
+import { Heading1, Heading4, Link, colors } from "../theme";
 import StyleRow from "../features/StyleRow";
 import TopBar from "../components/topBar/TopBar";
-import EventRow from "../features/EventRow";
-import StudioList from "../features/StudioList";
+import CTAList from "../features/CTAList";
 
 const screenWidth = Dimensions.get("window").width;
 var titleWidth = screenWidth - 40;
@@ -22,41 +21,45 @@ if (screenWidth > 800) {
   titleWidth = screenWidth - 320;
 }
 
-function HomeScreen() {
+function HomeScreen({ navigation }) {
   return (
     <RootView>
       <Container>
         <ScrollView vertical={true} showsHorizontalScrollIndicator={false}>
           <SafeAreaView>
             <TopBar />
-
             <Avatar />
-
-            <TextField
-              placeholder="Estado, Cidade ou Região"
-              icon="search1"
-              autocomplete="off"
-            />
-
-            <Heading1
-              style={{ width: titleWidth, paddingTop: 24, paddingBottom: 24 }}
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("Explore");
+              }}
+              style={{ zIndex: 3 }}
             >
-              Encontre o lugar perfeito para fazer aquela tattoo.
+              <TextField
+                placeholder="Estado, Cidade ou Região"
+                icon="search1"
+                autocomplete="off"
+                style={{ zIndex: 2 }}
+              />
+            </TouchableOpacity>
+            <Heading1
+              style={{
+                width: titleWidth,
+                paddingTop: 24,
+                paddingBottom: 16,
+                paddingLeft: 24,
+              }}
+            >
+              Encontre o lugar perfeito para fazer <Link>aquela tattoo.</Link>
             </Heading1>
 
-            <Heading4 style={{ color: colors.neutral3 }}>
+            <CTAList />
+
+            <Heading4 style={{ color: colors.secondary, paddingLeft: 24 }}>
               Qual estilo da vez?
             </Heading4>
 
             <StyleRow />
-
-            <Heading4 style={{ color: colors.neutral3 }}>
-              Eventos recentes
-            </Heading4>
-
-            <EventRow />
-
-            <StudioList />
 
             <TouchableOpacity>
               {buttons.map((button, index) => (
@@ -81,18 +84,12 @@ const RootView = styled.View`
   flex: 1;
 `;
 
-const Row = styled.View`
-  width: 100%;
-  padding-left: 24px;
-  padding-top: 8px;
-`;
-
 const Container = styled.View`
-  background: ${colors.neutral1};
+  background: ${colors.bg};
   flex: 1;
   border-radius: 10px;
   width: 100%;
-  padding-left: 24px;
+
   padding-top: 8px;
 `;
 

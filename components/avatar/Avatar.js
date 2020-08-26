@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components/native";
 import firebase from "../../src/Firebase";
-import { Heading1, colors } from "../../theme";
+import { Heading2, colors } from "../../theme";
 
 class Avatar extends React.Component {
   state = {
@@ -32,9 +32,9 @@ class Avatar extends React.Component {
           <Image source={{ uri: this.state.photo }} />
         </Col>
         <Col>
-          <Heading1 style={{ color: colors.secondary, marginLeft: 8 }}>
+          <Heading2 style={{ color: colors.secondary, marginLeft: 8 }}>
             Olá {firebase.getCurrentUsername()}
-          </Heading1>
+          </Heading2>
         </Col>
       </Row>
     );
@@ -49,7 +49,7 @@ const Col = styled.View`
 
 const Row = styled.View`
   flex-direction: row;
-
+  padding-left: 24px;
   align-items: center;
 `;
 

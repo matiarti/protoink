@@ -12,32 +12,14 @@ import StudioBottomNav from "../components/bottomBar/StudioBottomNav.js";
 import Icon from "react-native-vector-icons/AntDesign";
 import { Heading1, Heading3, Heading4, Heading5, colors } from "../theme";
 
-const AvailabilityQuery = gql`
-  {
-    availabilityCollection {
-      items {
-        day
-        month
-        weekDay
-        time
-      }
-    }
-  }
-`;
-
 const screenWidth = Dimensions.get("window").width;
 var titleWidth = screenWidth - 120;
 if (screenWidth > 300) {
   titleWidth = screenWidth - 120;
 }
 
-function StudioScreen({ route, navigation }) {
-  const { studio } = route.params;
-
-  const { loading, error, data } = useQuery(AvailabilityQuery);
-
-  if (loading) return <Heading1>Loading...</Heading1>;
-  if (error) return <Heading1>Error :(</Heading1>;
+function CTAScreen({ route, navigation }) {
+  const { cta } = route.params;
 
   return (
     <Container>
@@ -98,10 +80,10 @@ function StudioScreen({ route, navigation }) {
         </Header>
 
         <Cover>
-          <Image source={{ uri: studio.image.url }} />
+          <Image source={{ uri: cta.image.url }} />
 
           <Row style={{ paddingLeft: 24, paddingBottom: 64 }}>
-            <Logo source={{ uri: studio.logo.url }} />
+            <Logo source={{ uri: cta.logo.url }} />
             <Col style={{ flexDirection: "column" }}>
               <Heading1
                 style={{
@@ -110,16 +92,16 @@ function StudioScreen({ route, navigation }) {
                   paddingLeft: 24,
                 }}
               >
-                {studio.title}
+                {cta.title}
               </Heading1>
-              <Heading3
+              <Heading6
                 style={{
                   color: colors.white,
                   paddingLeft: 24,
                 }}
               >
-                {studio.style}
-              </Heading3>
+                {cta.description}
+              </Heading6>
             </Col>
           </Row>
         </Cover>
@@ -137,23 +119,7 @@ function StudioScreen({ route, navigation }) {
               <Row>
                 <Icon name="enviromento" size={24} color={colors.neutral3} />
                 <Heading4 style={{ color: colors.neutral3, paddingLeft: 4 }}>
-                  {studio.location}
-                </Heading4>
-              </Row>
-            </Col>
-            <Col style={{ paddingRight: 24 }}>
-              <Row>
-                <Icon
-                  name="star"
-                  size={16}
-                  color={colors.primary}
-                  style={{ paddingRight: 8 }}
-                />
-                <Heading4 style={{ color: colors.primary }}>
-                  {studio.rating}
-                </Heading4>
-                <Heading4 style={{ color: colors.neutral3, paddingLeft: 4 }}>
-                  (220)
+                  {cta.location}
                 </Heading4>
               </Row>
             </Col>
@@ -161,24 +127,6 @@ function StudioScreen({ route, navigation }) {
           <Heading5 style={{ color: colors.neutral3, paddingBottom: 16 }}>
             Horários disponíveis
           </Heading5>
-          <ScrollView
-            horizontal={true}
-            style={{ paddingBottom: 8 }}
-            showsHorizontalScrollIndicator={false}
-          >
-            <Row>
-              {data.availabilityCollection.items.map((availability, index) => (
-                <AvailabilitySmallCard
-                  key={index}
-                  day={availability.day}
-                  month={availability.month.substring(0, 3)}
-                  weekDay={availability.weekDay}
-                  time={availability.time}
-                />
-              ))}
-            </Row>
-          </ScrollView>
-          <Row></Row>
         </SectionTwo>
       </ScrollView>
       <TouchableOpacity
@@ -186,13 +134,13 @@ function StudioScreen({ route, navigation }) {
           navigation.goBack();
         }}
       >
-        <StudioBottomNav rating={studio.rating} />
+        <StudioBottomNav rating={cta.title} />
       </TouchableOpacity>
     </Container>
   );
 }
 
-export default StudioScreen;
+export default CTAScreen;
 
 const Container = styled.View`
   flex: 1;

@@ -4,6 +4,7 @@ import styled from "styled-components/native";
 import { useQuery, gql } from "@apollo/client";
 import StudioLargeCard from "../../components/card/StudioLargeCard";
 import { useNavigation } from "@react-navigation/native";
+import { colors } from "../../theme";
 
 const StudiosQuery = gql`
   {
@@ -50,35 +51,31 @@ function FavStudios() {
   const navigation = useNavigation();
 
   return (
-    <RootView>
-      <Container>
-        <SafeAreaView>
-          <ScrollView vertical={true} showsHorizontalScrollIndicator={false}>
-            <StudiosContainer style={{ paddingBottom: 24, paddingLeft: 16 }}>
-              {dataR.studiosCollection.items.map((studio, index) => (
-                <TouchableOpacity
-                  key={index}
-                  onPress={() => {
-                    navigation.navigate("Studio", {
-                      studio: studio,
-                    });
-                  }}
-                >
-                  <StudioLargeCard
-                    title={studio.title}
-                    image={{ uri: studio.image.url }}
-                    rating={studio.rating}
-                    logo={{ uri: studio.logo.url }}
-                    location={studio.location}
-                    style={studio.style}
-                  />
-                </TouchableOpacity>
-              ))}
-            </StudiosContainer>
-          </ScrollView>
-        </SafeAreaView>
-      </Container>
-    </RootView>
+    <ScrollView vertical={true} showsHorizontalScrollIndicator={false}>
+      <StudiosContainer
+        style={{ background: colors.white, paddingBottom: 24, paddingLeft: 16 }}
+      >
+        {dataR.studiosCollection.items.map((studio, index) => (
+          <TouchableOpacity
+            key={index}
+            onPress={() => {
+              navigation.navigate("Studio", {
+                studio: studio,
+              });
+            }}
+          >
+            <StudioLargeCard
+              title={studio.title}
+              image={{ uri: studio.image.url }}
+              rating={studio.rating}
+              logo={{ uri: studio.logo.url }}
+              location={studio.location}
+              style={studio.style}
+            />
+          </TouchableOpacity>
+        ))}
+      </StudiosContainer>
+    </ScrollView>
   );
 }
 
@@ -93,24 +90,10 @@ const StudiosContainer = styled.View`
   flex-wrap: wrap;
 `;
 
-const RootView = styled.View`
-  background: #fff;
-  flex: 1;
-`;
-
 const Heading3 = styled.Text`
   font-size: 16px;
   color: #565656;
   font-weight: 600;
-`;
-
-const Heading1 = styled.Text`
-  font-size: 24px;
-  color: #2457db;
-  font-weight: 700;
-  line-height: 32px;
-  padding: 16px 0px 16px 0px;
-  width: 80%;
 `;
 
 const Row = styled.View`
@@ -120,16 +103,3 @@ const Row = styled.View`
   flex-direction: row;
   justify-content: space-between;
 `;
-
-const Container = styled.View`
-  background: #fff;
-  flex: 1;
-  border-radius: 10px;
-`;
-
-const buttons = [
-  {
-    key: "1",
-    text: "Poste sua Ideia",
-  },
-];

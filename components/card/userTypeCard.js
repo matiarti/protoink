@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { TouchableOpacity, Dimensions, View } from "react-native";
 import styled from "styled-components/native";
 import Icon from "react-native-vector-icons/AntDesign";
@@ -17,29 +17,20 @@ if (screenWidth > 1200) {
   cardWidth = (screenWidth - 80) / 3;
 }
 
-export function UserTypeCardActive(props) {
-  return (
-    <TouchableOpacity>
-      <TypeCard>
-        <Icon name={props.icon} size={24} color={colors.primary} />
-        <Heading4>{props.title}</Heading4>
-      </TypeCard>
-    </TouchableOpacity>
-  );
-}
+export function UserTypeCard(props) {
+  const [activated, setActivated] = useState(false);
 
-export function UserTypeCardNormal(props) {
+  const iconColor = activated ? colors.primary : colors.neutral3;
+  const cardColor = activated ? colors.accent : colors.neutral2;
+
+  function onPress() {
+    setActivated(!activated);
+  }
+
   return (
-    <TouchableOpacity>
-      <TypeCard
-        style={{
-          boxShadow: "none",
-          borderStyle: "solid",
-          borderColor: colors.neutral2,
-          borderWidth: 1,
-        }}
-      >
-        <Icon name={props.icon} size={24} color={colors.neutral3} />
+    <TouchableOpacity onPress={onPress}>
+      <TypeCard style={{ borderColor: cardColor }}>
+        <Icon name={props.icon} size={24} color={iconColor} />
         <Heading4>{props.title}</Heading4>
       </TypeCard>
     </TouchableOpacity>

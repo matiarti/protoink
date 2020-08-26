@@ -1,10 +1,12 @@
 import React from "react";
 import styled from "styled-components/native";
 import Icon from "react-native-vector-icons/AntDesign";
+import { SmallBody, colors } from "../../theme";
 
-const TextField = (props) => (
+const TextButton = (props) => (
   <Container>
     <Input style={{ elevation: 4 }}>
+      <SmallBody style={{ color: colors.neutral3 }}>{props.text}</SmallBody>
       <Text
         placeholder={props.placeholder}
         autoComplete="off"
@@ -22,7 +24,7 @@ const TextField = (props) => (
   </Container>
 );
 
-export default TextField;
+export default TextButton;
 
 const Container = styled.View`
   padding-left: 24px;
@@ -42,28 +44,11 @@ const Input = styled.View`
   height: 40px;
 `;
 
-const Text = styled.TextInput`
+const Text = styled.View`
   text-align: left;
-  width: 95%;
+  width: 86%;
   height: 40px;
   font-family: "DMSans_400Regular";
   font-size: 14px;
   line-height: 20px;
 `;
-
-{
-  /*
-<Input style={{ elevation: 4 }}>
-                  <Text
-                    placeholder="Digite seu Email"
-                    autoComplete="off"
-                    value={email}
-                    onChangeText={(text) => setEmail(text)}
-                    name="email"
-                    id="email"
-                  />
-
-                  <Icon name="mail" size={20} color="#565656" />
-</Input>
-*/
-}

@@ -29,6 +29,7 @@ export default TopBar;
 const Row = styled.View`
   padding-top: 8px;
   padding-right: 24px;
+  padding-left: 24px;
   flex-direction: row;
   justify-content: space-between;
   height: 64px;

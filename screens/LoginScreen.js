@@ -10,6 +10,7 @@ import LogoType from "../components/brand/LogoType";
 import firebase from "../src/Firebase";
 import { Heading1, Heading4, Link } from "../theme";
 import TextField from "../components/input/TextField";
+
 import Button from "../components/button/Button";
 
 const screenHeight = Dimensions.get("window").height;
@@ -44,7 +45,7 @@ function LoginScreen({ navigation, props }) {
               />
             </Cover>
             <Col>
-              <Heading1>Entre no Protoink</Heading1>
+              <Heading1 style={{ paddingLeft: 24 }}>Entre no Protoink</Heading1>
               <Form onSubmit={(e) => e.preventDefault() && false}>
                 <TextField
                   placeholder="Digite seu email"
@@ -63,7 +64,7 @@ function LoginScreen({ navigation, props }) {
                   changetext={(text) => setPassword(text)}
                   name="password"
                   id="password"
-                  security="true"
+                  security={true}
                   onsubmit={login}
                 />
                 <TouchableOpacity type="submit" onPress={login}>
@@ -77,7 +78,7 @@ function LoginScreen({ navigation, props }) {
                   navigation.navigate("Register");
                 }}
               >
-                <Heading4 style={{ marginTop: 16 }}>
+                <Heading4 style={{ marginTop: 16, paddingLeft: 24 }}>
                   Novo no Protoink? <Link>Crie uma nova conta</Link>
                 </Heading4>
               </TouchableOpacity>
@@ -124,9 +125,7 @@ const Row = styled.View`
   padding-top: 8px;
 `;
 
-const Col = styled.View`
-  margin-left: 24px;
-`;
+const Col = styled.View``;
 
 const Container = styled.View`
   background: #fff;

@@ -32,7 +32,7 @@ function StyleRow({ navigation }) {
 
   return (
     <ScrollView
-      style={{ paddingBottom: 8 }}
+      style={{ paddingBottom: 8, paddingLeft: 24 }}
       horizontal={true}
       showsHorizontalScrollIndicator={false}
     >

@@ -20,16 +20,15 @@ export const Heading1 = styled.Text`
   font-size: 24px;
   line-height: 32px;
   color: ${colors.primary};
-  font-weight: 900;
+
   width: 100%;
 `;
 
 export const Heading2 = styled.Text`
   font-family: "DMSans_700Bold";
   font-size: 20px;
-  line-height: 28px;
+  line-height: 26px;
   color: ${colors.secondary};
-  font-weight: 900;
 `;
 
 export const Heading3 = styled.Text`
@@ -37,7 +36,6 @@ export const Heading3 = styled.Text`
   font-size: 18px;
   line-height: 28px;
   color: ${colors.secondary};
-  font-weight: 400;
 `;
 
 export const Heading4 = styled.Text`
@@ -45,7 +43,6 @@ export const Heading4 = styled.Text`
   font-size: 14px;
   line-height: 22px;
   color: ${colors.secondary};
-  font-weight: 400;
 `;
 
 export const Heading5 = styled.Text`
@@ -53,7 +50,6 @@ export const Heading5 = styled.Text`
   font-size: 12px;
   line-height: 18px;
   color: ${colors.secondary};
-  font-weight: 400;
 `;
 
 export const Heading6 = styled.Text`
@@ -61,7 +57,6 @@ export const Heading6 = styled.Text`
   font-size: 10px;
   line-height: 16px;
   color: ${colors.neutral3};
-  font-weight: 400;
 `;
 
 export const Body = styled.Text`
@@ -69,7 +64,13 @@ export const Body = styled.Text`
   font-size: 16px;
   line-height: 26px;
   color: ${colors.secondary};
-  font-weight: 400;
+`;
+
+export const SmallBody = styled.Text`
+  font-family: "DMSans_400Regular";
+  font-size: 14px;
+  line-height: 22px;
+  color: ${colors.secondary};
 `;
 
 export const Link = styled.Text`
