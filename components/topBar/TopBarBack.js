@@ -24,7 +24,7 @@ function TopBarBack(props) {
               color={colors.primary}
               style={{
                 position: "absolute",
-                top: 32,
+                top: 16,
                 left: 24,
               }}
             />
@@ -33,7 +33,7 @@ function TopBarBack(props) {
       </TouchableOpacity>
       <Col>
         <TouchableOpacity onPress={props.link}>
-          <Heading3 style={{ paddingTop: 32, paddingRight: 24 }}>
+          <Heading3 style={{ paddingTop: 16, paddingRight: 24 }}>
             {props.text}
           </Heading3>
         </TouchableOpacity>

@@ -88,6 +88,7 @@ export default FavStudios;
 const StudiosContainer = styled.View`
   flex-direction: row;
   flex-wrap: wrap;
+  background: ${colors.white};
 `;
 
 const Heading3 = styled.Text`

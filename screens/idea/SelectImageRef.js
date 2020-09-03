@@ -1,0 +1,138 @@
+import React from "react";
+import {
+  ScrollView,
+  SafeAreaView,
+  TouchableOpacity,
+  Dimensions,
+  View,
+} from "react-native";
+import styled from "styled-components/native";
+import Button from "../../components/button/Button.js";
+import { Heading1, Heading4, Link, colors, Body } from "../../theme";
+import TopBarBack from "../../components/topBar/TopBarBack";
+import { SelectableCard } from "../../components/card/SelectableCard";
+import ArmRight from "../../components/vectors/ArmRight";
+import SimpleCard from "../../components/card/SimpleCard";
+import * as ImagePicker from "expo-image-picker";
+
+const screenWidth = Dimensions.get("window").width;
+var titleWidth = screenWidth - 40;
+var cardWidth = screenWidth - 200;
+
+if (screenWidth > 300) {
+  cardWidth = (screenWidth - 80) / 2;
+}
+
+if (screenWidth > 800) {
+  titleWidth = screenWidth - 320;
+}
+
+function SelectImageRef({ navigation }) {
+  const [selectedImage, setSelectedImage] = React.useState(null);
+
+  let openImagePickerAsync = async () => {
+    let permissionResult = await ImagePicker.requestCameraRollPermissionsAsync();
+
+    if (permissionResult.granted === false) {
+      alert("Permission to access camera roll is required!");
+      return;
+    }
+
+    let pickerResult = await ImagePicker.launchImageLibraryAsync();
+
+    if (pickerResult.cancelled === true) {
+      return;
+    }
+
+    setSelectedImage({ localUri: pickerResult.uri });
+  };
+
+  if (selectedImage !== null) {
+    return (
+      <Container>
+        <ScrollView vertical={true} showsHorizontalScrollIndicator={false}>
+          <SafeAreaView>
+            <TopBarBack />
+            <Heading1
+              style={{ paddingLeft: 24, paddingTop: 48, paddingBottom: 24 }}
+            >
+              Poste sua Ideia
+            </Heading1>
+            <Body style={{ paddingLeft: 24, paddingBottom: 24 }}>
+              Envie imagens que sirvam como referência:
+            </Body>
+            <TouchableOpacity onPress={openImagePickerAsync}>
+              <SimpleCard icon="camerao" title="Selecione da Galeria" />
+            </TouchableOpacity>
+            <View
+              style={{
+                marginLeft: 24,
+                marginTop: 24,
+                marginBottom: 24,
+                flexDirection: "row",
+              }}
+            >
+              <Image source={{ uri: selectedImage.localUri }} />
+            </View>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("SelectInfo");
+              }}
+            >
+              <Button text="Continuar" />
+            </TouchableOpacity>
+          </SafeAreaView>
+        </ScrollView>
+      </Container>
+    );
+  }
+
+  return (
+    <Container>
+      <ScrollView vertical={true} showsHorizontalScrollIndicator={false}>
+        <SafeAreaView>
+          <TopBarBack />
+          <Heading1
+            style={{ paddingLeft: 24, paddingTop: 48, paddingBottom: 24 }}
+          >
+            Poste sua Ideia
+          </Heading1>
+          <Body style={{ paddingLeft: 24, paddingBottom: 24 }}>
+            Envie imagens que sirvam como referência:
+          </Body>
+          <TouchableOpacity onPress={openImagePickerAsync}>
+            <SimpleCard icon="camerao" title="Selecione da Galeria" />
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate("SelectInfo");
+            }}
+          >
+            <Button text="Continuar" />
+          </TouchableOpacity>
+        </SafeAreaView>
+      </ScrollView>
+    </Container>
+  );
+}
+
+export default SelectImageRef;
+
+const Row = styled.View`
+  width: 100%;
+  padding-top: 8px;
+`;
+
+const Image = styled.Image`
+  width: ${cardWidth};
+  height: ${cardWidth};
+  border-radius: 8px;
+`;
+
+const Container = styled.View`
+  background: ${colors.bg};
+  flex: 1;
+
+  width: 100%;
+  padding-top: 8px;
+`;

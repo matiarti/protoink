@@ -31,9 +31,7 @@ function StudioBottomNav({ navigation, props }) {
           </Heading5>
         </Row>
 
-        {buttons.map((button, index) => (
-          <Button key={index} text={button.text} />
-        ))}
+        <Button text="Agendar" />
       </Row>
     </Container>
   );
@@ -54,12 +52,5 @@ const Container = styled.View`
   background: white;
   width: ${barWidth};
   box-shadow: 0px -5px 16px rgba(0, 0, 0, 0.08);
-  background: {colors.white};
+  background: ${colors.white};
 `;
-
-const buttons = [
-  {
-    key: "1",
-    text: "Agendar",
-  },
-];

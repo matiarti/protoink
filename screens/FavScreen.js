@@ -1,5 +1,5 @@
 import * as React from "react";
-import { ScrollView, SafeAreaView, TouchableOpacity } from "react-native";
+import { ScrollView, SafeAreaView, TouchableOpacity, View } from "react-native";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import FavStudios from "./favourite/FavStudios";
 import FavArtists from "./favourite/FavArtists";
@@ -18,20 +18,48 @@ const Tab = createMaterialTopTabNavigator();
 
 export default function FavScreen() {
   return (
-    <Container>
-      <ScrollView vertical={true} showsHorizontalScrollIndicator={false}>
+    <ScrollView vertical={true} showsHorizontalScrollIndicator={false}>
+      <Container>
         <Heading1
-          style={{ paddingLeft: 24, paddingTop: 48, paddingBottom: 24 }}
+          style={{
+            paddingLeft: 24,
+            paddingTop: 56,
+            paddingBottom: 24,
+            color: colors.secondary,
+          }}
         >
           Favoritos
         </Heading1>
 
-        <Tab.Navigator>
+        <Tab.Navigator
+          animationEnabled={false}
+          tabBarOptions={{
+            labelStyle: { fontSize: 12, marginTop: -2 },
+            activeTintColor: colors.white,
+            inactiveTintColor: colors.neutral3,
+            indicatorStyle: {
+              backgroundColor: colors.accent,
+              marginLeft: 4,
+
+              borderRadius: 8,
+              height: null,
+              top: 6,
+              marginBottom: 4,
+            },
+            style: {
+              backgroundColor: colors.neutral1,
+              height: 40,
+              borderRadius: 8,
+              marginLeft: 24,
+              marginRight: 24,
+            },
+          }}
+        >
           <Tab.Screen name="Estúdios" component={StudioTab} />
           <Tab.Screen name="Artistas" component={ArtistTab} />
         </Tab.Navigator>
-      </ScrollView>
-    </Container>
+      </Container>
+    </ScrollView>
   );
 }
 

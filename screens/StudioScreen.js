@@ -6,24 +6,12 @@ import {
   ScrollView,
 } from "react-native";
 import styled from "styled-components/native";
-import AvailabilitySmallCard from "../components/card/AvailabilitySmallCard";
-import { useQuery, gql } from "@apollo/client";
 import StudioBottomNav from "../components/bottomBar/StudioBottomNav.js";
 import Icon from "react-native-vector-icons/AntDesign";
 import { Heading1, Heading3, Heading4, Heading5, colors } from "../theme";
-
-const AvailabilityQuery = gql`
-  {
-    availabilityCollection {
-      items {
-        day
-        month
-        weekDay
-        time
-      }
-    }
-  }
-`;
+import ArtistSlider from "../features/SmallArtistSlider";
+import TopBarStudio from "../components/topBar/TopBarStudio";
+import AvailabilitySlider from "../features/AvailabilitySlider";
 
 const screenWidth = Dimensions.get("window").width;
 var titleWidth = screenWidth - 120;
@@ -34,68 +22,11 @@ if (screenWidth > 300) {
 function StudioScreen({ route, navigation }) {
   const { studio } = route.params;
 
-  const { loading, error, data } = useQuery(AvailabilityQuery);
-
-  if (loading) return <Heading1>Loading...</Heading1>;
-  if (error) return <Heading1>Error :(</Heading1>;
-
   return (
     <Container>
       <StatusBar hidden />
       <ScrollView>
-        <Header>
-          <Col>
-            <TouchableOpacity
-              onPress={() => {
-                navigation.goBack();
-              }}
-            >
-              <Icon
-                name="arrowleft"
-                size={32}
-                color={colors.white}
-                style={{
-                  position: "absolute",
-                  top: 32,
-                  left: 24,
-                }}
-              />
-            </TouchableOpacity>
-          </Col>
-
-          <Col>
-            <Icon
-              name="heart"
-              size={24}
-              color={colors.white}
-              style={{
-                position: "absolute",
-                top: 32,
-                right: 108,
-              }}
-            />
-            <Icon
-              name="message1"
-              size={24}
-              color={colors.white}
-              style={{
-                position: "absolute",
-                top: 32,
-                right: 64,
-              }}
-            />
-            <Icon
-              name="sharealt"
-              size={24}
-              color={colors.white}
-              style={{
-                position: "absolute",
-                top: 32,
-                right: 24,
-              }}
-            />
-          </Col>
-        </Header>
+        <TopBarStudio />
 
         <Cover>
           <Image source={{ uri: studio.image.url }} />
@@ -161,26 +92,15 @@ function StudioScreen({ route, navigation }) {
           <Heading5 style={{ color: colors.neutral3, paddingBottom: 16 }}>
             Horários disponíveis
           </Heading5>
-          <ScrollView
-            horizontal={true}
-            style={{ paddingBottom: 8 }}
-            showsHorizontalScrollIndicator={false}
-          >
-            <Row>
-              {data.availabilityCollection.items.map((availability, index) => (
-                <AvailabilitySmallCard
-                  key={index}
-                  day={availability.day}
-                  month={availability.month.substring(0, 3)}
-                  weekDay={availability.weekDay}
-                  time={availability.time}
-                />
-              ))}
-            </Row>
-          </ScrollView>
+          <AvailabilitySlider />
           <Row></Row>
         </SectionTwo>
+        <Heading5 style={{ paddingLeft: 24, color: colors.neutral3 }}>
+          Artistas
+        </Heading5>
+        <ArtistSlider />
       </ScrollView>
+
       <TouchableOpacity
         onPress={() => {
           navigation.goBack();
@@ -196,6 +116,7 @@ export default StudioScreen;
 
 const Container = styled.View`
   flex: 1;
+  background: ${colors.white};
 `;
 
 const Row = styled.View`
@@ -207,7 +128,7 @@ const SectionTwo = styled.View`
   width: 100%;
   padding-left: 24px;
   padding-top: 32px;
-  background: #fff;
+  background: ${colors.white};
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
   margin-top: 16px;
@@ -233,7 +154,7 @@ const Logo = styled.Image`
   width: 80px;
   height: 80px;
   border-radius: 16px;
-  border: 1px solid #ffffff;
+  border: 1px solid ${colors.white};
 `;
 
 const Image = styled.Image`

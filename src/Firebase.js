@@ -9,6 +9,7 @@ const config = {
   databaseURL: "https://proto-ink.firebaseio.com",
   storageBucket: "proto-ink.appspot.com",
   projectId: "proto-ink",
+  messagingSenderId: "42413151833",
 };
 
 class Firebase {

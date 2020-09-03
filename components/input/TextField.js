@@ -17,7 +17,12 @@ const TextField = (props) => (
         onSubmitEditing={props.onsubmit}
       />
 
-      <Icon name={props.icon} size={20} color="#565656" />
+      <Icon
+        name={props.icon}
+        size={20}
+        color="#565656"
+        onPress={props.iconlink}
+      />
     </Input>
   </Container>
 );

@@ -2,11 +2,13 @@ import React from "react";
 import { ScrollView, SafeAreaView, TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
 import { useQuery, gql } from "@apollo/client";
-import StudioLargeCard from "../../components/card/StudioLargeCard";
+import ArtistLargeCard from "../../components/card/ArtistLargeCard";
+import { Heading1, Heading3, Heading4, Heading5, colors } from "../../theme";
+import { useNavigation } from "@react-navigation/native";
 
-const StudiosQuery = gql`
+const ArtistsQuery = gql`
   {
-    studiosCollection {
+    artistsCollection {
       items {
         image {
           title
@@ -38,9 +40,10 @@ const StudiosQuery = gql`
   }
 `;
 
-function FavStudios({ navigation }) {
+function FavArtists() {
+  const navigation = useNavigation();
   const { data: dataR, error: errorR, loading: loadingR } = useQuery(
-    StudiosQuery
+    ArtistsQuery
   );
 
   if (loadingR) return <Heading3>Loading...</Heading3>;
@@ -48,44 +51,39 @@ function FavStudios({ navigation }) {
 
   return (
     <ScrollView vertical={true} showsHorizontalScrollIndicator={false}>
-      <StudiosContainer style={{ paddingBottom: 24, paddingLeft: 16 }}>
-        {dataR.studiosCollection.items.map((studio, index) => (
+      <ArtistContainer style={{ paddingBottom: 24, paddingLeft: 16 }}>
+        {dataR.artistsCollection.items.map((artist, index) => (
           <TouchableOpacity
             key={index}
             onPress={() => {
-              navigation.navigate("Studio", {
-                studio: studio,
+              navigation.navigate("Artist", {
+                artist: artist,
               });
             }}
           >
-            <StudioLargeCard
-              title={studio.title}
-              image={{ uri: studio.image.url }}
-              rating={studio.rating}
-              logo={{ uri: studio.logo.url }}
-              location={studio.location}
-              style={studio.style}
+            <ArtistLargeCard
+              title={artist.title}
+              image={{ uri: artist.image.url }}
+              rating={artist.rating}
+              logo={{ uri: artist.logo.url }}
+              location={artist.location}
+              style={artist.style}
             />
           </TouchableOpacity>
         ))}
-      </StudiosContainer>
+      </ArtistContainer>
     </ScrollView>
   );
 }
 
-FavStudios["navigationOptions"] = (screenProps) => ({
+FavArtists["navigationOptions"] = (screenProps) => ({
   headerShown: false,
 });
 
-export default FavStudios;
+export default FavArtists;
 
-const StudiosContainer = styled.View`
+const ArtistContainer = styled.View`
   flex-direction: row;
   flex-wrap: wrap;
-`;
-
-const Heading3 = styled.Text`
-  font-size: 16px;
-  color: #565656;
-  font-weight: 600;
+  background: ${colors.white};
 `;

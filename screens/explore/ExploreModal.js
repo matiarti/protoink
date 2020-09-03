@@ -7,7 +7,7 @@ import Button from "../../components/button/Button";
 import { Heading4, Link, colors } from "../../theme";
 import { useNavigation } from "@react-navigation/native";
 
-function ExploreStudios() {
+function ExploreModal() {
   const [location, setLocation] = useState("");
   const [date, setDate] = useState("");
   const [style, setStyle] = useState("");
@@ -57,7 +57,12 @@ function ExploreStudios() {
         />
       </TouchableOpacity>
 
-      <TouchableOpacity type="submit">
+      <TouchableOpacity
+        type="submit"
+        onPress={() => {
+          navigation.navigate("Result");
+        }}
+      >
         <Row>
           <Button text="Buscar" />
         </Row>
@@ -66,7 +71,7 @@ function ExploreStudios() {
   );
 }
 
-export default ExploreStudios;
+export default ExploreModal;
 
 const Form = styled.View`
   background: ${colors.bg};

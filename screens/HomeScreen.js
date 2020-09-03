@@ -42,6 +42,7 @@ function HomeScreen({ navigation }) {
                 style={{ zIndex: 2 }}
               />
             </TouchableOpacity>
+
             <Heading1
               style={{
                 width: titleWidth,
@@ -61,10 +62,12 @@ function HomeScreen({ navigation }) {
 
             <StyleRow />
 
-            <TouchableOpacity>
-              {buttons.map((button, index) => (
-                <Button key={index} text={button.text} />
-              ))}
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("Body");
+              }}
+            >
+              <Button text="Poste sua Ideia" />
             </TouchableOpacity>
           </SafeAreaView>
         </ScrollView>
@@ -72,10 +75,6 @@ function HomeScreen({ navigation }) {
     </RootView>
   );
 }
-
-HomeScreen["navigationOptions"] = (screenProps) => ({
-  headerShown: false,
-});
 
 export default HomeScreen;
 
@@ -89,13 +88,5 @@ const Container = styled.View`
   flex: 1;
   border-radius: 10px;
   width: 100%;
-
   padding-top: 8px;
 `;
-
-const buttons = [
-  {
-    key: "1",
-    text: "Poste sua Ideia",
-  },
-];

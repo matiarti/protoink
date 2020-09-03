@@ -10,7 +10,7 @@ import LogoType from "../components/brand/LogoType";
 import firebase from "../src/Firebase";
 import { Heading1, Heading4, Link } from "../theme";
 import TextField from "../components/input/TextField";
-
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import Button from "../components/button/Button";
 
 const screenHeight = Dimensions.get("window").height;
@@ -29,62 +29,74 @@ if (screenHeight > 1200) {
 function LoginScreen({ navigation, props }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // your form submit function which will invoke after successful validation
+
+  const [passwordShown, setPasswordShown] = useState(false);
+  const togglePasswordVisiblity = () => {
+    setPasswordShown(passwordShown ? false : true);
+  };
 
   return (
     <RootView>
       <Container>
-        <ScrollView vertical={true} showsHorizontalScrollIndicator={false}>
-          <SafeAreaView>
-            <Cover>
-              <LogoType style={{ width: 160 }} />
-              <Image
-                source={require("../assets/loginCover.jpg")}
-                resizeMode="contain"
-                style={{ marginTop: 16 }}
-              />
-            </Cover>
-            <Col>
-              <Heading1 style={{ paddingLeft: 24 }}>Entre no Protoink</Heading1>
-              <Form onSubmit={(e) => e.preventDefault() && false}>
-                <TextField
-                  placeholder="Digite seu email"
-                  icon="mail"
-                  autocomplete="off"
-                  value={email}
-                  changetext={(text) => setEmail(text)}
-                  name="email"
-                  id="email"
+        <KeyboardAwareScrollView
+          resetScrollToCoords={{ x: 0, y: 0 }}
+          scrollEnabled={false}
+        >
+          <ScrollView vertical={true} showsHorizontalScrollIndicator={false}>
+            <SafeAreaView>
+              <Cover>
+                <LogoType style={{ width: 160 }} />
+                <Image
+                  source={require("../assets/loginCover.jpg")}
+                  resizeMode="contain"
+                  style={{ marginTop: 16 }}
                 />
-                <TextField
-                  placeholder="Senha"
-                  icon="key"
-                  autocomplete="off"
-                  value={password}
-                  changetext={(text) => setPassword(text)}
-                  name="password"
-                  id="password"
-                  security={true}
-                  onsubmit={login}
-                />
-                <TouchableOpacity type="submit" onPress={login}>
-                  <Row>
-                    <Button text="Entrar" />
-                  </Row>
+              </Cover>
+              <Col>
+                <Heading1 style={{ paddingLeft: 24 }}>
+                  Entre no Protoink
+                </Heading1>
+                <Form onSubmit={(e) => e.preventDefault() && false}>
+                  <TextField
+                    placeholder="Digite seu email"
+                    icon="mail"
+                    autocomplete="off"
+                    value={email}
+                    changetext={(text) => setEmail(text)}
+                    name="email"
+                    id="email"
+                  />
+                  <TextField
+                    placeholder="Digite sua Senha"
+                    icon={passwordShown ? "eye" : "eyeo"}
+                    iconlink={togglePasswordVisiblity}
+                    autocomplete="off"
+                    value={password}
+                    changetext={(text) => setPassword(text)}
+                    name="password"
+                    id="password"
+                    security={passwordShown ? false : true}
+                    onsubmit={login}
+                  />
+                  <TouchableOpacity type="submit" onPress={login}>
+                    <Row>
+                      <Button text="Entrar" />
+                    </Row>
+                  </TouchableOpacity>
+                </Form>
+                <TouchableOpacity
+                  onPress={() => {
+                    navigation.navigate("Register");
+                  }}
+                >
+                  <Heading4 style={{ marginTop: 16, paddingLeft: 24 }}>
+                    Novo no Protoink? <Link>Crie uma nova conta</Link>
+                  </Heading4>
                 </TouchableOpacity>
-              </Form>
-              <TouchableOpacity
-                onPress={() => {
-                  navigation.navigate("Register");
-                }}
-              >
-                <Heading4 style={{ marginTop: 16, paddingLeft: 24 }}>
-                  Novo no Protoink? <Link>Crie uma nova conta</Link>
-                </Heading4>
-              </TouchableOpacity>
-            </Col>
-          </SafeAreaView>
-        </ScrollView>
+              </Col>
+            </SafeAreaView>
+          </ScrollView>
+        </KeyboardAwareScrollView>
       </Container>
     </RootView>
   );

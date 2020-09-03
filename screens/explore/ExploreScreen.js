@@ -10,17 +10,7 @@ import { useNavigation } from "@react-navigation/native";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { Heading1, Heading4, Link, colors } from "../../theme";
 import TopBarBack from "../../components/topBar/TopBarBack";
-import ExploreStudios from "./ExploreStudios";
-
-function StudioTab() {
-  return <ExploreStudios />;
-}
-
-function ArtistTab() {
-  return <ExploreStudios />;
-}
-
-const Tab = createMaterialTopTabNavigator();
+import ExploreModal from "./ExploreModal";
 
 export default function ExploreScreen() {
   return (
@@ -33,10 +23,7 @@ export default function ExploreScreen() {
           >
             Explorar
           </Heading1>
-          <Tab.Navigator mode="modal">
-            <Tab.Screen name="Estúdios" component={StudioTab} />
-            <Tab.Screen name="Artistas" component={ArtistTab} />
-          </Tab.Navigator>
+          <ExploreModal />
         </SafeAreaView>
       </ScrollView>
     </Container>

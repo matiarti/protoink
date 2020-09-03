@@ -41,7 +41,7 @@ export const Heading3 = styled.Text`
 export const Heading4 = styled.Text`
   font-family: "DMSans_700Bold";
   font-size: 14px;
-  line-height: 22px;
+  line-height: 18px;
   color: ${colors.secondary};
 `;
 
