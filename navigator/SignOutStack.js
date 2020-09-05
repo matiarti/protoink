@@ -21,13 +21,15 @@ import SelectInfo from "../screens/idea/SelectInfo";
 import IdeaScreen from "../screens/idea/IdeaScreenNew";
 import IdeaScreenPending from "../screens/idea/IdeaScreenPending";
 import IdeaScreenApproved from "../screens/idea/IdeaScreenApproved";
+import BookingScreen from "../screens/booking/BookingScreen";
+import BookingOpen from "../screens/booking/BookingOpen";
 
 const Stack = createStackNavigator();
 
 const SignOutStack = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Body">
+      <Stack.Navigator initialRouteName="Booking">
         <Stack.Screen
           name="Login"
           component={LoginScreen}
@@ -56,6 +58,11 @@ const SignOutStack = () => {
         />
         <Stack.Screen
           name="Home"
+          component={StackNav}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Booking"
           component={StackNav}
           options={{ headerShown: false }}
         />
@@ -128,6 +135,11 @@ const SignOutStack = () => {
         <Stack.Screen
           name="IdeaApproved"
           component={IdeaScreenApproved}
+          options={{ headerShown: false, tabBarVisible: false }}
+        />
+        <Stack.Screen
+          name="BookingOpen"
+          component={BookingOpen}
           options={{ headerShown: false, tabBarVisible: false }}
         />
       </Stack.Navigator>

@@ -8,7 +8,7 @@ function ArmRight() {
 
   const color = activated ? "#E46399" : "#939CB2";
 
-  function onPress() {
+  function onPress(props) {
     setActivated(!activated);
   }
   return (

@@ -1,9 +1,10 @@
 import React from "react";
 import styled from "styled-components/native";
-import { Dimensions } from "react-native";
+import { Dimensions, View } from "react-native";
 import { Heading2, Heading4, Heading5, Heading6 } from "../../theme";
 import colors from "../../theme/colors";
 import Icon from "react-native-vector-icons/AntDesign";
+import Heart from "../icon/Heart";
 
 const screenWidth = Dimensions.get("window").width;
 var cardWidth = screenWidth - 52;
@@ -58,6 +59,9 @@ const ArtistLargeCard = (props) => (
       <Logo source={props.logo} />
       <Heading4>{props.location}</Heading4>
       <Heading5 style={{ color: colors.neutral3 }}>{props.style}</Heading5>
+      <View style={{ position: "absolute", top: 24, right: 24 }}>
+        <Heart size={20} />
+      </View>
     </Content>
   </Container>
 );

@@ -12,8 +12,11 @@ import Button from "../../components/button/Button.js";
 import { Heading1, Heading4, Link, colors, Body } from "../../theme";
 import TopBarBack from "../../components/topBar/TopBarBack";
 import { SelectableCard } from "../../components/card/SelectableCard";
-import ArmRight from "../../components/vectors/ArmRight";
+import ArmRight from "../../components/vectors/BodyPartSize";
 import IdeaInfoCard from "../../components/card/SizeInfoCard.js";
+import { DragResizeBlock } from "../../components/dragResize";
+
+import ImageZoom from "react-native-image-pan-zoom";
 
 const screenWidth = Dimensions.get("window").width;
 
@@ -31,40 +34,48 @@ if (screenWidth > 800) {
 function SelectSize({ navigation }) {
   return (
     <Container>
-      <ScrollView vertical={true} showsHorizontalScrollIndicator={false}>
-        <SafeAreaView>
-          <TopBarBack />
-          <Heading1
-            style={{ paddingLeft: 24, paddingTop: 48, paddingBottom: 24 }}
-          >
-            Poste sua Ideia
-          </Heading1>
-          <Body style={{ paddingLeft: 24, paddingBottom: 24 }}>
-            Qual tamanho você deseja?
-          </Body>
+      <SafeAreaView>
+        <TopBarBack />
+        <Heading1 style={{ paddingLeft: 24, paddingTop: 48, paddingBottom: 4 }}>
+          Poste sua Ideia
+        </Heading1>
+        <Body style={{ paddingLeft: 24, paddingBottom: 24 }}>
+          Qual tamanho você deseja?
+        </Body>
+
+        <View
+          style={{
+            transform: [{ scale: 1.5 }],
+            alignSelf: "center",
+            height: 200,
+            marginTop: 40,
+            marginBottom: 40,
+          }}
+        >
+          <ArmRight />
+        </View>
+        <DragResizeBlock x={160} y={326}>
           <View
             style={{
-              alignSelf: "center",
-              height: 340,
-              marginTop: 40,
-              marginBottom: 40,
+              width: "100%",
+              height: "100%",
+              backgroundColor: colors.neutral2,
+              opacity: 0.8,
             }}
-          >
-            <ArmRight />
-          </View>
+          />
+        </DragResizeBlock>
 
-          <Row style={{ paddingLeft: 24, paddingBottom: 24 }}>
-            <IdeaInfoCard title="Antebraço Frente" size="15cm" />
-          </Row>
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate("ImageRef");
-            }}
-          >
-            <Button text="Continuar" />
-          </TouchableOpacity>
-        </SafeAreaView>
-      </ScrollView>
+        <Row style={{ paddingLeft: 24, paddingBottom: 16 }}>
+          <IdeaInfoCard title="Antebraço Frente" size="15cm" />
+        </Row>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate("ImageRef");
+          }}
+        >
+          <Button text="Continuar" />
+        </TouchableOpacity>
+      </SafeAreaView>
     </Container>
   );
 }

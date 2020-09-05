@@ -33,7 +33,7 @@ if (screenWidth > 1400) {
 const SizeInfoCard = (props) => (
   <Container style={{ width: cardWidth }}>
     <Row>
-      <Col style={{ alignSelf: "center", marginLeft: 16 }}>
+      <Col style={{ alignSelf: "center", marginLeft: 8 }}>
         <SmallBody style={{ paddingBottom: 4 }}>Parte do Corpo: </SmallBody>
         <Heading2
           style={{

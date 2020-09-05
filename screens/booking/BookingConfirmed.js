@@ -1,74 +1,114 @@
 import React from "react";
-import { ScrollView, SafeAreaView, TouchableOpacity } from "react-native";
+import {
+  ScrollView,
+  SafeAreaView,
+  TouchableOpacity,
+  Platform,
+} from "react-native";
 import styled from "styled-components/native";
-import { Ionicons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
+import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
+import { Heading1, Heading4, Link, colors } from "../../theme";
+import TopBarBack from "../../components/topBar/TopBarBack";
+import SelectTag from "../../components/tag/SelectTag";
+import SmallStudioList from "../../features/SmallStudioList";
+import SmallArtistList from "../../features/SmallArtistList";
 
-class BookingConfirmed extends React.Component {
-  static navigationOptions = {
-    header: null,
-  };
-
-  render() {
-    return (
-      <RootView>
-        <Container>
-          <SafeAreaView>
-            <ScrollView>
-              <Row>
-                <Heading1>Agendamentos</Heading1>
-              </Row>
-
-              <Row>
-                <Heading3>Estúdios</Heading3>
-              </Row>
-            </ScrollView>
-          </SafeAreaView>
-        </Container>
-      </RootView>
-    );
-  }
+function StudioTab() {
+  return (
+    <View>
+      <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+        <Row>
+          <SelectTag text="Tatuapé, SP" />
+          <SelectTag text="30 Ago" />
+          <SelectTag text="Minimalismo" />
+        </Row>
+      </ScrollView>
+      <SmallStudioList />
+    </View>
+  );
 }
 
-export default BookingConfirmed;
+function ArtistTab() {
+  return (
+    <View>
+      <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+        <Row>
+          <SelectTag text="Tatuapé, SP" />
+          <SelectTag text="30 Ago" />
+          <SelectTag text="Minimalismo" />
+        </Row>
+      </ScrollView>
+      <SmallArtistList />
+    </View>
+  );
+}
 
-const RootView = styled.View`
-  background: #fff;
+const Tab = createMaterialTopTabNavigator();
+
+export default function BookingConfirmed() {
+  return (
+    <Container>
+      <ScrollView vertical={true} showsHorizontalScrollIndicator={false}>
+        <SafeAreaView>
+          <TopBarBack />
+          <Heading1
+            style={{
+              paddingLeft: 24,
+              paddingTop: 48,
+              paddingBottom: 24,
+              color: colors.secondary,
+            }}
+          >
+            Explorar
+          </Heading1>
+
+          <Tab.Navigator
+            animationEnabled={false}
+            tabBarOptions={{
+              labelStyle: { fontSize: 12, marginTop: -2 },
+              activeTintColor: colors.white,
+              inactiveTintColor: colors.neutral3,
+              indicatorStyle: {
+                backgroundColor: colors.accent,
+                marginLeft: 4,
+
+                borderRadius: 8,
+                height: null,
+                top: 6,
+                marginBottom: 4,
+              },
+              style: {
+                backgroundColor: colors.neutral1,
+                height: 40,
+                borderRadius: 8,
+                marginLeft: 24,
+                marginRight: 24,
+              },
+            }}
+          >
+            <Tab.Screen name="Estúdios" component={StudioTab} />
+            <Tab.Screen name="Artistas" component={ArtistTab} />
+          </Tab.Navigator>
+        </SafeAreaView>
+      </ScrollView>
+    </Container>
+  );
+}
+
+const Container = styled.View`
+  background: ${colors.white};
   flex: 1;
-`;
-
-const Heading3 = styled.Text`
-  font-size: 16px;
-  color: #565656;
-  font-weight: 600;
-`;
-
-const Heading1 = styled.Text`
-  font-size: 24px;
-  color: #2457db;
-  font-weight: 700;
-  line-height: 32px;
-  padding: 16px 0px 16px 0px;
-  width: 80%;
+  border-radius: 10px;
 `;
 
 const Row = styled.View`
-  width: 100%;
-  padding-left: 24px;
-  padding-top: 8px;
-`;
-
-const TopBar = styled.View`
-  padding-top: 8px;
-  padding-left: 24px;
-  padding-right: 24px;
-  margin-bottom: 16px;
   flex-direction: row;
-  justify-content: space-between;
-  height: 64px;
+  margin-left: 24px;
+  margin-bottom: 16px;
 `;
 
-const Container = styled.View`
-  background: #f0f3f5;
-  flex: 1;
-  border-radius: 10px;
+const View = styled.View`
+  padding-top: 24px;
+  background: ${colors.white};
 `;

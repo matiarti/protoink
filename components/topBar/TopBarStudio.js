@@ -1,9 +1,10 @@
 import React from "react";
-import { TouchableOpacity } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 import styled from "styled-components/native";
 import Icon from "react-native-vector-icons/AntDesign";
 import { Heading1, Heading3, Heading4, Heading5, colors } from "../../theme";
 import { useNavigation } from "@react-navigation/native";
+import Heart from "../icon/Heart";
 
 function TopBarStudio() {
   const navigation = useNavigation();
@@ -30,16 +31,16 @@ function TopBarStudio() {
       </Col>
 
       <Col>
-        <Icon
-          name="heart"
-          size={24}
-          color={colors.white}
+        <View
           style={{
             position: "absolute",
             top: 52,
             right: 108,
           }}
-        />
+        >
+          <Heart size={24} />
+        </View>
+
         <Icon
           name="message1"
           size={24}

@@ -1,9 +1,10 @@
 import React from "react";
 import styled from "styled-components/native";
-import { Dimensions } from "react-native";
+import { Dimensions, View } from "react-native";
 import { Heading2, Heading4, Heading5, Heading6 } from "../../theme";
 import colors from "../../theme/colors";
 import Icon from "react-native-vector-icons/AntDesign";
+import Heart from "../icon/Heart";
 
 const screenWidth = Dimensions.get("window").width;
 var cardWidth = screenWidth - 52;
@@ -44,7 +45,7 @@ const StudioLargeCard = (props) => (
             name="star"
             size={16}
             color={colors.white}
-            style={{ paddingRight: 4, marginTop: 4 }}
+            style={{ paddingRight: 4, marginTop: 2 }}
           />
 
           <Heading4 style={{ marginBottom: 24, color: colors.white }}>
@@ -58,6 +59,9 @@ const StudioLargeCard = (props) => (
       <Logo source={props.logo} />
       <Heading4>{props.location}</Heading4>
       <Heading5 style={{ color: colors.neutral3 }}>{props.style}</Heading5>
+      <View style={{ position: "absolute", top: 24, right: 24 }}>
+        <Heart size={20} />
+      </View>
     </Content>
   </Container>
 );
@@ -112,7 +116,9 @@ const Logo = styled.Image`
   width: 32px;
   height: 32px;
   position: absolute;
-  top: 24px;
+  top: 20px;
   left: 20px;
   border-radius: 16px;
 `;
+
+const Fav = styled.View``;

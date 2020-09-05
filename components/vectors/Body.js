@@ -7,14 +7,13 @@ import Chest from "./Chest";
 import UpperBody from "./UpperBody";
 import LegRight from "./LegRight";
 import LegLeft from "./LegLeft";
-import colors from "../../theme";
 
 export function ArmLeftV(props) {
   return <ArmLeft armleftcolor={props.armleftcolor} />;
 }
 
 export function ArmRightV(props) {
-  return <ArmRight armrightcolor={props.armrightcolor} />;
+  return <ArmRight link="onPress" armrightcolor={props.armrightcolor} />;
 }
 
 export function HeadV(props) {
@@ -34,15 +33,3 @@ export function LegLeftV(props) {
 export function LegRightV(props) {
   return <LegRight legrightcolor={props.legrightcolor} />;
 }
-
-export function Body(props) {
-  return <Row></Row>;
-}
-
-const Circle = styled.View`
-  width: 16px;
-  height: 16px;
-  border-radius: 50px;
-`;
-
-const Row = styled.View``;

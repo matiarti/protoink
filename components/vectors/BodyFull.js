@@ -10,7 +10,6 @@ import {
   LegRightV,
   LegLeftV,
 } from "./Body";
-import { colors } from "../../theme";
 
 const screenWidth = Dimensions.get("window").width;
 
@@ -21,38 +20,34 @@ if (screenWidth > 300) {
 }
 
 export function BodyFull() {
-  const [activated, setActivated] = useState(false);
-
-  const Color = activated ? colors.accent : colors.neutral3;
-
   return (
     <View style={{ height: 480, alignSelf: "center", width: cardWidth }}>
       <View style={{ position: "absolute" }}>
-        <HeadV headcolor={Color} />
+        <HeadV />
       </View>
 
       <View style={{ position: "absolute", top: 66, left: 28 }}>
-        <ChestV chestcolor={Color} />
+        <ChestV />
       </View>
 
       <View style={{ position: "absolute", top: 136, left: 45 }}>
-        <UpperBodyV upperbodycolor={Color} />
+        <UpperBodyV />
       </View>
 
       <View style={{ position: "absolute", top: 78, left: -1 }}>
-        <ArmLeftV armleftcolor={Color} />
+        <ArmLeftV />
       </View>
 
       <View style={{ position: "absolute", top: 78, left: 128 }}>
-        <ArmRightV armrightcolor={Color} />
+        <ArmRightV />
       </View>
 
       <View style={{ position: "absolute", top: 233, left: 45 }}>
-        <LegLeftV legleftcolor={Color} />
+        <LegLeftV />
       </View>
 
       <View style={{ position: "absolute", top: 232, left: 88 }}>
-        <LegRightV legrightcolor={Color} />
+        <LegRightV />
       </View>
     </View>
   );

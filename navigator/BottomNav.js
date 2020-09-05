@@ -1,7 +1,7 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "../screens/HomeScreen";
-import BookingScreen from "../screens/BookingScreen";
+import BookingScreen from "../screens/booking/BookingScreen";
 import MessageScreen from "../screens/MessageScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import FavScreen from "../screens/FavScreen";
@@ -11,7 +11,7 @@ const Tab = createBottomTabNavigator();
 
 const StackNav = () => {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator initialRouteName="Booking">
       <Tab.Screen
         name="Home"
         component={HomeScreen}
@@ -44,7 +44,7 @@ const StackNav = () => {
         }}
       />
       <Tab.Screen
-        name="Agendamentos"
+        name="Booking"
         component={BookingScreen}
         options={{
           title: "Agendamentos",
