@@ -16,7 +16,7 @@ function ExploreModal() {
   return (
     <Form onSubmit={(e) => e.preventDefault() && false}>
       <TextField
-        placeholder="Location"
+        placeholder="Localização"
         icon="enviromento"
         autocomplete="off"
         value={location}

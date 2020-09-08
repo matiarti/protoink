@@ -14,6 +14,7 @@ import { SelectableCard } from "../../components/card/SelectableCard";
 import ArmRight from "../../components/vectors/ArmRight";
 import SimpleCard from "../../components/card/SimpleCard";
 import * as ImagePicker from "expo-image-picker";
+import Title from "../../components/text/Title.js";
 
 const screenWidth = Dimensions.get("window").width;
 var titleWidth = screenWidth - 40;
@@ -92,14 +93,11 @@ function SelectImageRef({ navigation }) {
       <ScrollView vertical={true} showsHorizontalScrollIndicator={false}>
         <SafeAreaView>
           <TopBarBack />
-          <Heading1
-            style={{ paddingLeft: 24, paddingTop: 48, paddingBottom: 24 }}
-          >
-            Poste sua Ideia
-          </Heading1>
-          <Body style={{ paddingLeft: 24, paddingBottom: 24 }}>
-            Envie imagens que sirvam como referência:
-          </Body>
+          <Title
+            title="Poste sua Ideia"
+            subtitle="Envie imagens que sirvam como referência:"
+          />
+
           <TouchableOpacity onPress={openImagePickerAsync}>
             <SimpleCard icon="camerao" title="Selecione da Galeria" />
           </TouchableOpacity>

@@ -13,7 +13,7 @@ const Stack = createStackNavigator();
 function SignInStack() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="BottomTab">
+      <Stack.Navigator initialRouteName="Home">
         <Stack.Screen
           name="BottomTab"
           component={StackNav}

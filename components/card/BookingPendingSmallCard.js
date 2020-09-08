@@ -71,9 +71,20 @@ const BookingPendingSmallCard = (props) => (
           top: 16,
         }}
       >
-        <Heading6 style={{ color: colors.neutral3, paddingBottom: 4 }}>
-          {props.date}
-        </Heading6>
+        <Row2>
+          <Icon
+            name="calendar"
+            size={16}
+            color={colors.neutral3}
+            style={{ paddingRight: 6, marginTop: 4, paddingBottom: 4 }}
+          />
+
+          <Heading5
+            style={{ color: colors.neutral3, paddingBottom: 4, paddingTop: 4 }}
+          >
+            {props.date}
+          </Heading5>
+        </Row2>
         <Heading4
           style={{ color: colors.accent, paddingBottom: 4, paddingTop: 4 }}
         >

@@ -11,6 +11,8 @@ import {
 import SmallStudioList from "../../features/SmallStudioList";
 import SmallBookingOpenList from "../../features/SmallBookingOpenList";
 import SmallBookingPendingList from "../../features/SmallBookingPendingList";
+import SmallBookingConfimedList from "../../features/SmallBookingConfimedList";
+import TopBar from "../../components/topBar/TopBar.js";
 
 function Open() {
   return <SmallBookingOpenList />;
@@ -21,7 +23,7 @@ function Pending() {
 }
 
 function Confirmed() {
-  return <SmallBookingOpenList />;
+  return <SmallBookingConfimedList />;
 }
 
 const Tab = createMaterialTopTabNavigator();
@@ -30,45 +32,47 @@ export default function BookingScreen() {
   return (
     <ScrollView vertical={true} showsHorizontalScrollIndicator={false}>
       <Container>
-        <Heading1
-          style={{
-            paddingLeft: 24,
-            paddingTop: 56,
-            paddingBottom: 24,
-            color: colors.secondary,
-          }}
-        >
-          Agendamentos
-        </Heading1>
+        <SafeAreaView>
+          <TopBar />
+          <Heading1
+            style={{
+              paddingLeft: 24,
+              paddingTop: 8,
+              paddingBottom: 24,
+              color: colors.secondary,
+            }}
+          >
+            Agendamentos
+          </Heading1>
 
-        <Tab.Navigator
-          animationEnabled={false}
-          tabBarOptions={{
-            labelStyle: { fontSize: 12, marginTop: -2 },
-            activeTintColor: colors.white,
-            inactiveTintColor: colors.neutral3,
-            indicatorStyle: {
-              backgroundColor: colors.accent,
-              marginLeft: 4,
-
-              borderRadius: 8,
-              height: null,
-              top: 6,
-              marginBottom: 4,
-            },
-            style: {
-              backgroundColor: colors.neutral1,
-              height: 40,
-              borderRadius: 8,
-              marginLeft: 24,
-              marginRight: 24,
-            },
-          }}
-        >
-          <Tab.Screen name="Em Aberto" component={Open} />
-          <Tab.Screen name="Pendente" component={Pending} />
-          <Tab.Screen name="Confirmado" component={Confirmed} />
-        </Tab.Navigator>
+          <Tab.Navigator
+            animationEnabled={false}
+            tabBarOptions={{
+              labelStyle: { fontSize: 11, marginTop: -2 },
+              activeTintColor: colors.white,
+              inactiveTintColor: colors.neutral3,
+              indicatorStyle: {
+                backgroundColor: colors.accent,
+                marginLeft: 4,
+                borderRadius: 8,
+                height: null,
+                top: 6,
+                marginBottom: 4,
+              },
+              style: {
+                backgroundColor: colors.neutral1,
+                height: 40,
+                borderRadius: 8,
+                marginLeft: 24,
+                marginRight: 24,
+              },
+            }}
+          >
+            <Tab.Screen name="Em Aberto" component={Open} />
+            <Tab.Screen name="Pendente" component={Pending} />
+            <Tab.Screen name="Confirmado" component={Confirmed} />
+          </Tab.Navigator>
+        </SafeAreaView>
       </Container>
     </ScrollView>
   );
@@ -76,4 +80,5 @@ export default function BookingScreen() {
 
 const Container = styled.View`
   background: ${colors.bg};
+  padding-top: 8px;
 `;

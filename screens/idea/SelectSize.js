@@ -15,8 +15,7 @@ import { SelectableCard } from "../../components/card/SelectableCard";
 import ArmRight from "../../components/vectors/BodyPartSize";
 import IdeaInfoCard from "../../components/card/SizeInfoCard.js";
 import { DragResizeBlock } from "../../components/dragResize";
-
-import ImageZoom from "react-native-image-pan-zoom";
+import Title from "../../components/text/Title.js";
 
 const screenWidth = Dimensions.get("window").width;
 
@@ -36,12 +35,7 @@ function SelectSize({ navigation }) {
     <Container>
       <SafeAreaView>
         <TopBarBack />
-        <Heading1 style={{ paddingLeft: 24, paddingTop: 48, paddingBottom: 4 }}>
-          Poste sua Ideia
-        </Heading1>
-        <Body style={{ paddingLeft: 24, paddingBottom: 24 }}>
-          Qual tamanho você deseja?
-        </Body>
+        <Title title="Poste sua Ideia" subtitle="Qual o tamanho aproximado?" />
 
         <View
           style={{

@@ -6,6 +6,7 @@ import MessageScreen from "../screens/MessageScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import FavScreen from "../screens/FavScreen";
 import Icon from "react-native-vector-icons/AntDesign";
+import { StatusBar } from "expo-status-bar";
 
 const Tab = createBottomTabNavigator();
 

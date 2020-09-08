@@ -20,7 +20,7 @@ const BookingsQuery = gql`
           width
           height
         }
-
+        description
         title
         bodypart
         style

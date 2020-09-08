@@ -23,6 +23,8 @@ import IdeaScreenPending from "../screens/idea/IdeaScreenPending";
 import IdeaScreenApproved from "../screens/idea/IdeaScreenApproved";
 import BookingScreen from "../screens/booking/BookingScreen";
 import BookingOpen from "../screens/booking/BookingOpen";
+import BookingConfirmed from "../screens/booking/BookingConfirmed";
+import BookingPending from "../screens/booking/BookingPending";
 
 const Stack = createStackNavigator();
 
@@ -142,12 +144,19 @@ const SignOutStack = () => {
           component={BookingOpen}
           options={{ headerShown: false, tabBarVisible: false }}
         />
+        <Stack.Screen
+          name="BookingConfirmed"
+          component={BookingConfirmed}
+          options={{ headerShown: false, tabBarVisible: false }}
+        />
+        <Stack.Screen
+          name="BookingPending"
+          component={BookingPending}
+          options={{ headerShown: false, tabBarVisible: false }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
 };
 
 export default SignOutStack;
-
-const activeColor = "#E46399";
-const inactiveColor = "#2457DB";

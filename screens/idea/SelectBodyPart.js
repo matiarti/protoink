@@ -4,16 +4,14 @@ import {
   SafeAreaView,
   TouchableOpacity,
   Dimensions,
-  Image,
-  View,
 } from "react-native";
 import styled from "styled-components/native";
 import Button from "../../components/button/Button.js";
-import { Heading1, Heading4, Link, colors, Body } from "../../theme";
+import { Heading1, colors, Body } from "../../theme";
 import TopBarBack from "../../components/topBar/TopBarBack";
 import { SelectableCard } from "../../components/card/SelectableCard";
-
 import { BodyFull } from "../../components/vectors/BodyFull";
+import Title from "../../components/text/Title.js";
 
 const screenWidth = Dimensions.get("window").width;
 var titleWidth = screenWidth - 40;
@@ -34,14 +32,11 @@ function SelectBodyPart({ navigation }) {
         <ScrollView vertical={true} showsHorizontalScrollIndicator={false}>
           <SafeAreaView>
             <TopBarBack />
-            <Heading1
-              style={{ paddingLeft: 24, paddingTop: 48, paddingBottom: 8 }}
-            >
-              Poste sua Ideia
-            </Heading1>
-            <Body style={{ paddingLeft: 24, paddingBottom: 24 }}>
-              Selecione uma parte do corpo
-            </Body>
+            <Title
+              title="Poste sua Ideia"
+              subtitle="Qual parte do corpo quer tatuar?"
+            />
+
             <BodyFull />
             <Row
               style={{

@@ -23,6 +23,7 @@ const BookingsQuery = gql`
         }
 
         title
+        description
         bodypart
         style
         size
@@ -50,7 +51,7 @@ function SmallBookingConfimedList() {
         <TouchableOpacity
           key={index}
           onPress={() => {
-            navigation.navigate("BookingOpen", { booking: booking });
+            navigation.navigate("BookingConfirmed", { booking: booking });
           }}
         >
           <BookingConfirmedSmallCard

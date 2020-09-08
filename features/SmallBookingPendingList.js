@@ -23,6 +23,7 @@ const BookingsQuery = gql`
         }
 
         title
+        description
         bodypart
         style
         size
@@ -50,7 +51,7 @@ function SmallBookingPendingList() {
         <TouchableOpacity
           key={index}
           onPress={() => {
-            navigation.navigate("BookingOpen", { booking: booking });
+            navigation.navigate("BookingPending", { booking: booking });
           }}
         >
           <BookingPendingSmallCard

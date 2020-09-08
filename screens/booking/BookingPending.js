@@ -15,6 +15,7 @@ import IdeaBottomBar from "../../components/bottomBar/IdeaBottomBar.js";
 import Indicator from "../../components/indicator/Indicator";
 import IdeaRefGallery from "../../features/IdeaRefGallery";
 import IconText from "../../components/icon/IconText";
+import BookingBottomBar from "../../components/bottomBar/BookingBottomBar";
 
 const screenWidth = Dimensions.get("window").width;
 
@@ -32,14 +33,14 @@ if (screenWidth > 300) {
   cardWidth = (screenWidth - 80) / 3;
 }
 
-function BookingOpen({ route, navigation }) {
+function BookingPending({ route, navigation }) {
   const { booking } = route.params;
   return (
     <Container>
       <ScrollView>
         <TopBarIdea />
         <View style={{ position: "absolute", top: 116, left: 100, zIndex: 9 }}>
-          <Indicator status={colors.accent} />
+          <Indicator status={colors.warning} />
         </View>
         <Cover>
           <Image source={require("../../assets/blur1.jpg")} />
@@ -62,8 +63,8 @@ function BookingOpen({ route, navigation }) {
         <SectionTwo
           style={{
             paddingTop: 24,
-            borderTopLeftRadius: 16,
-            borderTopRightRadius: 16,
+            borderTopLeftRadius: 24,
+            borderTopRightRadius: 24,
             marginTop: -16,
           }}
         >
@@ -106,13 +107,18 @@ function BookingOpen({ route, navigation }) {
         }}
         style={{ paddingTop: 24 }}
       >
-        <IdeaBottomBar text="Procure Estúdios e Agende" button="Explorar" />
+        <BookingBottomBar
+          text="Mil Ink"
+          button="Cancelar"
+          color="colors.success"
+          status="Apr. Pendente"
+        />
       </TouchableOpacity>
     </Container>
   );
 }
 
-export default BookingOpen;
+export default BookingPending;
 
 const Container = styled.View`
   flex: 1;

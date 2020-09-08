@@ -62,10 +62,10 @@ const BookingOpenSmallCard = (props) => (
       >
         <Row2>
           <Icon
-            name="clockcircleo"
+            name="calendar"
             size={16}
-            color={colors.primary}
-            style={{ paddingRight: 4, marginTop: 4, paddingBottom: 4 }}
+            color={colors.neutral3}
+            style={{ paddingRight: 6, marginTop: 4, paddingBottom: 4 }}
           />
 
           <Heading5

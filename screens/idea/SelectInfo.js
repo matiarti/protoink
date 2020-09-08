@@ -19,6 +19,7 @@ import TextArea from "../../components/input/TextArea.js";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 import { useNavigation } from "@react-navigation/native";
+import Title from "../../components/text/Title.js";
 
 const screenWidth = Dimensions.get("window").width;
 
@@ -51,14 +52,11 @@ function SelectInfo() {
         <ScrollView vertical={true} showsHorizontalScrollIndicator={false}>
           <SafeAreaView>
             <TopBarBack />
-            <Heading1
-              style={{ paddingLeft: 24, paddingTop: 48, paddingBottom: 24 }}
-            >
-              Poste sua Ideia
-            </Heading1>
-            <Body style={{ paddingLeft: 24, paddingBottom: 24 }}>
-              Para finalizar, mais algumas informações:
-            </Body>
+            <Title
+              title="Poste sua Ideia"
+              subtitle="Para finalizar, mais algumas informações:"
+            />
+
             <TextField
               placeholder="Título ou Nome para sua Ideia"
               autocomplete="off"
