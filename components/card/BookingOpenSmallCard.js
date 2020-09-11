@@ -31,7 +31,9 @@ if (screenWidth > 1400) {
 }
 
 const BookingOpenSmallCard = (props) => (
-  <Container style={{ width: cardWidth }}>
+  <Container
+    style={{ width: cardWidth, borderColor: props.border, borderWidth: 1 }}
+  >
     <Row>
       <Col>
         <CoverImage source={props.image} />
@@ -110,7 +112,6 @@ const Row = styled.View`
 
 const Container = styled.View`
   background: white;
-
   height: 100px;
   border-radius: 8px;
   margin-right: 16px;

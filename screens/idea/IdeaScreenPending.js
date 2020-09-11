@@ -15,6 +15,7 @@ import IdeaBottomBar from "../../components/bottomBar/IdeaBottomBar.js";
 import Indicator from "../../components/indicator/Indicator";
 import IdeaRefGallery from "../../features/IdeaRefGallery";
 import IconText from "../../components/icon/IconText";
+import BookingBottomBar from "../../components/bottomBar/BookingBottomBar";
 
 const screenWidth = Dimensions.get("window").width;
 var titleWidth = screenWidth - 120;
@@ -100,7 +101,11 @@ function IdeaScreenPending({ navigation }) {
         }}
         style={{ paddingTop: 24 }}
       >
-        <IdeaBottomBar text="Apr. Pendente" button="Cancelar" />
+        <BookingBottomBar
+          text="Milk Ink"
+          status="Apr. Pendente"
+          button="Cancelar"
+        />
       </TouchableOpacity>
     </Container>
   );

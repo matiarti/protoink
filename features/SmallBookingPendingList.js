@@ -32,6 +32,7 @@ const BookingsQuery = gql`
         price
         status
         studio
+        price
       }
     }
   }

@@ -12,7 +12,7 @@ const Tab = createBottomTabNavigator();
 
 const StackNav = () => {
   return (
-    <Tab.Navigator initialRouteName="Booking">
+    <Tab.Navigator initialRouteName="Home">
       <Tab.Screen
         name="Home"
         component={HomeScreen}

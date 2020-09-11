@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components/native";
 import Button from "../button/ButtonCta.js";
-import { Dimensions, View } from "react-native";
+import { Dimensions, View, TouchableOpacity } from "react-native";
 import { Heading5, Heading6, colors } from "../../theme.js";
 import Icon from "react-native-vector-icons/AntDesign";
 import IndicatorSmall from "../indicator/IndicatorSmall";
@@ -28,7 +28,9 @@ function BookingBottomBarApproved(props) {
             {props.status}
           </Heading5>
         </Row2>
-        <Button text={props.button} />
+        <TouchableOpacity>
+          <Button text={props.button} />
+        </TouchableOpacity>
       </Row>
     </Container>
   );

@@ -4,6 +4,7 @@ import Button from "../button/ButtonCta.js";
 import { TouchableOpacity, Dimensions } from "react-native";
 import { Heading4, Heading5, colors } from "../../theme.js";
 import Icon from "react-native-vector-icons/AntDesign";
+import { useNavigation } from "@react-navigation/native";
 
 const screenWidth = Dimensions.get("window").width;
 var barWidth = screenWidth;
@@ -11,7 +12,8 @@ if (screenWidth > 300) {
   barWidth = screenWidth;
 }
 
-function StudioBottomNav({ navigation, props }) {
+function StudioBottomNav(props) {
+  const navigation = useNavigation();
   return (
     <Container style={{ elevation: 16 }}>
       <Row>
@@ -30,8 +32,13 @@ function StudioBottomNav({ navigation, props }) {
             (220)
           </Heading5>
         </Row>
-
-        <Button text="Agendar" />
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate("BookingDateTime");
+          }}
+        >
+          <Button text="Agendar" />
+        </TouchableOpacity>
       </Row>
     </Container>
   );

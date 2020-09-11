@@ -77,7 +77,7 @@ function BookingConfirmed({ route, navigation }) {
           </Body>
 
           <IconText text="Estúdio" icon="isv" />
-          <Body style={{ paddingBottom: 24 }}>Milk Ink</Body>
+          <Body style={{ paddingBottom: 24 }}> {booking.studio} </Body>
 
           <IconText text="Endereço" icon="enviromento" />
           <Body>R. Cesário Galero, 492 Tatuapé </Body>
@@ -127,7 +127,7 @@ function BookingConfirmed({ route, navigation }) {
         style={{ paddingTop: 24 }}
       >
         <BookingBottomBarApproved
-          text="Mil Ink"
+          text={booking.studio}
           button="Editar"
           status="Confirmado"
         />

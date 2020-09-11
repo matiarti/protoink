@@ -2,12 +2,15 @@ import React from "react";
 import styled from "styled-components/native";
 import Body from "../../theme";
 import { Heading2 } from "../../theme";
+import { TouchableOpacity } from "react-native";
 
 const Button = (props) => (
   <Container>
-    <Buttons>
-      <Text>{props.text}</Text>
-    </Buttons>
+    <TouchableOpacity onPress={props.link}>
+      <Buttons>
+        <Text>{props.text}</Text>
+      </Buttons>
+    </TouchableOpacity>
   </Container>
 );
 

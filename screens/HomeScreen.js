@@ -62,13 +62,12 @@ function HomeScreen({ navigation }) {
 
             <StyleRow />
 
-            <TouchableOpacity
-              onPress={() => {
+            <Button
+              link={() => {
                 navigation.navigate("Body");
               }}
-            >
-              <Button text="Poste sua Ideia" />
-            </TouchableOpacity>
+              text="Poste sua Ideia"
+            />
           </SafeAreaView>
         </ScrollView>
       </Container>

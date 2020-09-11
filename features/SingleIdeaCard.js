@@ -2,7 +2,7 @@ import React from "react";
 import { TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
 import { useQuery, gql } from "@apollo/client";
-import BookingSmallCard from "../components/card/BookingOpenSmallCard";
+import BookingPendingSmallCard from "../components/card/BookingPendingSmallCard";
 import { Heading3, colors } from "../theme";
 import { useNavigation } from "@react-navigation/native";
 
@@ -27,6 +27,9 @@ const BookingsQuery = gql`
         size
         location
         date
+        status
+        studio
+        price
       }
     }
   }
@@ -46,10 +49,10 @@ function SmallBookingOpenList() {
         <TouchableOpacity
           key={index}
           onPress={() => {
-            navigation.navigate("BookingOpen", { booking: booking });
+            navigation.navigate("BookingPending", { booking: booking });
           }}
         >
-          <BookingSmallCard
+          <BookingPendingSmallCard
             title={booking.title}
             image={{ uri: booking.image.url }}
             bodypart={booking.bodypart}
@@ -57,6 +60,9 @@ function SmallBookingOpenList() {
             size={booking.size}
             location={booking.location}
             style={booking.style}
+            price={booking.price}
+            status={booking.status}
+            studio={booking.studio}
             border="white"
           />
         </TouchableOpacity>

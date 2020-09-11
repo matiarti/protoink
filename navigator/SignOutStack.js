@@ -25,13 +25,16 @@ import BookingScreen from "../screens/booking/BookingScreen";
 import BookingOpen from "../screens/booking/BookingOpen";
 import BookingConfirmed from "../screens/booking/BookingConfirmed";
 import BookingPending from "../screens/booking/BookingPending";
+import BookingDateTime from "../screens/booking/BookingDateTime";
+import BookingIdea from "../screens/booking/BookingIdea";
+import BookingSent from "../screens/booking/BookingSent";
 
 const Stack = createStackNavigator();
 
 const SignOutStack = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Booking">
+      <Stack.Navigator initialRouteName="Home">
         <Stack.Screen
           name="Login"
           component={LoginScreen}
@@ -152,6 +155,21 @@ const SignOutStack = () => {
         <Stack.Screen
           name="BookingPending"
           component={BookingPending}
+          options={{ headerShown: false, tabBarVisible: false }}
+        />
+        <Stack.Screen
+          name="BookingDateTime"
+          component={BookingDateTime}
+          options={{ headerShown: false, tabBarVisible: false }}
+        />
+        <Stack.Screen
+          name="BookingIdea"
+          component={BookingIdea}
+          options={{ headerShown: false, tabBarVisible: false }}
+        />
+        <Stack.Screen
+          name="BookingSent"
+          component={BookingSent}
           options={{ headerShown: false, tabBarVisible: false }}
         />
       </Stack.Navigator>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
 import { useQuery, gql } from "@apollo/client";
@@ -32,7 +32,15 @@ const BookingsQuery = gql`
   }
 `;
 
-function SmallBookingOpenList() {
+function SmallBookingOpenListSelect() {
+  const [activated, setActivated] = useState(false);
+
+  const borderColor = activated ? colors.accent : colors.white;
+
+  function onPress() {
+    setActivated(!activated);
+  }
+
   const navigation = useNavigation();
 
   const { data, error, loading } = useQuery(BookingsQuery);
@@ -43,13 +51,9 @@ function SmallBookingOpenList() {
   return (
     <StudiosContainer style={{ paddingBottom: 24, paddingLeft: 24 }}>
       {data.bookingCollection.items.map((booking, index) => (
-        <TouchableOpacity
-          key={index}
-          onPress={() => {
-            navigation.navigate("BookingOpen", { booking: booking });
-          }}
-        >
+        <TouchableOpacity key={index} onPress={onPress}>
           <BookingSmallCard
+            border={borderColor}
             title={booking.title}
             image={{ uri: booking.image.url }}
             bodypart={booking.bodypart}
@@ -57,7 +61,6 @@ function SmallBookingOpenList() {
             size={booking.size}
             location={booking.location}
             style={booking.style}
-            border="white"
           />
         </TouchableOpacity>
       ))}
@@ -65,7 +68,7 @@ function SmallBookingOpenList() {
   );
 }
 
-export default SmallBookingOpenList;
+export default SmallBookingOpenListSelect;
 
 const StudiosContainer = styled.View`
   background: ${colors.white};

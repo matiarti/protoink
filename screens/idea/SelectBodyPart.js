@@ -54,13 +54,12 @@ function SelectBodyPart({ navigation }) {
               />
             </Row>
 
-            <TouchableOpacity
-              onPress={() => {
+            <Button
+              link={() => {
                 navigation.navigate("Size");
               }}
-            >
-              <Button text="Continuar" />
-            </TouchableOpacity>
+              text="Continuar"
+            />
           </SafeAreaView>
         </ScrollView>
       </Container>

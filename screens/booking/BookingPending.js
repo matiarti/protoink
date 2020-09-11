@@ -108,10 +108,10 @@ function BookingPending({ route, navigation }) {
         style={{ paddingTop: 24 }}
       >
         <BookingBottomBar
-          text="Mil Ink"
+          text={booking.studio}
           button="Cancelar"
           color="colors.success"
-          status="Apr. Pendente"
+          status={booking.status}
         />
       </TouchableOpacity>
     </Container>

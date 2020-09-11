@@ -62,13 +62,13 @@ function SelectSize({ navigation }) {
         <Row style={{ paddingLeft: 24, paddingBottom: 16 }}>
           <IdeaInfoCard title="Antebraço Frente" size="15cm" />
         </Row>
-        <TouchableOpacity
-          onPress={() => {
+
+        <Button
+          link={() => {
             navigation.navigate("ImageRef");
           }}
-        >
-          <Button text="Continuar" />
-        </TouchableOpacity>
+          text="Continuar"
+        />
       </SafeAreaView>
     </Container>
   );
