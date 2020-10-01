@@ -1,95 +1,76 @@
 import React from "react";
-import { TouchableOpacity, StatusBar, ScrollView } from "react-native";
+import {
+  ScrollView,
+  SafeAreaView,
+  TouchableOpacity,
+  Dimensions,
+} from "react-native";
 import styled from "styled-components/native";
+import Avatar from "../components/avatar/Avatar";
+import TextField from "../components/input/TextField";
 import Button from "../components/button/Button.js";
-import { useQuery, gql } from "@apollo/client";
-import EventCard from "../components/card/EventCard";
+import { Heading1, Heading4, Link, colors } from "../theme";
+import StyleRow from "../features/StyleRow";
+import TopBar from "../components/topBar/TopBar";
+import CTAList from "../features/CTAList";
+import UserList from "../components/list/UserList";
 
-const EventsQuery = gql`
-  {
-    eventsCollection {
-      items {
-        image {
-          title
-          description
-          contentType
-          fileName
-          size
-          url
-          width
-          height
-        }
-        title
-        subtitle
-        location
-        price
-        attendees
-      }
-    }
-  }
-`;
+const screenWidth = Dimensions.get("window").width;
+var titleWidth = screenWidth - 40;
 
-function ProfileScreen() {
-  const { loading, error, data } = useQuery(EventsQuery);
+if (screenWidth > 800) {
+  titleWidth = screenWidth - 320;
+}
 
-  if (loading) return <Text>Loading...</Text>;
-  if (error) return <Text>Error :(</Text>;
-
+function MessageScreen({ navigation }) {
   return (
-    <Container>
-      <ScrollView
-        horizontal={true}
-        style={{ paddingBottom: 24, paddingLeft: 24 }}
-        showsHorizontalScrollIndicator={false}
-      >
-        {data.eventsCollection.items.map((event, index) => (
-          <TouchableOpacity key={index}>
-            <EventCard
-              title={event.title}
-              coverimage={{ uri: event.image.url }}
-              location={event.location}
-              subtitle={event.subtitle}
-              price={event.price}
-              attendees={event.attendees}
-            />
-          </TouchableOpacity>
-        ))}
-      </ScrollView>
-    </Container>
+    <RootView>
+      <Container>
+        <ScrollView vertical={true} showsHorizontalScrollIndicator={false}>
+          <SafeAreaView>
+            <TopBar />
+            <Heading1
+              style={{
+                paddingLeft: 24,
+                paddingTop: 8,
+                paddingBottom: 8,
+                color: colors.secondary,
+              }}
+            >
+              Mensagens
+            </Heading1>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("Message");
+              }}
+              style={{ zIndex: 3 }}
+            >
+              <TextField
+                placeholder="Pesquisar"
+                icon="search1"
+                autocomplete="off"
+                style={{ zIndex: 2 }}
+              />
+            </TouchableOpacity>
+            <UserList />
+          </SafeAreaView>
+        </ScrollView>
+      </Container>
+    </RootView>
   );
 }
 
-export default ProfileScreen;
+export default MessageScreen;
 
-const Text = styled.Text`
-  font-size: 10px;
-  color: #565656;
-  font-weight: 600;
-`;
-
-const Heading3 = styled.Text`
-  font-size: 16px;
-  color: #565656;
-  font-weight: 600;
-`;
-
-const Heading1 = styled.Text`
-  font-size: 24px;
-  color: #2457db;
-  font-weight: 700;
-  line-height: 32px;
-  padding: 16px 0px 16px 0px;
-  width: 80%;
-`;
-
-const Row = styled.View`
-  width: 100%;
-  padding-left: 24px;
-  padding-top: 8px;
+const RootView = styled.View`
+  background: #fff;
+  flex: 1;
 `;
 
 const Container = styled.View`
-  background: #f0f3f5;
+  background: ${colors.bg};
   flex: 1;
   border-radius: 10px;
+  width: 100%;
+  padding-top: 8px;
 `;

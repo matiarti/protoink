@@ -74,9 +74,9 @@ const BookingConfirmedSmallCard = (props) => (
         <Row2>
           <Icon
             name="calendar"
-            size={16}
+            size={12}
             color={colors.neutral3}
-            style={{ paddingRight: 6, marginTop: 4, paddingBottom: 4 }}
+            style={{ paddingRight: 6, marginTop: 8, paddingBottom: 4 }}
           />
 
           <Heading5

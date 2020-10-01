@@ -1,11 +1,14 @@
 import React from "react";
+import { TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
 
 const Button = (props) => (
   <Container>
-    <Buttons>
-      <Text>{props.text}</Text>
-    </Buttons>
+    <TouchableOpacity onPress={props.link}>
+      <Buttons>
+        <Text>{props.text}</Text>
+      </Buttons>
+    </TouchableOpacity>
   </Container>
 );
 

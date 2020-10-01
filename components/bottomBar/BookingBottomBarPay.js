@@ -1,9 +1,11 @@
 import React from "react";
 import styled from "styled-components/native";
 import Button from "../button/ButtonCta.js";
-import { TouchableOpacity, Dimensions } from "react-native";
-import { Heading4, Heading5, colors } from "../../theme.js";
+import { Dimensions, View } from "react-native";
+import { Heading5, Heading6, colors } from "../../theme.js";
 import Icon from "react-native-vector-icons/AntDesign";
+import IndicatorSmall from "../indicator/IndicatorSmall";
+import IconTextSmall from "../../components/icon/IconTextSmall";
 import { useNavigation } from "@react-navigation/native";
 
 const screenWidth = Dimensions.get("window").width;
@@ -12,39 +14,29 @@ if (screenWidth > 300) {
   barWidth = screenWidth;
 }
 
-function StudioBottomNav(props) {
+function BookingBottomBarPay(props) {
   const navigation = useNavigation();
   return (
     <Container style={{ elevation: 16 }}>
       <Row>
-        <Heading5 style={{ paddingLeft: 24 }}>Veja disponibilidade</Heading5>
-        <Row>
-          <Icon
-            name="star"
-            size={16}
-            color={colors.primary}
-            style={{ paddingRight: 2 }}
-          />
-
-          <Heading5 style={{ color: colors.primary }}>4.8</Heading5>
-
-          <Heading5 style={{ color: colors.neutral3, paddingLeft: 4 }}>
-            (220)
+        <Row2 style={{ paddingLeft: 24 }}>
+          <IconTextSmall text={props.text} icon="isv" />
+        </Row2>
+        <Row2>
+          <View style={{ paddingTop: 4, paddingRight: 4 }}>
+            <IndicatorSmall status={colors.warning} />
+          </View>
+          <Heading5 style={{ color: colors.warning, paddingBottom: 8 }}>
+            Pag. Pendente
           </Heading5>
-        </Row>
-
-        <Button
-          text="Agendar"
-          link={() => {
-            navigation.navigate("BookingDateTime");
-          }}
-        />
+        </Row2>
+        <Button text={props.button} link={props.link} />
       </Row>
     </Container>
   );
 }
 
-export default StudioBottomNav;
+export default BookingBottomBarPay;
 
 const Row = styled.View`
   padding-top: 16px;
@@ -53,6 +45,10 @@ const Row = styled.View`
   align-items: center;
   justify-content: space-between;
   height: 64px;
+`;
+
+const Row2 = styled.View`
+  flex-direction: row;
 `;
 
 const Container = styled.View`

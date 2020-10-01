@@ -37,7 +37,7 @@ if (screenWidth > 1400) {
   titleWidth = 140;
 }
 
-const BookingPendingSmallCard = (props) => (
+const BookingPendingPaySmallCard = (props) => (
   <Container style={{ width: cardWidth }}>
     <Row>
       <Col>
@@ -96,7 +96,7 @@ const BookingPendingSmallCard = (props) => (
             <IndicatorSmall status={colors.warning} />
           </View>
           <Heading6 style={{ color: colors.warning, paddingBottom: 8 }}>
-            {props.status}
+            Pag. Pendente
           </Heading6>
         </Row2>
       </Col>
@@ -104,7 +104,7 @@ const BookingPendingSmallCard = (props) => (
   </Container>
 );
 
-export default BookingPendingSmallCard;
+export default BookingPendingPaySmallCard;
 
 const CoverImage = styled.Image`
   width: 64px;

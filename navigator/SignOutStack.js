@@ -28,13 +28,21 @@ import BookingPending from "../screens/booking/BookingPending";
 import BookingDateTime from "../screens/booking/BookingDateTime";
 import BookingIdea from "../screens/booking/BookingIdea";
 import BookingSent from "../screens/booking/BookingSent";
+import BookingPendingPay from "../screens/booking/BookingPendingPay";
+import BookingPayConfirm from "../screens/booking/BookingPayConfirm";
+import AddPayCard from "../screens/booking/AddPayCard";
+import BookingCardAdded from "../screens/booking/BookingCardAddded";
+import BookingPayConfirmed from "../screens/booking/BookingPayConfirmed";
+import MessageChat from "../screens/message/MessageChat";
+import ProfileScreen from "../screens/ProfileScreen";
+import Modal2 from "../components/modal/Modal";
 
 const Stack = createStackNavigator();
 
 const SignOutStack = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
+      <Stack.Navigator initialRouteName="Profile">
         <Stack.Screen
           name="Login"
           component={LoginScreen}
@@ -55,6 +63,11 @@ const SignOutStack = () => {
           name="Notification"
           component={EnableNotif}
           options={{ headerShown: false, tabBarVisible: false }}
+        />
+        <Stack.Screen
+          name="Profile"
+          component={StackNav}
+          options={{ headerShown: false }}
         />
         <Stack.Screen
           name="Location"
@@ -158,6 +171,11 @@ const SignOutStack = () => {
           options={{ headerShown: false, tabBarVisible: false }}
         />
         <Stack.Screen
+          name="BookingPendingPay"
+          component={BookingPendingPay}
+          options={{ headerShown: false, tabBarVisible: false }}
+        />
+        <Stack.Screen
           name="BookingDateTime"
           component={BookingDateTime}
           options={{ headerShown: false, tabBarVisible: false }}
@@ -170,6 +188,37 @@ const SignOutStack = () => {
         <Stack.Screen
           name="BookingSent"
           component={BookingSent}
+          options={{ headerShown: false, tabBarVisible: false }}
+        />
+        <Stack.Screen
+          name="BookingPayConfirm"
+          component={BookingPayConfirm}
+          options={{ headerShown: false, tabBarVisible: false }}
+        />
+        <Stack.Screen
+          name="AddPayCard"
+          component={AddPayCard}
+          options={{ headerShown: false, tabBarVisible: false }}
+        />
+        <Stack.Screen
+          name="BookingCardAdded"
+          component={BookingCardAdded}
+          options={{ headerShown: false, tabBarVisible: false }}
+        />
+        <Stack.Screen
+          name="BookingPayConfirmed"
+          component={BookingPayConfirmed}
+          options={{ headerShown: false, tabBarVisible: false }}
+        />
+        <Stack.Screen
+          mode="modal"
+          name="Modal"
+          component={Modal2}
+          options={{ headerShown: false, tabBarVisible: false }}
+        />
+        <Stack.Screen
+          name="MessageChat"
+          component={MessageChat}
           options={{ headerShown: false, tabBarVisible: false }}
         />
       </Stack.Navigator>

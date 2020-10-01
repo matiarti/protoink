@@ -22,31 +22,31 @@ if (screenWidth > 300) {
 export function BodyFull() {
   return (
     <View style={{ height: 480, alignSelf: "center", width: cardWidth }}>
-      <View style={{ position: "absolute" }}>
+      <View style={{ position: "absolute", left: -9 }}>
         <HeadV />
       </View>
 
-      <View style={{ position: "absolute", top: 66, left: 28 }}>
+      <View style={{ position: "absolute", top: 66, left: 20 }}>
         <ChestV />
       </View>
 
-      <View style={{ position: "absolute", top: 136, left: 45 }}>
+      <View style={{ position: "absolute", top: 136, left: 37 }}>
         <UpperBodyV />
       </View>
 
-      <View style={{ position: "absolute", top: 78, left: -1 }}>
+      <View style={{ position: "absolute", top: 78, left: -9 }}>
         <ArmLeftV />
       </View>
 
-      <View style={{ position: "absolute", top: 78, left: 128 }}>
+      <View style={{ position: "absolute", top: 78, left: 120 }}>
         <ArmRightV />
       </View>
 
-      <View style={{ position: "absolute", top: 233, left: 45 }}>
+      <View style={{ position: "absolute", top: 233, left: 37 }}>
         <LegLeftV />
       </View>
 
-      <View style={{ position: "absolute", top: 232, left: 88 }}>
+      <View style={{ position: "absolute", top: 232, left: 80 }}>
         <LegRightV />
       </View>
     </View>

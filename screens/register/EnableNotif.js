@@ -37,11 +37,13 @@ function EnableNotif() {
             <NotificationCard />
             <NotificationCard />
           </Col>
-          <TouchableOpacity onPress={() => navigation.navigate("Location")}>
-            <Row>
-              <Button text="Ativar Notificações" />
-            </Row>
-          </TouchableOpacity>
+
+          <Row>
+            <Button
+              link={() => navigation.navigate("Location")}
+              text="Ativar Notificações"
+            />
+          </Row>
         </SafeAreaView>
       </ScrollView>
     </Container>

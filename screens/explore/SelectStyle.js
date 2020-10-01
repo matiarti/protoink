@@ -25,9 +25,8 @@ export default function Explore() {
             Escolha estilos
           </Heading1>
           <StyleList />
-          <TouchableOpacity onPress={() => navigation.goBack()}>
-            <Button text="Continuar" />
-          </TouchableOpacity>
+
+          <Button text="Continuar" link={() => navigation.goBack()} />
         </SafeAreaView>
       </ScrollView>
     </Container>

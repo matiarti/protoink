@@ -13,8 +13,9 @@ import { Heading1, Heading3, Heading4, Link, colors, Body } from "../../theme";
 import TopBarBack from "../../components/topBar/TopBarBack";
 import { useNavigation } from "@react-navigation/native";
 import Title from "../../components/text/Title.js";
-import SmallBookingOpenListSelect from "../../features/SmallBookingOpenListSelect";
+import SingleIdeaCard from "../../features/SingleIdeaCard";
 import IconText from "../../components/icon/IconText";
+import Icon from "react-native-vector-icons/AntDesign";
 
 const screenWidth = Dimensions.get("window").width;
 
@@ -29,7 +30,7 @@ if (screenWidth > 800) {
   titleWidth = screenWidth - 320;
 }
 
-function BookingIdea() {
+function BookingCardAdded() {
   const navigation = useNavigation();
 
   return (
@@ -37,39 +38,39 @@ function BookingIdea() {
       <ScrollView vertical={true} showsHorizontalScrollIndicator={false}>
         <SafeAreaView>
           <TopBarBack />
-          <Title title="Escolha a ideia" />
+
+          <Title title="Confirme as Informações" />
+          <SubtitleRow>
+            <Heading3>Ideia</Heading3>
+          </SubtitleRow>
+
+          <SingleIdeaCard />
+
+          <SubtitleRow>
+            <Heading3>Studio</Heading3>
+          </SubtitleRow>
+          <SingleIdeaCard />
           <View style={{ paddingLeft: 24 }}>
-            <IconText text="Suas ideias" icon="user" />
+            <IconText text="Cartão selecionado" icon="creditcard" />
           </View>
-          <SmallBookingOpenListSelect />
-          <View style={{ paddingLeft: 24 }}>
-            <IconText text="Ideias do Estúdio" icon="isv" />
-          </View>
-          <SmallBookingOpenListSelect />
+          <Row>
+            <BrandCard source={require("../../assets/mastercard.png")} />
+            <Body style={{ marginRight: 40 }}>**** **** **** 3872</Body>
+            <IconText text="Alterar" icon="edit" color={colors.accent} />
+          </Row>
           <Button
-            text="Continuar"
+            text="Pagar R$330"
             link={() => {
-              navigation.navigate("BookingSent");
+              navigation.navigate("BookingPayConfirmed");
             }}
           />
-          <View style={{ alignSelf: "center", paddingTop: 16 }}>
-            <TouchableOpacity
-              onPress={() => {
-                navigation.navigate("Body");
-              }}
-            >
-              <Heading4 style={{ paddingBottom: 40 }}>
-                <Link>Criar nova Ideia</Link>
-              </Heading4>
-            </TouchableOpacity>
-          </View>
         </SafeAreaView>
       </ScrollView>
     </Container>
   );
 }
 
-export default BookingIdea;
+export default BookingCardAdded;
 
 const Container = styled.View`
   background: ${colors.bg};
@@ -77,4 +78,29 @@ const Container = styled.View`
   border-radius: 10px;
   width: 100%;
   padding-top: 8px;
+`;
+
+const Row = styled.View`
+  flex-direction: row;
+  margin-top: 16px;
+  box-shadow: 0px 1px 25px rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+  padding-left: 24px;
+  margin-bottom: 24px;
+`;
+
+const BrandCard = styled.Image`
+  width: 40px;
+  height: 30px;
+  align-self: center;
+  padding-left: 24px;
+  background: #ffffff;
+
+  margin-right: 16px;
+`;
+
+const SubtitleRow = styled.Text`
+  padding-left: 24px;
+  padding-top: 0px;
+  padding-bottom: 8px;
 `;

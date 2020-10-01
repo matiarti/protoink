@@ -134,11 +134,10 @@ function RegisterScreen({ navigation }) {
                 >
                   Os seus dados estão seguros no Protoink.
                 </Heading5>
-                <TouchableOpacity type="submit" onPress={onRegister}>
-                  <Row>
-                    <Button text="Cadastrar" />
-                  </Row>
-                </TouchableOpacity>
+
+                <Row>
+                  <Button type="submit" text="Cadastrar" link={onRegister} />
+                </Row>
               </Form>
               <TouchableOpacity
                 onPress={() => {

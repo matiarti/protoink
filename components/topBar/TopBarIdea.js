@@ -1,11 +1,12 @@
-import React from "react";
-import { TouchableOpacity } from "react-native";
+import React, { useState } from "react";
+import { TouchableOpacity, Modal } from "react-native";
 import styled from "styled-components/native";
 import Icon from "react-native-vector-icons/AntDesign";
 import { Heading1, Heading3, Heading4, Heading5, colors } from "../../theme";
 import { useNavigation } from "@react-navigation/native";
 
 function TopBarIdea() {
+  const [modalVisible, setModalVisible] = useState(false);
   const navigation = useNavigation();
 
   return (
@@ -30,9 +31,22 @@ function TopBarIdea() {
       </Col>
 
       <Col>
+        <TouchableOpacity>
+          <Icon
+            name="delete"
+            size={24}
+            color={colors.danger}
+            style={{
+              position: "absolute",
+              top: 52,
+              right: 24,
+            }}
+          />
+        </TouchableOpacity>
+
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate("Idea");
+            navigation.navigate("Body");
           }}
         >
           <Icon
@@ -53,7 +67,7 @@ function TopBarIdea() {
           style={{
             position: "absolute",
             top: 52,
-            right: 24,
+            right: 108,
           }}
         />
       </Col>

@@ -4,6 +4,7 @@ import Button from "../button/ButtonCta.js";
 import { Dimensions } from "react-native";
 import { Heading5, colors } from "../../theme.js";
 import Icon from "react-native-vector-icons/AntDesign";
+import { useNavigation } from "@react-navigation/native";
 
 const screenWidth = Dimensions.get("window").width;
 var barWidth = screenWidth;
@@ -12,12 +13,18 @@ if (screenWidth > 300) {
 }
 
 function IdeaBottomBar(props) {
+  const navigation = useNavigation();
   return (
     <Container style={{ elevation: 16 }}>
       <Row>
         <Heading5 style={{ paddingLeft: 24 }}>{props.text}</Heading5>
 
-        <Button text={props.button} />
+        <Button
+          text={props.button}
+          link={() => {
+            navigation.navigate("Result");
+          }}
+        />
       </Row>
     </Container>
   );

@@ -12,7 +12,7 @@ const Tab = createBottomTabNavigator();
 
 const StackNav = () => {
   return (
-    <Tab.Navigator initialRouteName="Home">
+    <Tab.Navigator initialRouteName="Profile">
       <Tab.Screen
         name="Home"
         component={HomeScreen}
@@ -75,7 +75,7 @@ const StackNav = () => {
         }}
       />
       <Tab.Screen
-        name="Perfil"
+        name="Profile"
         component={ProfileScreen}
         options={{
           title: "Perfil",

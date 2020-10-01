@@ -78,9 +78,9 @@ function LoginScreen({ navigation, props }) {
                     security={passwordShown ? false : true}
                     onsubmit={login}
                   />
-                  <TouchableOpacity type="submit" onPress={login}>
+                  <TouchableOpacity type="submit">
                     <Row>
-                      <Button text="Entrar" />
+                      <Button text="Entrar" link={login} />
                     </Row>
                   </TouchableOpacity>
                 </Form>

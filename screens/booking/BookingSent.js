@@ -55,7 +55,7 @@ function BookingSent() {
           <Button
             text="Acompanhar Solicitação"
             link={() => {
-              navigation.navigate("IdeaPending");
+              navigation.navigate("Booking");
             }}
           />
         </SafeAreaView>

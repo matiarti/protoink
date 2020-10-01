@@ -57,16 +57,14 @@ function ExploreModal() {
         />
       </TouchableOpacity>
 
-      <TouchableOpacity
-        type="submit"
-        onPress={() => {
-          navigation.navigate("Result");
-        }}
-      >
-        <Row>
-          <Button text="Buscar" />
-        </Row>
-      </TouchableOpacity>
+      <Row>
+        <Button
+          text="Buscar"
+          link={() => {
+            navigation.navigate("Result");
+          }}
+        />
+      </Row>
     </Form>
   );
 }

@@ -37,11 +37,12 @@ function EnableLocation() {
             <Image source={require("../../assets/map.jpg")} />
           </Col>
 
-          <TouchableOpacity onPress={() => navigation.navigate("Home")}>
-            <Row>
-              <Button text="Ativar Localização" />
-            </Row>
-          </TouchableOpacity>
+          <Row>
+            <Button
+              link={() => navigation.navigate("Home")}
+              text="Ativar Localização"
+            />
+          </Row>
         </SafeAreaView>
       </ScrollView>
     </Container>

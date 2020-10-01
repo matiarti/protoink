@@ -30,9 +30,8 @@ export default function SelectDate() {
             Escolha uma data
           </Heading1>
           <DatePicker onSelectedChange={(date) => setSelectedDate(date)} />
-          <TouchableOpacity onPress={() => navigation.goBack()}>
-            <Button text="Continuar" />
-          </TouchableOpacity>
+
+          <Button text="Continuar" link={() => navigation.goBack()} />
         </SafeAreaView>
       </ScrollView>
     </Container>

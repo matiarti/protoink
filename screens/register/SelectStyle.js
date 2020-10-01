@@ -44,15 +44,15 @@ function SelectStyle() {
             {data.styleCollection.items.map((style, index) => (
               <SelectList key={index} stylename={style.name} />
             ))}
-            <TouchableOpacity
-              onPress={() => {
-                navigation.navigate("Notification");
-              }}
-            >
-              <Row>
-                <Button text="Continuar" />
-              </Row>
-            </TouchableOpacity>
+
+            <Row>
+              <Button
+                link={() => {
+                  navigation.navigate("Notification");
+                }}
+                text="Continuar"
+              />
+            </Row>
           </Col>
         </ScrollView>
       </SafeAreaView>

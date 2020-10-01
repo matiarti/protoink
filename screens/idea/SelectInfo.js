@@ -115,14 +115,13 @@ function SelectInfo() {
               name="description"
               id="description"
             />
-            <TouchableOpacity
-              onPress={() => {
+
+            <Button
+              text="Criar Ideia"
+              link={() => {
                 navigation.navigate("Idea");
               }}
-              style={{ paddingTop: 24 }}
-            >
-              <Button text="Criar Ideia" />
-            </TouchableOpacity>
+            />
           </SafeAreaView>
         </ScrollView>
       </KeyboardAwareScrollView>

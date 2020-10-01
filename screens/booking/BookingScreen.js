@@ -13,6 +13,7 @@ import SmallBookingOpenList from "../../features/SmallBookingOpenList";
 import SmallBookingPendingList from "../../features/SmallBookingPendingList";
 import SmallBookingConfimedList from "../../features/SmallBookingConfimedList";
 import TopBar from "../../components/topBar/TopBar.js";
+import SmallBookingPayList from "../../features/SmallBookingPayList.js";
 
 function Open() {
   return <SmallBookingOpenList />;
@@ -20,6 +21,10 @@ function Open() {
 
 function Pending() {
   return <SmallBookingPendingList />;
+}
+
+function PendingPay() {
+  return <SmallBookingPayList />;
 }
 
 function Confirmed() {
@@ -69,7 +74,7 @@ export default function BookingScreen() {
             }}
           >
             <Tab.Screen name="Em Aberto" component={Open} />
-            <Tab.Screen name="Pendente" component={Pending} />
+            <Tab.Screen name="Pendente" component={(Pending, PendingPay)} />
             <Tab.Screen name="Confirmado" component={Confirmed} />
           </Tab.Navigator>
         </SafeAreaView>
